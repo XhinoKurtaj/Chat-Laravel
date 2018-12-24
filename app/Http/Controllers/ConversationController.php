@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Usrcon;
+use DemeterChain\C;
 use Illuminate\Http\Request;
 use App\Conversation;
-
+use App\User;
 class ConversationController extends Controller
 {
     public function __construct()
@@ -12,27 +14,29 @@ class ConversationController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        /////////////////////////////////////
-        $x = new Conversation;
-        $x->roles();
-        dd($x);
-        ///////////////////////////////////////////
-        return view('CreateConversation');
-    }
-
     public function store(Request $request)
     {
-        $conv = new Conversation([
+        $userId = auth()->user()->id;
+        $conversationId = Conversation::insertGetId([
             'custom_name' => $request->post('conv')
             ]);
-        $conv->save();
-         return redirect('test')->with('success', 'Conv added successfuly');
+        $user = User::find($userId);
+        $user->conversations()->attach($conversationId);
+
+         return redirect('home');
     }
+
+    public function read()
+    {
+        $user = auth()->user();
+        $conversationList = $user->conversations;
+        return View("home", compact('conversationList'));
+    }
+
+    public function delete($id)
+    {
+        $conversation = Conversation::find($id)->delete();
+        return back();
+    }
+
 }

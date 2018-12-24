@@ -15,10 +15,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('photos', 'PhotoController');
-Route::resource('conversation','ConversationController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('home/photo','PhotoController@show')
+        ->name('photo.show');
+Route::get('home/photo/create','PhotoController@create')
+        ->name('photo.create');
+Route::post('home/photo','PhotoController@store')
+        ->name('photo.store');
+Route::get('home/photo/{id}','PhotoController@delete')
+        ->name('photo.delete');
+
+Route::get('home','ConversationController@read');
+Route::post('home','ConversationController@store')
+        ->name('conversation.store');
+Route::get('home/conversation/{id}/delete','ConversationController@delete')
+        ->name('conversation.delete');
+Route::get('home/conversation/{id}','MessageController@show')
+        ->name('message.show');
+Route::post('home/conversation/{id}','MessageController@store')
+        ->name('message.store');
+
+Route::get('/home/conversation/{id}/read','MessageController@read')
+        ->name('message.read');
+
+
+
 
 

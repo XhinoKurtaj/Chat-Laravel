@@ -19,8 +19,15 @@ class CreateAttachmentsTable extends Migration
             $table->unsignedInteger('message_id');
             $table->unsignedInteger('conversation_id');
 
-            $table->foreign('conversation_id')->references('conversation_id')->on('conversations');
-            $table->foreign('message_id')->references('message_id')->on('messages');
+            $table->foreign('conversation_id')
+                ->references('id')
+                ->on('conversations')
+                ->onDelete('cascade');
+
+            $table->foreign('message_id')
+                ->references('id')
+                ->on('messages')
+                ->onDelete('cascade');
         });
     }
 

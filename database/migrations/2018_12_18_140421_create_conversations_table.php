@@ -14,7 +14,7 @@ class CreateConversationsTable extends Migration
     public function up()
     {
         Schema::create('conversations', function (Blueprint $table) {
-            $table->increments('conversation_id');
+            $table->increments('id');
             $table->string('custom_name', 255);
             $table->string('custom_photo', 255)->default('No Image');
             $table->timestamps();

@@ -13,13 +13,19 @@ class CreateUsrconTable extends Migration
      */
     public function up()
     {
-        Schema::create('usrcon', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('user_conversations', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('conversation_id');
 
-            $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('conversation_id')->references('conversation_id')->on('conversations');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('conversation_id')
+                ->references('id')
+                ->on('conversations')
+                ->onDelete('cascade');
         });
     }
 

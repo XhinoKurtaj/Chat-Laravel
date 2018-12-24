@@ -27,14 +27,13 @@
     @else
         @foreach($photoList as $photo)
             <div class='col-4 col-md-2 frame'>
-                <img src='image/{{$photo->photo}}' id='photo_pic' alt='Card image cap'>
-                <p>{{$photo->photo}}</p>
+                <img src="{{ $photo->photo}}" id='photo_pic' alt='Card image cap'>
                 <p><small class='text-muted'>{{$photo->created_at}}</small></p>
                 <form action='' method='GET'>
                     @csrf
                     <input type='text' value='{{$photo->added_date}}' name='photoName' style='visibility:hidden'>
                     <input type='submit' class='btn btn-sm btn-outline-info' name='profilePhoto' value='Set as photo profile'>&nbsp&nbsp
-                    <input type='submit' class='btn btn-sm btn-outline-danger '  name='deletePhoto' value='Delete'>
+                    <a href="{{ route('photo.delete',$photo->id) }}" class='btn btn-sm btn-outline-danger '  name='deletePhoto'>Delete</a>
                 </form>
             </div>
         @endforeach

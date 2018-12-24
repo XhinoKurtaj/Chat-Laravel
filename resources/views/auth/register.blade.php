@@ -12,28 +12,28 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="First Name" class="col-md-4 col-form-label text-md-right">{{ __('First_name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="First Name" type="text" class="form-control{{ $errors->has('First_name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('First_name'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('First_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+                            <label for="Last Name" class="col-md-4 col-form-label text-md-right">{{ __('Last_name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
+                                <input id="Last Name" type="text" class="form-control{{ $errors->has('Last_name') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
 
-                                @if ($errors->has('surname'))
+                                @if ($errors->has('Last_name'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('surname') }}</strong>
+                                        <strong>{{ $errors->first('Last_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
