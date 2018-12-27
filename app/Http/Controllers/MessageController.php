@@ -8,14 +8,15 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    public function index()
-    {
-    }
-
     public function read($id)
     {
+        $sender = array();
         $messageList = Message::where('conversation_id',$id)->get();
-        return response()->json($messageList);
+        foreach ($messageList as $messages){
+            $messages->sender;
+            $sender[]=$messages;
+        }
+        return response()->json($sender);
     }
 
     public function store(Request $request, $id)
@@ -25,13 +26,14 @@ class MessageController extends Controller
         ]);
         $conversation = Conversation::findOrFail($id);
         $user = auth()->user();
+
         $message = Message::create([
             'message' => $request->get('message'),
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
         ]);
+
         return redirect()->back();
-//        return response()->json($message);
     }
 
     public function show()

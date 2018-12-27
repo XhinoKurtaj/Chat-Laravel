@@ -27,7 +27,7 @@
     @else
         @foreach($photoList as $photo)
             <div class='col-4 col-md-2 frame'>
-                <img src="{{ $photo->photo}}" id='photo_pic' alt='Card image cap'>
+                <img data-src="{{'storage/app/public/'.$photo->photo }}" id='photo_pic' alt='Card image cap'>
                 <p><small class='text-muted'>{{$photo->created_at}}</small></p>
                 <form action='' method='GET'>
                     @csrf

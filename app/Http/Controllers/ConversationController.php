@@ -33,6 +33,15 @@ class ConversationController extends Controller
         return View("home", compact('conversationList'));
     }
 
+    public function conversationMembers($id)
+    {
+        $conversation = Conversation::findOrFail($id);
+
+        $memberList = $conversation->users;
+
+        return response()->json($memberList);
+    }
+
     public function delete($id)
     {
         $conversation = Conversation::find($id)->delete();

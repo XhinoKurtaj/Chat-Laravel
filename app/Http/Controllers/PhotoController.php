@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Photo;
 
 class PhotoController extends Controller
@@ -19,30 +20,16 @@ class PhotoController extends Controller
 
     public function store(Request $request)
     {
-        //upload img
-//        if(Input::hasFile('file')){
-//
-//            echo 'Uploaded';
-//            $file = Input::file('file');
-//            $file->move('uploads', $file->getClientOriginalName());
-//            echo '';
+        $userId = auth()->user()->id;
         $request->validate([
             'photo'=>'required',
-            'user_id'
         ]);
         $photo = Photo::create([
         'photo' => $request->file('photo')->store('images'),
-        'user_id' => $request->get('userId'),
+        'user_id' => $userId,
         ]);
 
         return back();
-
-//        $photo = Photo::create([
-//            'photo' => $request->get('photo'),
-//            'user_id' => $request->get('userId')
-//        ]);
-//        return redirect('photos/show');
-
     }
 
     public function show()
