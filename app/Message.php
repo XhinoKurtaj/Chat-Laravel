@@ -27,6 +27,6 @@ class Message extends Model
 
     public function attachment()
     {
-        return $this->hasMany(Attachment::class);
+        return $this->hasOne(Attachment::class,'message_id');
     }
 }

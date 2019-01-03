@@ -56,9 +56,10 @@
                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-                            <a href="UpdateData.php" class="dropdown-item onMouse">Update User Data</a>
+                            <a href="{{route ('user.profile')}}" class="dropdown-item onMouse">User Profile</a>
                             <a href="{{ route('photo.show') }}" class="dropdown-item onMouse">Choose a photo</a>
                             <a href="" class="dropdown-item onMouse">Leave Conversation</a>
+                            <a href="{{ route('conversation.list') }}" class="dropdown-item onMouse">Conversation List</a>
                             <hr>
                             <a href="" class="dropdown-item btn" id="deleteUser">Delete User</a>
                         </div>

@@ -20,6 +20,26 @@ class MessageController extends Controller
         return response()->json($sender);
     }
 
+
+
+
+
+    public function readAttachments($id)
+    {
+        $sender = array();
+        $attachList = Attachment::where('conversation_id',$id)->get();
+
+        foreach ($attachList as $att){
+            echo "$att<br>";
+//            $messages->sender;
+//            $sender[]=$messages;
+        }
+//        return response()->json($sender);
+    }
+
+
+
+
     public function store(Request $request, $id)
     {
         $this->validate($request, [

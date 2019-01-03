@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')
+    ->name('home');
 
 Route::get('home/photo','PhotoController@show')
         ->name('photo.show');
@@ -31,7 +32,8 @@ Route::get('home/photo/profile/{id}','PhotoController@setProfilePhoto')
         ->name('profile.photo');
 
 
-Route::get('home','ConversationController@read');
+Route::get('home','ConversationController@read')
+        ->name('conversation.list');
 Route::post('home','ConversationController@store')
         ->name('conversation.store');
 
@@ -57,13 +59,16 @@ Route::get('/home/conversation/{id}/add/member','SearchController@addMember')
 Route::get('/home/conversation/{id}/search','SearchController@search')
     ->name('search.user');
 
-Route::get('profile', 'UserController@profile');
-Route::post('profile', 'UserController@update_avatar');
+Route::get('profile', 'UserController@profile')
+        ->name('user.profile');
+Route::post('profile', 'UserController@update')
+        ->name('user.update');
 
 
 
 
 
-
+Route::get('/home/conversation/{id}/test','MessageController@readAttachments')
+    ->name('att.read');
 
 
