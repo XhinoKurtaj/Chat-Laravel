@@ -24,4 +24,9 @@ class Message extends Model
     {
         return $this->belongsTo(User::class, 'sender_id');
     }
+
+    public function attachment()
+    {
+        return $this->hasMany(Attachment::class);
+    }
 }

@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header"><img src="{{ asset('/images/test.jpeg') }}" alt="Avatar" id="photo_pic"></div>
+                <div class="card-header"><img src="/storage/{{ Auth::user()->photo }}" alt="Avatar" id="photo_pic" style="width:200px;height:200px;"></div>
                 <div class="card-body">
                     <h6>{{Auth::user()->first_name}}  {{Auth::user()->last_name}}</h6>
                 </div>

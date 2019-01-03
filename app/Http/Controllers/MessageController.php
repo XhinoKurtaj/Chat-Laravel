@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
 use App\Message;
 use App\Conversation;
 use Illuminate\Http\Request;
@@ -32,6 +33,15 @@ class MessageController extends Controller
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
         ]);
+        if($request->hasFile('attachment'))
+        {
+            $attatch = $request->file('attachment');
+            $attachment = Attachment::create([
+                'attachment' => $attatch->store('attachments', ['disk' => 'public']),
+                'conversation_id' => $conversation->id,
+                'message_id' => $message->id,
+            ]);
+        }
 
         return redirect()->back();
     }
@@ -40,5 +50,29 @@ class MessageController extends Controller
     {
         return view('chatBoard');
     }
+
+
+    //    public function store(Request $request, $id)
+//    {
+//        $this->validate($request, [
+//            'message'   => 'required|min:1|max:191'
+//
+//        ]);
+//        $conversation = Conversation::findOrFail($id);
+//        $user = auth()->user();
+//
+//        $message = Message::create([
+//            'message' => $request->get('message'),
+//            'conversation_id' => $conversation->id,
+//            'sender_id' => $user->id,
+//        ]);
+//
+//        return redirect()->back();
+//    }
+//
+//    public function show()
+//    {
+//        return view('chatBoard');
+//    }
 
 }

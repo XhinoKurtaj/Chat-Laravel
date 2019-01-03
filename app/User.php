@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
+
+    use Searchable;
     use Notifiable;
     /**
      * The attributes that are mass assignable.
@@ -50,4 +53,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class,'sender_id');
     }
+
+
 }

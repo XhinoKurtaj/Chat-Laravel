@@ -43,7 +43,7 @@
             <div class="container">
                 <div class="card mb-3" style="max-width: 18rem;">
                     <div class="container center">
-                        <img src="<?php ?>" alt="Avatar" id="photo_pic">
+                        <img src="/storage/{{ Auth::user()->photo }}" alt="Avatar" id="photo_pic" style="width:200px;height:200px;">
                         <h5 id="username"></h5>
                     </div>
                     <div class="btn-group dropright ">
@@ -57,16 +57,37 @@
                                 {{ __('Logout') }}
                             </a>
                             <a href="UpdateData.php" class="dropdown-item onMouse">Update User Data</a>
-                            <a href="PhotoBoard.php" class="dropdown-item onMouse">Choose a photo</a>
-                            <a href="ConversationLists.php" class="dropdown-item onMouse">Leave Conversation</a>
+                            <a href="{{ route('photo.show') }}" class="dropdown-item onMouse">Choose a photo</a>
+                            <a href="" class="dropdown-item onMouse">Leave Conversation</a>
                             <hr>
                             <a href="" class="dropdown-item btn" id="deleteUser">Delete User</a>
                         </div>
                     </div>
                 </div>
-                    <input type="text" name="addMemberFirstName" id="addMemberFirstName" placeholder="First Name">
-                    <input type="text" name="addMemberLastName" id="addMemberLastName" placeholder="Last Name">
-                <button class="btn btn-outline-success" name="addButton" id="addButton">Add</button><br><br><br>
+                <form method="GET" action="{{ route('add.members',request()->route('id')) }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" name="search" class="form-control" id="searchText" placeholder="Search">
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-info" >Search</button>
+                        </div>
+                    </div>
+                </form>
+                @if (\Session::has('error'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('error') !!}</li>
+                        </ul>
+                    </div>
+                @elseif (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                        </div>
+                @endif
+                <br><br>
                 <button onclick="getMembers()">testMembers</button>
                     <table class="table table-striped">
                         <thead>
@@ -75,9 +96,9 @@
                                 <th scope="col" class="">Conversation Members</th>
                             </tr>
                         </thead>
-                        <tbody>
-                                <tr class="table-active" id="showMemberList">
-                                </tr>
+                        <tbody id="showMemberList">
+                                {{--<tr class="table-active" >--}}
+                                {{--</tr>--}}
                         </tbody>
                     </table>
             </div>
@@ -89,12 +110,12 @@
             </div>
                 <div class="card-body">
                     <div class="container">
-                        <form action="{{ route('message.store',request()->route('id')) }}" method="POST" nctype="multipart/form-data">
+                        <form action="{{ route('message.store',request()->route('id')) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group">
                             <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><input type="submit" href=""  id="btn_send" class="btn-lg btn-success" value="Send"></span>
+                                <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
                             </div>
                         </div>
                         <div class="container">
@@ -148,13 +169,28 @@
             success:function(data){
                 var output = "";
                 for(var i in data){
-                    output += "<td ><strong>"+ counter++ +"</strong></td>"+
-                        "<td>"+data[0].fullName +"</td>";
+                    output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
+                        "<td>"+data[i].fullName +"</td></tr>";
                 }
                 display.html(output);
             }
         })
     }
+
+    // function addMember()
+    // {
+    //     var id=$("#convId").val();
+    //
+    //     $.ajax({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         type: "GET",
+    //         url: id +'/add/member',
+    //         success:function(data){;
+    //         }
+    //     })
+    // }
 
 </script>
 @include('/partial/footer')

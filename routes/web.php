@@ -27,6 +27,9 @@ Route::post('home/photo','PhotoController@store')
         ->name('photo.store');
 Route::get('home/photo/{id}','PhotoController@delete')
         ->name('photo.delete');
+Route::get('home/photo/profile/{id}','PhotoController@setProfilePhoto')
+        ->name('profile.photo');
+
 
 Route::get('home','ConversationController@read');
 Route::post('home','ConversationController@store')
@@ -41,10 +44,21 @@ Route::post('home/conversation/{id}','MessageController@store')
 Route::get('/home/conversation/{id}/read','MessageController@read')
         ->name('message.read');
 
-
 Route::get('/home/conversation/{id}/members','ConversationController@conversationMembers')
         ->name('conversation.members');
 
+
+Route::get('/home/conversation/{id}/add/member','SearchController@addMember')
+    ->name('add.members');
+
+
+
+
+Route::get('/home/conversation/{id}/search','SearchController@search')
+    ->name('search.user');
+
+Route::get('profile', 'UserController@profile');
+Route::post('profile', 'UserController@update_avatar');
 
 
 

@@ -36,9 +36,7 @@ class ConversationController extends Controller
     public function conversationMembers($id)
     {
         $conversation = Conversation::findOrFail($id);
-
         $memberList = $conversation->users;
-
         return response()->json($memberList);
     }
 
