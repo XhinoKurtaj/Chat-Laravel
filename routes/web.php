@@ -31,7 +31,6 @@ Route::get('home/photo/{id}','PhotoController@delete')
 Route::get('home/photo/profile/{id}','PhotoController@setProfilePhoto')
         ->name('profile.photo');
 
-
 Route::get('home','ConversationController@read')
         ->name('conversation.list');
 Route::post('home','ConversationController@store')
@@ -49,11 +48,8 @@ Route::get('/home/conversation/{id}/read','MessageController@read')
 Route::get('/home/conversation/{id}/members','ConversationController@conversationMembers')
         ->name('conversation.members');
 
-
 Route::get('/home/conversation/{id}/add/member','SearchController@addMember')
     ->name('add.members');
-
-
 
 
 Route::get('/home/conversation/{id}/search','SearchController@search')
@@ -67,8 +63,14 @@ Route::post('profile', 'UserController@update')
 
 
 
-
-Route::get('/home/conversation/{id}/test','MessageController@readAttachments')
+Route::get('/home/conversation/{id}/attachment','AttachmentController@show')
     ->name('att.read');
+Route::get('/home/conversation/{id}/download','AttachmentController@download')
+    ->name('att.download');
+
+Route::get("/broadcast", function(){
+    event(new App\Events\conversationMessages());
+});
+
 
 

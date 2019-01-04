@@ -18,6 +18,7 @@ class CreateMessagesTable extends Migration
             $table->unsignedInteger('conversation_id');
             $table->unsignedInteger('sender_id');
             $table->text('message');
+            $table->string('attachment')->nullable();
 
             $table->foreign('conversation_id')
                 ->references('id')

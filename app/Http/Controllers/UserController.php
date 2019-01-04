@@ -30,7 +30,6 @@ class UserController extends Controller
         return view('profile', array('user' => Auth::user()) );
     }
 
-
     public function update(Request $request)
     {
         $this->validate($request, [
@@ -49,3 +48,5 @@ class UserController extends Controller
         return redirect('/profile')->with('success','User updated successfully');
     }
 }
+
+

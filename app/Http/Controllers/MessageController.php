@@ -20,26 +20,6 @@ class MessageController extends Controller
         return response()->json($sender);
     }
 
-
-
-
-
-    public function readAttachments($id)
-    {
-        $sender = array();
-        $attachList = Attachment::where('conversation_id',$id)->get();
-
-        foreach ($attachList as $att){
-            echo "$att<br>";
-//            $messages->sender;
-//            $sender[]=$messages;
-        }
-//        return response()->json($sender);
-    }
-
-
-
-
     public function store(Request $request, $id)
     {
         $this->validate($request, [
@@ -47,11 +27,11 @@ class MessageController extends Controller
         ]);
         $conversation = Conversation::findOrFail($id);
         $user = auth()->user();
-
         $message = Message::create([
             'message' => $request->get('message'),
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
+            'attachment' => $request->file('attachment'),
         ]);
         if($request->hasFile('attachment'))
         {
@@ -62,7 +42,6 @@ class MessageController extends Controller
                 'message_id' => $message->id,
             ]);
         }
-
         return redirect()->back();
     }
 
@@ -70,29 +49,4 @@ class MessageController extends Controller
     {
         return view('chatBoard');
     }
-
-
-    //    public function store(Request $request, $id)
-//    {
-//        $this->validate($request, [
-//            'message'   => 'required|min:1|max:191'
-//
-//        ]);
-//        $conversation = Conversation::findOrFail($id);
-//        $user = auth()->user();
-//
-//        $message = Message::create([
-//            'message' => $request->get('message'),
-//            'conversation_id' => $conversation->id,
-//            'sender_id' => $user->id,
-//        ]);
-//
-//        return redirect()->back();
-//    }
-//
-//    public function show()
-//    {
-//        return view('chatBoard');
-//    }
-
 }
