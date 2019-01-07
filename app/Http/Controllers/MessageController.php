@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Attachment;
+use App\Events\conversationMessages;
 use App\Message;
 use App\Conversation;
 use Illuminate\Http\Request;
@@ -17,7 +17,8 @@ class MessageController extends Controller
             $messages->sender;
             $sender[]=$messages;
         }
-        return response()->json($sender);
+         return event(new conversationMessages($sender,$id));
+//        return response()->json($sender);
     }
 
     public function store(Request $request, $id)
@@ -31,17 +32,8 @@ class MessageController extends Controller
             'message' => $request->get('message'),
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
-            'attachment' => $request->file('attachment'),
         ]);
-        if($request->hasFile('attachment'))
-        {
-            $attatch = $request->file('attachment');
-            $attachment = Attachment::create([
-                'attachment' => $attatch->store('attachments', ['disk' => 'public']),
-                'conversation_id' => $conversation->id,
-                'message_id' => $message->id,
-            ]);
-        }
+//        return ['status' => 'Message Sent!'];
         return redirect()->back();
     }
 
@@ -50,3 +42,30 @@ class MessageController extends Controller
         return view('chatBoard');
     }
 }
+
+
+
+//public function store(Request $request, $id)
+//{
+//    $this->validate($request, [
+//        'message'   => 'required|min:1|max:191'
+//    ]);
+//    $conversation = Conversation::findOrFail($id);
+//    $user = auth()->user();
+//    $message = Message::create([
+//        'message' => $request->get('message'),
+//        'conversation_id' => $conversation->id,
+//        'sender_id' => $user->id,
+//        'attachment' => $request->file('attachment'),
+//    ]);
+//    if($request->hasFile('attachment'))
+//    {
+//        $attatch = $request->file('attachment');
+//        $attachment = Attachment::create([
+//            'attachment' => $attatch->store('attachments', ['disk' => 'public']),
+//            'conversation_id' => $conversation->id,
+//            'message_id' => $message->id,
+//        ]);
+//    }
+//    return redirect()->back();
+//}

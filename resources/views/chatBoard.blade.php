@@ -37,7 +37,7 @@
         text-align: center;
     }
 </style>
-<div class="container-fluid">
+<div id="app" class="container-fluid">
     <div class="row no-gutters" >
         <div class="col-6 col-md-4">
             <div class="container">
@@ -105,20 +105,22 @@
     <div class="col-10 col-sm-6 col-md-8">
         <div class="card">
             <div class="card-body" style="overflow: auto" id="textResponse">
-                {{--<div> <p id="msgField">--}}
-                    {{--</p> </div>--}}
+                <div> <p id="msgField">
+                    </p> </div>
                 <div class="container">
                     <div class="row">
                 <div class="col-9">
-                    <p id="msgField"></p>
+                    <p id="msgField">
+                        {{--=====================================================--}}
+                        <message-list></message-list>
+                        {{--=====================================================--}}
+                    </p>
                 </div>
                     <div class="col-3">
                         <button id="getAtt" onclick="getAttach()">getAtt</button>
                         <ul id="attachField"></ul></div>
                     </div>
                 </div>
-
-
             </div>
                 <div class="card-body">
                     <div class="container">
@@ -136,7 +138,6 @@
                         </div>
                         </form>
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">
-                        <button onclick="getMsg()">test</button>
                     </div>
                 </div>
             </div>
@@ -148,7 +149,9 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+    <script src="/js/app.js"></script>
     <script>
+
     function getMsg() {
         var id=$("#convId").val();
         var display = $("#msgField");
@@ -211,7 +214,6 @@
             }
         })
     }
-
 
 
 </script>

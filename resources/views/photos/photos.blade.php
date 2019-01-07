@@ -28,18 +28,8 @@
         @endif
     </div>
 <div class="row">
-    @if(empty($photoList))
-        <div class='container'>
-            <div class='row'>
-                <div class='col-3'></div>
-                <div class='col-6' style= 'margin-top: 100px'>
-                    <h5> You dont have any photo</h5>
-                    </div>
-                <div class='col-3'></div>
-            </div>
-        </div>
-    @else
-        @foreach($photoList as $photo)
+
+    @foreach($photoList as $photo)
             <div class='col-4 col-md-2 frame'>
                 <img src="/storage/{{ $photo->photo }}" class='photo' alt='Card image cap'>
                 <p><small class='text-muted'>{{$photo->created_at}}</small></p>
@@ -51,6 +41,7 @@
                 </form>
             </div>
         @endforeach
-    @endif
 </div>
+</div>
+
 @include('../partial/footer')

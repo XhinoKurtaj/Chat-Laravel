@@ -21,6 +21,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('message-list', require('./components/message-list.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,3 +32,29 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app'
 });
+
+const id=$("#convId").val();
+var display = $("#msgField");
+var output = "";
+
+// window.Echo.private('conversation.'+id)
+//     .listen('conversationMessages', event => {
+//         event.messages.forEach(function (element) {
+//             console.log(element);
+//             console.log(element.sender.fullName);
+//             console.log(element.message);
+//         });
+//
+//     });
+
+
+// const message = $("#message_text").val();
+// const test = $('#testroute').val();
+// $('#get').click(function(){
+//     axios.get(id+'/read').then(console.log("work"));
+// });
+
+
+
+
+

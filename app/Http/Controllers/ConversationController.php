@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Usrcon;
+
 use DemeterChain\C;
 use Illuminate\Http\Request;
 use App\Conversation;
@@ -44,6 +44,19 @@ class ConversationController extends Controller
     {
         $conversation = Conversation::find($id)->delete();
         return back();
+    }
+
+
+
+
+
+
+    public function testConv()
+    {
+        $conversation = Conversation::find(2);
+        $a = $conversation->users;
+        echo ($a[0]->id);
+        dd($a[0]->id);
     }
 
 }
