@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\conversationMessages;
+use App\Events\MessageSent;
 use App\Message;
 use App\Conversation;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ class MessageController extends Controller
     {
         $sender = array();
         $messageList = Message::where('conversation_id',$id)->get();
-        foreach ($messageList as $messages){
+        foreach ($messageList as $messages)
+        {
             $messages->sender;
             $sender[]=$messages;
         }
@@ -33,7 +35,10 @@ class MessageController extends Controller
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
         ]);
-        return ['status' => 'Message Sent!'];
+        if($message){
+            event(new MessageSent(1,$id));
+        }
+//        return ['status' => 'Message Sent!'];
 //        return redirect()->back();
     }
 

@@ -137,7 +137,6 @@
                             {{--<input type="file" class="btn btn-sm " id="attach" name="attachment">--}}
                         {{--</div>--}}
                         {{--</form>--}}
-
                             <div class="input-group">
                                 <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
                                 <div class="input-group-prepend">
@@ -157,54 +156,8 @@
     </div>
 </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
-    <script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
 
 
-    function getMembers()
-    {
-        var id=$("#convId").val();
-        var display = $("#showMemberList");
-        var counter = 1;
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "GET",
-            url: id +'/members',
-            success:function(data){
-                var output = "";
-                for(var i in data){
-                    output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
-                        "<td>"+data[i].fullName +"</td></tr>";
-                }
-                display.html(output);
-            }
-        })
-    }
-
-    function getAttach()
-    {
-        var id=$("#convId").val();
-        var display = $("#attachField");
-        var counter = 1;
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "GET",
-            url: id +'/attachment',
-            success:function(data){
-                var output = "";
-                for(var i in data){
-                    output +="<li value="+data[i].attachment+">"+data[i].attachment+"<li>"
-                }
-                display.html(output);
-            }
-        })
-    }
-
-
-</script>
 @include('/partial/footer')

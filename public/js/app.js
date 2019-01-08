@@ -58061,13 +58061,6 @@ var app = new Vue({
   el: '#app'
 });
 var id = $("#convId").val();
-window.Echo.private('conversation.' + id).listen('conversationMessages', function (event) {
-  event.messages.forEach(function (element) {
-    console.log(element);
-    console.log(element.sender.fullName);
-    console.log(element.message);
-  });
-});
 $('#btn_send').click(function () {
   var message = $('#msgArea').val();
   console.log(message);
@@ -58081,28 +58074,38 @@ $('#btn_send').click(function () {
       message: message
     },
     success: function success(data) {
-      $('#messageField').html(message);
       $('#msgArea').val(' ');
     }
   });
 });
 var display = $("#msgField");
-$.ajax({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  },
-  type: "GET",
-  url: id + '/read',
-  success: function success(result) {
-    var output = "";
+window.Echo.private('conversation.' + id).listen('MessageSent', function (event) {
+  if (event.sent === 1) {
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      type: "GET",
+      url: id + '/read',
+      success: function success(result) {
+        var output = " ";
 
-    for (var i in result) {
-      output += "<h6><strong>" + result[i].sender.fullName + "</strong></h6>" + "<p>" + result[i].message + "</p><br>";
-    }
+        for (var i in result) {
+          output += "<h6><strong>" + result[i].sender.fullName + "</strong></h6>" + "<p>" + result[i].message + "</p><br>";
+        }
 
-    display.html(output);
+        display.html(output);
+      }
+    });
   }
-});
+}); // window.Echo.private('conversation.'+id)
+//     .listen('conversationMessages', event => {
+//         event.messages.forEach(function (element) {
+//             console.log(element);
+//             console.log(element.sender.fullName);
+//             console.log(element.message);
+//         });
+//     });
 
 /***/ }),
 
