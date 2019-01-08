@@ -36,8 +36,6 @@ class conversationMessages implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-
         return new PrivateChannel('conversation.'.$this->conversationId);
-//        return new PrivateChannel('conversation');
     }
 }

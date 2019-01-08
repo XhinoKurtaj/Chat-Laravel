@@ -40,13 +40,11 @@ Route::get('home/conversation/{id}/delete','ConversationController@delete')
         ->name('conversation.delete');
 Route::get('home/conversation/{id}','MessageController@show')
         ->name('message.show');
-
-
-Route::post('home/conversation/{id}','MessageController@store')
-     ->name('message.store');
-
 Route::get('/home/conversation/{id}/read','MessageController@read')
         ->name('message.read');
+Route::post('home/conversation/{id}/send','MessageController@store')
+    ->name('message.store');
+
 
 Route::get('/home/conversation/{id}/members','ConversationController@conversationMembers')
         ->name('conversation.members');
@@ -70,15 +68,6 @@ Route::get('/home/conversation/{id}/attachment','AttachmentController@show')
     ->name('att.read');
 Route::get('/home/conversation/{id}/download','AttachmentController@download')
     ->name('att.download');
-
-
-
-
-
-
-/*               */
-
-Route::get('/test','ConversationController@testConv');
 
 
 

@@ -17,8 +17,8 @@ class MessageController extends Controller
             $messages->sender;
             $sender[]=$messages;
         }
-         return event(new conversationMessages($sender,$id));
-//        return response()->json($sender);
+//         return event(new conversationMessages($sender,$id));
+        return response()->json($sender);
     }
 
     public function store(Request $request, $id)
@@ -33,8 +33,8 @@ class MessageController extends Controller
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
         ]);
-//        return ['status' => 'Message Sent!'];
-        return redirect()->back();
+        return ['status' => 'Message Sent!'];
+//        return redirect()->back();
     }
 
     public function show()

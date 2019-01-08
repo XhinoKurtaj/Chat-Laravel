@@ -21,7 +21,6 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('message-list', require('./components/message-list.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,25 +33,44 @@ const app = new Vue({
 });
 
 const id=$("#convId").val();
+window.Echo.private('conversation.'+id)
+    .listen('conversationMessages', event => {
+        event.messages.forEach(function (element) {
+            console.log(element);
+            console.log(element.sender.fullName);
+            console.log(element.message);
+        });
+    });
+
+$('#btn_send').click(function(){
+    const message = $('#msgArea').val();
+    console.log(message);
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        method: 'post',
+        url: id+'/send',
+        data: {message: message},
+        success:function(data){
+             $('#messageField').html(message);
+            $('#msgArea').val(' ');
+        }
+    })
+});
+
 var display = $("#msgField");
-var output = "";
-
-// window.Echo.private('conversation.'+id)
-//     .listen('conversationMessages', event => {
-//         event.messages.forEach(function (element) {
-//             console.log(element);
-//             console.log(element.sender.fullName);
-//             console.log(element.message);
-//         });
-//
-//     });
-
-
-// const message = $("#message_text").val();
-// const test = $('#testroute').val();
-// $('#get').click(function(){
-//     axios.get(id+'/read').then(console.log("work"));
-// });
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: "GET",
+        url: id +'/read',
+        success:function(result){
+            var output = "";
+            for(var i in result){
+                output += "<h6><strong>"+result[i].sender.fullName+"</strong></h6>"+
+                    "<p>"+result[i].message+"</p><br>";
+            }
+            display.html(output);
+        }
+    });
 
 
 

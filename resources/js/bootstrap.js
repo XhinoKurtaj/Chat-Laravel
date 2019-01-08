@@ -54,12 +54,3 @@ window.Echo = new Echo({
     cluster: 'eu',
     encrypted: true
 });
-
-// window.Echo.private('conversation'+ this.id)
-//     .listen('conversationMessages', event => {
-//         event.messages.forEach(function (element) {
-//             console.log(element);
-//             console.log(element.sender.fullName);
-//             console.log(element.message);
-//         });
-//     });

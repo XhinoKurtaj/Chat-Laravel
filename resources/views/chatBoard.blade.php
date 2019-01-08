@@ -110,9 +110,9 @@
                 <div class="container">
                     <div class="row">
                 <div class="col-9">
-                    <p id="msgField">
+                    <p id="messageField">
                         {{--=====================================================--}}
-                        <message-list></message-list>
+                        {{--<message-list></message-list>--}}
                         {{--=====================================================--}}
                     </p>
                 </div>
@@ -124,19 +124,31 @@
             </div>
                 <div class="card-body">
                     <div class="container">
-                        <form action="{{ route('message.store',request()->route('id')) }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="input-group">
-                            <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
+                        {{--<form action="{{ route('message.store',request()->route('id')) }}" method="POST" enctype="multipart/form-data">--}}
+                        {{--@csrf--}}
+                        {{--<div class="input-group">--}}
+                            {{--<textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>--}}
+                            {{--<div class="input-group-prepend">--}}
+                                {{--<span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="container">--}}
+                            {{--<label for="profile_pic">Choose file to upload</label>--}}
+                            {{--<input type="file" class="btn btn-sm " id="attach" name="attachment">--}}
+                        {{--</div>--}}
+                        {{--</form>--}}
+
+                            <div class="input-group">
+                                <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="container">
-                            <label for="profile_pic">Choose file to upload</label>
-                            <input type="file" class="btn btn-sm " id="attach" name="attachment">
-                        </div>
-                        </form>
+                            <div class="container">
+                                <label for="profile_pic">Choose file to upload</label>
+                                <input type="file" class="btn btn-sm " id="attach" name="attachment">
+                            </div>
+
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">
                     </div>
                 </div>
@@ -144,33 +156,11 @@
         </div>
     </div>
 </div>
-
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
     <script>
 
-    function getMsg() {
-        var id=$("#convId").val();
-        var display = $("#msgField");
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "GET",
-            url: id +'/read',
-            success:function(result){
-                var output = "";
-                for(var i in result){
-                    output += "<h6><strong>"+result[i].sender.fullName+"</strong></h6>"+
-                    "<p>"+result[i].message+ "<a href=''>"+result[i].attachment+"</a></p><br>";
-                }
-                display.html(output);
-            }
-        })
-    }
 
     function getMembers()
     {
