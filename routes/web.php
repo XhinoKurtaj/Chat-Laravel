@@ -15,10 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')
     ->name('home');
+
+
+Auth::routes();
+Route::get('profile', 'UserController@profile')
+    ->name('user.profile');
+Route::post('profile', 'UserController@update')
+    ->name('user.update');
+Route::get('profile/delete', 'UserController@delete')
+    ->name('user.delete');
+
 
 Route::get('home/photo','PhotoController@show')
         ->name('photo.show');
@@ -31,13 +39,25 @@ Route::get('home/photo/{id}','PhotoController@delete')
 Route::get('home/photo/profile/{id}','PhotoController@setProfilePhoto')
         ->name('profile.photo');
 
+
 Route::get('home','ConversationController@read')
         ->name('conversation.list');
 Route::post('home','ConversationController@store')
         ->name('conversation.store');
-
 Route::get('home/conversation/{id}/delete','ConversationController@delete')
         ->name('conversation.delete');
+Route::get('/home/conversation/{id}/members','ConversationController@conversationMembers')
+    ->name('conversation.members');
+
+Route::get('home/conversation/{id}/edit','ConversationController@show')
+    ->name('show.conversation');
+Route::post('/home/conversation/{id}/edit','ConversationController@updateConversation');
+
+
+
+
+
+
 Route::get('home/conversation/{id}','MessageController@show')
         ->name('message.show');
 Route::get('/home/conversation/{id}/read','MessageController@read')
@@ -46,22 +66,10 @@ Route::post('home/conversation/{id}/send','MessageController@store')
     ->name('message.store');
 
 
-Route::get('/home/conversation/{id}/members','ConversationController@conversationMembers')
-        ->name('conversation.members');
-
 Route::get('/home/conversation/{id}/add/member','SearchController@addMember')
     ->name('add.members');
-
-
-Route::get('/home/conversation/{id}/search','SearchController@search')
-    ->name('search.user');
-
-Route::get('profile', 'UserController@profile')
-        ->name('user.profile');
-Route::post('profile', 'UserController@update')
-        ->name('user.update');
-
-
+//Route::get('/home/conversation/{id}/search','SearchController@search')
+//    ->name('search.user');
 
 
 Route::get('/home/conversation/{id}/attachment','AttachmentController@show')

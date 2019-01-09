@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Image;
-use User;
+use App\User;
 
 class UserController extends Controller
 {
@@ -38,8 +38,8 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
-        $user = Auth::user();
-        $user->update([
+        $user = Auth::user()->id;
+        $user->save([
             'first_name' => $request->get('first_name'),
             'last_name' =>  $request->get('last_name'),
             'email' => $request->get('email'),
@@ -47,6 +47,23 @@ class UserController extends Controller
         ]);
         return redirect('/profile')->with('success','User updated successfully');
     }
+
+    public function delete()
+    {
+        $user = User::find(Auth::user()->id);
+        Auth::logout();
+        if ($user->delete())
+        {
+            return redirect()->route('login');
+        }
+    }
 }
+
+
+
+
+
+
+
 
 

@@ -14,6 +14,8 @@
                 </form>
             </div>
         </div>
+        <br><hr>
+        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">Back</a>
     </div>
 
     @if (Session::has('success'))
@@ -24,13 +26,15 @@
     </div>
     @endif
 
-
+<div>
+    <button id="DeleteUser">Delete User</button>
+</div>
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header"></div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('user.update') }}">
@@ -68,7 +72,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email}}" required>
+                                    <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email}}" required>
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -114,6 +118,6 @@
         </div>
     </div>
 
-
+    <script src="/js/app.js"></script>
 
 @endsection

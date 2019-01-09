@@ -36,8 +36,21 @@
     .center{
         text-align: center;
     }
+    /*#4dc0b5*/
 </style>
 <div id="app" class="container-fluid">
+    <div class="container-fluid">
+        <div class="row" style="background-color:lightgray">
+            <div class="col-10"></div>
+            @php
+                 $conversation = App\Conversation::findOrFail(request()->route('id'))
+            @endphp
+        <img src="/storage/{{ $conversation->custom_photo }}" style="width:42px; height:42px; border-radius: 50%; top:10px; left:10px;">
+        &nbsp{{$conversation->custom_name }}
+
+        </div>
+    </div>
+
     <div class="row no-gutters" >
         <div class="col-6 col-md-4">
             <div class="container">
@@ -88,7 +101,7 @@
                         </ul>
                         </div>
                 @endif
-                <br><br>
+                    <br><br>
                 <button onclick="getMembers()">testMembers</button>
                     <table class="table table-striped">
                         <thead>
@@ -116,9 +129,6 @@
                         {{--=====================================================--}}
                     </p>
                 </div>
-                    <div class="col-3">
-                        <button id="getAtt" onclick="getAttach()">getAtt</button>
-                        <ul id="attachField"></ul></div>
                     </div>
                 </div>
             </div>
@@ -158,6 +168,5 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-
 
 @include('/partial/footer')

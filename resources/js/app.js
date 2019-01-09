@@ -75,3 +75,23 @@ window.Echo.private('conversation.'+id)
 //             console.log(element.message);
 //         });
 //     });
+
+
+
+$("#DeleteUser").click(function(){
+    const choice = confirm("Are you sure u want to delete this account");
+    if(choice == true){
+        debugger;
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            method: 'get',
+            url: 'profile/delete',
+            success:function(data){
+            }
+        })
+    }
+});
+
+
+
+

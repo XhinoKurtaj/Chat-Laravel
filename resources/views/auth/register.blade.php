@@ -15,7 +15,7 @@
                             <label for="First Name" class="col-md-4 col-form-label text-md-right">{{ __('First_name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="First Name" type="text" class="form-control{{ $errors->has('First_name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="First Name" type="text" class="form-control{{ $errors->has('First_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('First_name'))
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                             <label for="Last Name" class="col-md-4 col-form-label text-md-right">{{ __('Last_name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Last Name" type="text" class="form-control{{ $errors->has('Last_name') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
+                                <input id="Last Name" type="text" class="form-control{{ $errors->has('Last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('surname') }}" required autofocus>
 
                                 @if ($errors->has('Last_name'))
                                     <span class="invalid-feedback" role="alert">

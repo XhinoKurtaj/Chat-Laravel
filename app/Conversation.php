@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Conversation extends Model
 {
-    protected $fillable = ['custom_name'];
+    protected $fillable = ['custom_name','custom_photo'];
 
     public function users()
     {

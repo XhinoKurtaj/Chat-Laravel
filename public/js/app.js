@@ -58107,6 +58107,22 @@ window.Echo.private('conversation.' + id).listen('MessageSent', function (event)
 //         });
 //     });
 
+$("#DeleteUser").click(function () {
+  var choice = confirm("Are you sure u want to delete this account");
+
+  if (choice == true) {
+    debugger;
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      method: 'get',
+      url: 'profile/delete',
+      success: function success(data) {}
+    });
+  }
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

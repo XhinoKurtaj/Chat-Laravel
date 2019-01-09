@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (Session::has('success'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! Session::get('success') !!}</li>
+            </ul>
+        </div>
+    @endif
+    @if (Session::has('success-delete'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! Session::get('success-delete') !!}</li>
+            </ul>
+        </div>
+    @endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -12,10 +26,15 @@
                         @else
                         @foreach($conversationList as $conversation)
                             <div class="row">
-                                <div class="col-8"><li>{{$conversation->custom_name}}</li></div>
+                                <div class="col-8">
+                                    <a href="{{ route('message.show', $conversation->id) }}"><img src="/storage/{{ $conversation->custom_photo }}" style="width:32px; height:32px;  top:10px; left:10px; border-radius:50%">
+                                    {{$conversation->custom_name}}
+                                    </a>
+                                </div>
                                 <div class="col-4">
-                                    <a href="{{ route('message.show', $conversation->id) }}" class="btn btn-outline-success">Join</a>
-                                    <a href="{{ route('conversation.delete', $conversation->id) }}"  class="btn btn-outline-danger" >Delete</a>
+                                    {{--<a href="{{ route('message.show', $conversation->id) }}" class="btn btn-outline-success">Join</a>--}}
+                                    <a href="{{ route('show.conversation', $conversation->id)}}"  class="btn btn-outline-success" >Edit</a>
+                                    <a onclick="return confirm('Are you sure u want to delete this conversation?')" href="{{ route('conversation.delete', $conversation->id) }}"  class="btn btn-outline-danger" >Delete</a>
                                 </div>
                             </div><hr>
                         @endforeach
