@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Events\conversationMessages;
-use App\Events\MessageSent;
-use App\Message;
-use App\Conversation;
 use Illuminate\Http\Request;
-
-class MessageController extends Controller
+use App\Http\Controllers\Controller;
+use App\Message;
+class MessagesController extends Controller
 {
-    public function read($id)
+    public function show($id)
     {
         $sender = array();
         $messageList = Message::where('conversation_id',$id)->get();
@@ -22,7 +19,7 @@ class MessageController extends Controller
         return response()->json($sender);
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'message'   => 'required|min:1|max:191'
@@ -37,10 +34,5 @@ class MessageController extends Controller
         if($message){
             event(new MessageSent(1,$id));
         }
-    }
-
-    public function show()
-    {
-        return view('chatBoard');
     }
 }

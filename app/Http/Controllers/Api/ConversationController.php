@@ -1,18 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-
-use DemeterChain\C;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Conversation;
-use App\User;
-
 class ConversationController extends Controller
 {
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
+        return Conversation::all();
+    }
+
+    public function show()
+    {
+        $user = auth()->user();
+        $conversationList = $user->conversations;
+        return $conversationList;
     }
 
     public function store(Request $request)
@@ -20,33 +24,14 @@ class ConversationController extends Controller
         $userId = auth()->user()->id;
         $conversationId = Conversation::insertGetId([
             'custom_name' => $request->post('conv')
-            ]);
+        ]);
         $user = User::find($userId);
         $user->conversations()->attach($conversationId);
 
-         return redirect('home');
+        return response()->json($user, 201);
     }
 
-    public function read()
-    {
-        $user = auth()->user();
-        $conversationList = $user->conversations;
-        return View("home", compact('conversationList'));
-    }
-
-    public function conversationMembers($id)
-    {
-        $conversation = Conversation::findOrFail($id);
-        $memberList = $conversation->users;
-        return response()->json($memberList);
-    }
-
-    public function show()
-    {
-        return view('conversation');
-    }
-
-    public function updateConversation(Request $request,$id)
+    public function update(Request $request,$id)
     {
         $this->validate($request, [
             'custom_name'   => 'required|min:1|max:191'
@@ -59,17 +44,14 @@ class ConversationController extends Controller
             $custom_photo = $image->store('images/conversation-images', ['disk' => 'public']);
             $conversation->custom_photo = $custom_photo;
         }
-            $conversation->save();
+        $conversation->save();
 
-        return redirect()->route('conversation.list')->with('success', "Conversation was updated successfully");
+        return response()->json($conversation, 200);
     }
 
     public function delete($id)
     {
         $conversation = Conversation::find($id)->delete();
-        return back()->with('success-delete',"Conversation was deleted successfully");
+        return response()->json("Deleted Successfully", 204);
     }
 }
-
-
-
