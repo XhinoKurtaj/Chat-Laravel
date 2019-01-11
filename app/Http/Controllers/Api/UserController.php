@@ -15,9 +15,27 @@ class UserController extends Controller
         return User::all();
     }
 
-    public function show(User $user)
+    public function login(Request $request)
     {
-        return $user;
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        if (auth()->attempt($credentials)) {
+            $token = auth()->user()->createToken('login')->accessToken;
+            return response()->json(['token' => $token], 200);
+        } else {
+            return response()->json(['error' => 'UnAuthorised'], 401);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
     }
 
     public function Register(Request $request)
@@ -36,10 +54,9 @@ class UserController extends Controller
         ]);
         $token = $user->createToken('test')->accessToken;
         return response()->json(['token' => $token, 'message' => 'User created successfully!'], 200);
-//        return response()->json(['message' => 'User created successfully!'], 201);
     }
 
-    public function update(Request $request)
+    public function update($id,Request $request)
     {
         $this->validate($request, [
             'first_name' => 'required|string|max:255',
@@ -47,13 +64,13 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
-        $user = Auth::user()->id;
-        $user->save([
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')),
-        ]);
+        $user = User::findOrFail($id);
+
+        $user->first_name = $request->get('first_name');
+        $user->last_name = $request->get('last_name');
+        $user->email = $request->get('email');
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
         return response()->json($user, 200);
     }
 
@@ -61,11 +78,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return response()->json(["message" => 'User deleted '], 204);
+        return response()->json('User deleted successfully!', 204);
     }
 
-    public function details()
-    {
-        return response()->json(['user' => auth()->user()], 200);
-    }
 }

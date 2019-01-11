@@ -114,8 +114,10 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-body" style="overflow: auto" id="textResponse">
-                    <div> <p id="msgField">
-                        </p> </div>
+                    <div> <p id="message-display">
+
+                            </div>
+                    </p> </div>
                     <div class="container">
                         <div class="row">
                             <div class="col-9">
@@ -135,7 +137,7 @@
                         </div>
                         <div class="container">
                             <label for="profile_pic">Choose file to upload</label>
-                            <input type="file" class="btn btn-sm " id="attach" name="attachment">
+                            <input type="file" class="btn btn-sm " id="attachment" name="attachment">
                         </div>
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">
                     </div>

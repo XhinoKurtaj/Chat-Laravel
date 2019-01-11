@@ -35,18 +35,22 @@ const app = new Vue({
 const id=$("#convId").val();
 $('#btn_send').click(function(){
     const message = $('#msgArea').val();
+    const attachment = $('#attachment').val();
+    console.log(attachment);
     console.log(message);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method: 'post',
         url: id+'/send',
-        data: {message: message},
+        data: {message: message,
+                attachment: attachment,},
         success:function(data){
             $('#msgArea').val(' ');
         }
     })
 });
-var display = $("#msgField");
+
+var display = $("#message-display");
 window.Echo.private('conversation.'+id)
     .listen('MessageSent', event => {
         if(event.sent === 1){
@@ -58,8 +62,13 @@ window.Echo.private('conversation.'+id)
                     var output = " ";
                     for(var i in result)
                     {
-                        output += "<h6><strong>"+result[i].sender.fullName+"</strong></h6>"+
-                            "<p>"+result[i].message+"</p><br>";
+                        if(result[i].attachment[0] != null){
+                            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>"+result[i].sender.fullName+"</h5>"+
+                                "<p class='mb-0'>"+result[i].message+"  "+result[i].attachment[0].attachment+"</p></div><br>";
+                        }else{
+                            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>"+result[i].sender.fullName+"</h5>"+
+                                "<p class='mb-0'>"+result[i].message+"</p></div><br>";
+                        }
                     }
                     display.html(output);
                 }

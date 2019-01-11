@@ -38,7 +38,8 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
-        $user = Auth::user()->id;
+        $userId = Auth::user()->id;
+        $user = User::find($userId);
         $user->save([
             'first_name' => $request->get('first_name'),
             'last_name' =>  $request->get('last_name'),

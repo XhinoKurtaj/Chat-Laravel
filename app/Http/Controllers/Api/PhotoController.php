@@ -26,20 +26,21 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
     public function store(Request $request)
     {
         $userId = auth()->user()->id;
         $request->validate([
-            'photo'=>'required | mimes:jpeg,jpg,png | max:1000',
+            'photo'=>'required|mimes:jpeg,jpg,png|max:1000',
         ]);
         $image = $request->file('photo');
         $photo = Photo::create([
             'photo' =>  $image->store('images',['disk' => 'public']),
             'user_id' => $userId,
         ]);
-        return response()->json($photo, 201);
+        if($photo)
+            return response()->json("Photo added successfully", 201);
+        else
+            return response()->json("Something went wrong try again later!", 500);
     }
 
     /**
@@ -49,10 +50,13 @@ class PhotoController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function delete(Photo $photo)
+    public function delete($id)
     {
-        $photo->delete();
-
-        return response()->json("Deleted Successfully", 204);
+        if ($photo = Photo::find($id)) {
+            $photo->delete();
+            return response()->json('Photo deleted successfully!', 204);
+            }else{
+            return response()->json('Photo doesnt exist!', 404);
+        }
     }
 }

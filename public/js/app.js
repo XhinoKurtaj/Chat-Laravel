@@ -58063,6 +58063,8 @@ var app = new Vue({
 var id = $("#convId").val();
 $('#btn_send').click(function () {
   var message = $('#msgArea').val();
+  var attachment = $('#attachment').val();
+  console.log(attachment);
   console.log(message);
   $.ajax({
     headers: {
@@ -58071,14 +58073,15 @@ $('#btn_send').click(function () {
     method: 'post',
     url: id + '/send',
     data: {
-      message: message
+      message: message,
+      attachment: attachment
     },
     success: function success(data) {
       $('#msgArea').val(' ');
     }
   });
 });
-var display = $("#msgField");
+var display = $("#message-display");
 window.Echo.private('conversation.' + id).listen('MessageSent', function (event) {
   if (event.sent === 1) {
     $.ajax({
@@ -58091,7 +58094,11 @@ window.Echo.private('conversation.' + id).listen('MessageSent', function (event)
         var output = " ";
 
         for (var i in result) {
-          output += "<h6><strong>" + result[i].sender.fullName + "</strong></h6>" + "<p>" + result[i].message + "</p><br>";
+          if (result[i].attachment[0] != null) {
+            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>" + result[i].sender.fullName + "</h5>" + "<p class='mb-0'>" + result[i].message + "  " + result[i].attachment[0].attachment + "</p></div><br>";
+          } else {
+            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>" + result[i].sender.fullName + "</h5>" + "<p class='mb-0'>" + result[i].message + "</p></div><br>";
+          }
         }
 
         display.html(output);

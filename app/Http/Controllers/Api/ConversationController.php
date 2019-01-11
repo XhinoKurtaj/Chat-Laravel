@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Conversation;
+use App\User;
 class ConversationController extends Controller
 {
     public function index()
@@ -23,12 +24,12 @@ class ConversationController extends Controller
     {
         $userId = auth()->user()->id;
         $conversationId = Conversation::insertGetId([
-            'custom_name' => $request->post('conv')
+            'custom_name' => $request->get('custom_name')
         ]);
         $user = User::find($userId);
         $user->conversations()->attach($conversationId);
 
-        return response()->json($user, 201);
+        return response()->json('Conversation was created successfully!', 201);
     }
 
     public function update(Request $request,$id)
@@ -46,12 +47,16 @@ class ConversationController extends Controller
         }
         $conversation->save();
 
-        return response()->json($conversation, 200);
+        return response()->json("Conversation updated successfully!", 200);
     }
 
     public function delete($id)
     {
-        $conversation = Conversation::find($id)->delete();
-        return response()->json("Deleted Successfully", 204);
+        if ($conversation = Conversation::find($id)) {
+            $conversation->delete();
+            return response()->json('Conversation deleted successfully!', 204);
+        }else{
+            return response()->json('Conversation doesnt exist!', 404);
+        }
     }
 }
