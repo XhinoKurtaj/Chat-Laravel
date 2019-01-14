@@ -66,7 +66,7 @@ Route::post('home/conversation/{id}/send','MessageController@store')
     ->name('message.store');
 
 
-Route::get('/home/conversation/{id}/add/member','SearchController@addMember')
+Route::get('/home/conversation/{id}/add','SearchController@addMember')
     ->name('add.members');
 //Route::get('/home/conversation/{id}/search','SearchController@search')
 //    ->name('search.user');
@@ -76,6 +76,9 @@ Route::get('/home/conversation/{id}/attachment','AttachmentController@show')
     ->name('att.read');
 Route::get('/home/conversation/{id}/download','AttachmentController@download')
     ->name('att.download');
+
+Route::get('/home/conversation/{id}/leave','ConversationController@leaveConversation')
+    ->name('leave.conversation');
 
 
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\conversationMessages;
 use App\Events\MessageSent;
 use App\Message;
 use App\Conversation;
@@ -12,19 +11,11 @@ class MessageController extends Controller
 {
     public function read($id)
     {
-        $sender = array();
-        $messageList = Message::where('conversation_id',$id)->get();
-
-        foreach ($messageList as $messages)
-        {
-            $id = $messages->id;
-            $x = Attachment::where('message_id',$id)->get();
-            $messages->sender;
-            $messages->attachment = $x;
-            $sender[]=$messages;
-
-        }
-        return response()->json($sender);
+        $messageList = Message::where('conversation_id',$id)
+            ->with('attachment', 'sender.photos')
+            ->orderBy('id', 'desc')
+            ->paginate();
+        return response()->json($messageList);
     }
 
     public function store(Request $request, $id)

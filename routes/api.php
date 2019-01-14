@@ -22,7 +22,7 @@ use Illuminate\Http\Request;
 
 Route::post('/register', 'Api\UserController@Register');
 Route::post('/login', 'Api\UserController@login');
-
+Route::group(['middleware' => 'auth:api'], function() {
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/logout', 'Api\UserController@logout');
     Route::get('users', 'Api\UserController@index');
@@ -36,15 +36,20 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::delete('users/photos/{id}', 'Api\PhotoController@delete');
 });
 
-Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('users/conversation/test', 'Api\ConversationController@index');
-    Route::get('users/conversation', 'Api\ConversationController@show');
-    Route::post('users/conversation', 'Api\ConversationController@store');
-    Route::put('users/conversation/{id}', 'Api\ConversationController@update');
-    Route::delete('users/conversation/{id}', 'Api\ConversationController@delete');
-});
+    Route::group(['prefix' => 'users/conversation'], function() {
 
-Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('users/conversation/{id}/messages', 'Api\MessagesController@show');
-    Route::post('users/conversation/{id}/messages', 'Api\MessagesController@store');
+        Route::get('/test', 'Api\ConversationController@index');
+        Route::get('/', 'Api\ConversationController@show');
+        Route::post('/', 'Api\ConversationController@store');
+        Route::put('/{id}', 'Api\ConversationController@update');
+        Route::delete('/{id}', 'Api\ConversationController@delete');
+
+
+        Route::group(['prefix' => '/{conversation_id}/messages'], function() {
+            Route::get('/', 'Api\MessagesController@index');
+            Route::get('/{id}', 'Api\MessagesController@show');
+            Route::post('/', 'Api\MessagesController@store');
+
+        });
+    });
 });

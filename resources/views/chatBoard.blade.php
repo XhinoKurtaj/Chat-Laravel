@@ -13,10 +13,6 @@
     #textResponse{
         height:700px;
     }
-    #deleteUser:hover{
-        background-color:red;
-        color: white;
-    }
     .onMouse:hover{
         background-color:lightgray;
     }
@@ -35,6 +31,13 @@
     }
     .center{
         text-align: center;
+    }
+    .span-position{
+        position: absolute;
+        bottom: 40px;
+        right: 10px;
+        font-size: 20px;
+        color: red;
     }
     /*#4dc0b5*/
 </style>
@@ -68,23 +71,22 @@
                         </a>
                         <a href="{{route ('user.profile')}}" class="dropdown-item onMouse">User Profile</a>
                         <a href="{{ route('photo.show') }}" class="dropdown-item onMouse">Choose a photo</a>
-                        <a href="" class="dropdown-item onMouse">Leave Conversation</a>
                         <a href="{{ route('conversation.list') }}" class="dropdown-item onMouse">Conversation List</a>
                         <hr>
-                        <a href="" class="dropdown-item btn" id="deleteUser">Delete User</a>
+                        <a href="{{ route('leave.conversation',request()->route('id')) }}" class="dropdown-item onMouse" onclick="return confirm('Are you sure you want to leave this conversation?')">Leave Conversation</a>
+                        {{--<a href="{{ route('leave.conversation',request()->route('id')) }}" class="dropdown-item onMouse">Leave Conversation</a>--}}
+
                     </div>
                 </div>
             </div>
-            <form method="GET" action="{{ route('add.members',request()->route('id')) }}">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" name="search" class="form-control" id="searchText" placeholder="Search">
+                        <input type="text" name="member" class="form-control" id="search-text" placeholder="Search">
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-info" >Search</button>
+                        <button class="btn btn-info" id="add-member" >Search</button>
                     </div>
                 </div>
-            </form>
             @if (\Session::has('error'))
                 <div class="alert alert-success">
                     <ul>
@@ -115,7 +117,7 @@
             <div class="card">
                 <div class="card-body" style="overflow: auto" id="textResponse">
                     <div> <p id="message-display">
-
+                            <span class="span-position" id="User-notification">User X has left the conversation!!</span>
                             </div>
                     </p> </div>
                     <div class="container">
@@ -144,10 +146,26 @@
                 </div>
             </div>
         </div>
-        <div class="col-1">col-4</div>
+        <div class="col-1"><button onclick="getTest()">test</button></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+<script>
 
+    const id=$("#convId").val();
+    $("#add-member").click(function(){
+        const member = $("#search-text").val();
+        console.log(member);
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            method: 'get',
+            url: id+'/add',
+            data: {member: member},
+            success: function(data){
+            }
+        });
+    });
+
+</script>
 @include('/partial/footer')

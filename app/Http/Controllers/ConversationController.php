@@ -7,6 +7,7 @@ use DemeterChain\C;
 use Illuminate\Http\Request;
 use App\Conversation;
 use App\User;
+use App\Events\UserNotification;
 
 class ConversationController extends Controller
 {
@@ -68,6 +69,17 @@ class ConversationController extends Controller
     {
         $conversation = Conversation::find($id)->delete();
         return back()->with('success-delete',"Conversation was deleted successfully");
+    }
+
+    public function leaveConversation($id)
+    {
+        $userId = auth()->user()->id;
+        $name = auth()->user()->fullName;
+        $conversation = Conversation::findOrFail($id);
+        $conversation->users()->detach($userId);
+        event(new UserNotification($id,$name));
+
+        return redirect('home');
     }
 }
 

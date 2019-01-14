@@ -10,19 +10,13 @@ use App\Attachment;
 use App\Events\MessageSent;
 class MessagesController extends Controller
 {
-    public function show($id)
+    public function index($id)
     {
-        $sender = array();
-        $messageList = Message::where('conversation_id',$id)->get();
-        foreach ($messageList as $messages)
-        {
-            $id = $messages->id;
-            $x = Attachment::where('message_id',$id)->get();
-            $messages->sender;
-            $messages->attachment = $x;
-            $sender[]=$messages;
-        }
-        return response()->json($sender);
+        $messageList = Message::where('conversation_id',$id)
+            ->with('attachment', 'sender.photos')
+            ->orderBy('id', 'desc')
+            ->paginate();
+        return response()->json($messageList);
     }
 
     public function store(Request $request,$id)
@@ -39,7 +33,7 @@ class MessagesController extends Controller
         ]);
         if($message){
             event(new MessageSent(1,$id));
-            return response("Message was sent successfully",200);
         }
+        return response("Message was sent successfully",200);
     }
 }

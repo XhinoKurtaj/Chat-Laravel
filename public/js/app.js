@@ -58061,6 +58061,12 @@ var app = new Vue({
   el: '#app'
 });
 var id = $("#convId").val();
+var notification = $("#User-notification");
+var display = $("#message-display"); ///////////////////////////////
+// var display = $("#showMemberList");
+// var counter = 1;
+//////////////////////////////
+
 $('#btn_send').click(function () {
   var message = $('#msgArea').val();
   var attachment = $('#attachment').val();
@@ -58072,16 +58078,16 @@ $('#btn_send').click(function () {
     },
     method: 'post',
     url: id + '/send',
+    dataType: 'json',
     data: {
       message: message,
       attachment: attachment
     },
     success: function success(data) {
-      $('#msgArea').val(' ');
+      $('#msgArea').val(" ");
     }
   });
 });
-var display = $("#message-display");
 window.Echo.private('conversation.' + id).listen('MessageSent', function (event) {
   if (event.sent === 1) {
     $.ajax({
@@ -58093,11 +58099,11 @@ window.Echo.private('conversation.' + id).listen('MessageSent', function (event)
       success: function success(result) {
         var output = " ";
 
-        for (var i in result) {
-          if (result[i].attachment[0] != null) {
-            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>" + result[i].sender.fullName + "</h5>" + "<p class='mb-0'>" + result[i].message + "  " + result[i].attachment[0].attachment + "</p></div><br>";
+        for (var i in result.data) {
+          if (result.data[i].attachment != null) {
+            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>" + result.data[i].sender.fullName + "</h5>" + "<p class='mb-0'>" + result.data[i].message + "  " + "<a href='#'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
           } else {
-            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>" + result[i].sender.fullName + "</h5>" + "<p class='mb-0'>" + result[i].message + "</p></div><br>";
+            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>" + result.data[i].sender.fullName + "</h5>" + "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
           }
         }
 
@@ -58105,15 +58111,25 @@ window.Echo.private('conversation.' + id).listen('MessageSent', function (event)
       }
     });
   }
-}); // window.Echo.private('conversation.'+id)
-//     .listen('conversationMessages', event => {
-//         event.messages.forEach(function (element) {
-//             console.log(element);
-//             console.log(element.sender.fullName);
-//             console.log(element.message);
-//         });
-//     });
+}).listen('UserNotification', function (event) {
+  console.log(event);
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: "GET",
+    url: id + '/members',
+    success: function success(data) {
+      var output = "";
 
+      for (var i in data) {
+        output += "<tr class='table-active'><td ><strong>" + counter++ + "</strong></td>" + "<td>" + data[i].fullName + "</td></tr>";
+      }
+
+      display.html(output);
+    }
+  });
+});
 $("#DeleteUser").click(function () {
   var choice = confirm("Are you sure u want to delete this account");
 
@@ -58125,7 +58141,9 @@ $("#DeleteUser").click(function () {
       },
       method: 'get',
       url: 'profile/delete',
-      success: function success(data) {}
+      success: function success(data) {
+        alert("User deleted successfully");
+      }
     });
   }
 });
