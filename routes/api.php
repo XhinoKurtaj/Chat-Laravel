@@ -16,9 +16,6 @@ use Illuminate\Http\Request;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-//->middleware('auth:api');
-
-//->middleware('auth:api')
 
 Route::post('/register', 'Api\UserController@Register');
 Route::post('/login', 'Api\UserController@login');
@@ -26,8 +23,8 @@ Route::group(['middleware' => 'auth:api'], function() {
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/logout', 'Api\UserController@logout');
     Route::get('users', 'Api\UserController@index');
-    Route::put('users/{id}', 'Api\UserController@update');
-    Route::delete('users/{id}', 'Api\UserController@delete');
+    Route::put('users', 'Api\UserController@update');
+    Route::delete('users', 'Api\UserController@delete');
 });
 
 Route::group(['middleware' => 'auth:api'], function() {
@@ -47,7 +44,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         Route::group(['prefix' => '/{conversation_id}/messages'], function() {
             Route::get('/', 'Api\MessagesController@index');
-            Route::get('/{id}', 'Api\MessagesController@show');
+//            Route::get('/{id}', 'Api\MessagesController@show');
             Route::post('/', 'Api\MessagesController@store');
 
         });

@@ -30,25 +30,6 @@ class UserController extends Controller
         return view('profile', array('user' => Auth::user()) );
     }
 
-    public function update(Request $request)
-    {
-        $this->validate($request, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-        $userId = Auth::user()->id;
-        $user = User::find($userId);
-        $user->save([
-            'first_name' => $request->get('first_name'),
-            'last_name' =>  $request->get('last_name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect('/profile')->with('success','User updated successfully');
-    }
-
     public function delete()
     {
         $user = User::find(Auth::user()->id);
@@ -58,4 +39,19 @@ class UserController extends Controller
             return redirect()->route('login');
         }
     }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => 'nullable|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+        ]);
+
+        $user = Auth::user();
+        $user->update($request->only('first_name', 'last_name'));
+
+        return redirect()->back();
+    }
+
+
 }

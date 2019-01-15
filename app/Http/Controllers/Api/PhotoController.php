@@ -54,7 +54,7 @@ class PhotoController extends Controller
     {
         if ($photo = Photo::find($id)) {
             $photo->delete();
-            return response()->json('Photo deleted successfully!', 204);
+            return response()->json( 204);
             }else{
             return response()->json('Photo doesnt exist!', 404);
         }

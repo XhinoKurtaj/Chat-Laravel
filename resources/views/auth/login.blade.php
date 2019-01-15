@@ -64,6 +64,14 @@
                                 @endif
                             </div>
                         </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <a href="{!! url('/login/facebook') !!}" class="btn btn-primary ">
+                                    Login with facebook
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

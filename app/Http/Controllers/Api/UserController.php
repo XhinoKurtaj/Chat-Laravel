@@ -38,45 +38,48 @@ class UserController extends Controller
         ]);
     }
 
-    public function Register(Request $request)
+    public function register(Request $request)
     {
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|confirmed|string|min:6',
         ]);
-        $user = User::create([
+
+        $user = new User();
+        $user->fill([
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
             'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')),
         ]);
-        $token = $user->createToken('test')->accessToken;
-        return response()->json(['token' => $token, 'message' => 'User created successfully!'], 200);
-    }
 
-    public function update($id,Request $request)
-    {
-        $this->validate($request, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
-        $user = User::findOrFail($id);
-
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
-        $user->email = $request->get('email');
         $user->password = Hash::make($request->get('password'));
         $user->save();
+
+        $token = $user->createToken('test')->accessToken;
+        return response()->json([
+            'token' => $token,
+            'user'  => $user
+        ], 200);
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => 'nullable|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+        ]);
+
+        $user = Auth::user();
+        $user->update($request->only('first_name', 'last_name'));
+
         return response()->json($user, 200);
     }
 
-    public function delete($id)
+    public function delete()
     {
-        $user = User::findOrFail($id);
+        $user = Auth::user();
         $user->delete();
         return response()->json('User deleted successfully!', 204);
     }

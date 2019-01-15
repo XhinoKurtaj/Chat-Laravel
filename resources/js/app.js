@@ -59,6 +59,10 @@ $('#btn_send').click(function(){
     })
 });
 
+$(window).on('load', function() {
+    console.log('Call messages')
+});
+
 window.Echo.private('conversation.'+id)
     .listen('MessageSent', event => {
         if(event.sent === 1){
@@ -83,20 +87,20 @@ window.Echo.private('conversation.'+id)
             });
         }
     }).listen('UserNotification', event => {
-        console.log(event);
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            type: "GET",
-            url: id +'/members',
-            success:function(data){
-                var output = "";
-                for(var i in data){
-                    output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
-                        "<td>"+data[i].fullName +"</td></tr>";
-                }
-                display.html(output);
-            }
-        });
+        // console.log(event);
+        // $.ajax({
+        //     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        //     type: "GET",
+        //     url: id +'/members',
+        //     success:function(data){
+        //         var output = "";
+        //         for(var i in data){
+        //             output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
+        //                 "<td>"+data[i].fullName +"</td></tr>";
+        //         }
+        //         display.html(output);
+        //     }
+        // });
     });
 
 $("#DeleteUser").click(function(){

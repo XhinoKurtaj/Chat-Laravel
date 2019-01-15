@@ -80,6 +80,9 @@ Route::get('/home/conversation/{id}/download','AttachmentController@download')
 Route::get('/home/conversation/{id}/leave','ConversationController@leaveConversation')
     ->name('leave.conversation');
 
+Route::get('/login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('/login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+
 
 
 

@@ -7,19 +7,24 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Scout\Searchable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
 class User extends Authenticatable
 {
     use HasApiTokens;
+    use AuthenticableTrait;
     use Searchable;
     use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email', 'password',
+        'first_name',
+        'last_name',
+        'email',
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -27,7 +32,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     protected $appends = [

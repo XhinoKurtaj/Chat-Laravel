@@ -18,7 +18,7 @@
                     <input type="submit" class="pull-right btn btn-sm btn-primary">
                 </form>
             <br><hr>
-            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">Back</a>
+            <a href="{{ route('conversation.list') }}" class="btn btn-outline-secondary">Back</a>
             <br><hr><hr><br>
             <button id="DeleteUser" class="btn btn-outline-danger">Delete User</button>
         </div>
@@ -32,7 +32,7 @@
                                 <label for="First Name" class="col-md-4 col-form-label text-md-right">{{ __('First_name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="First Name" type="text" class="form-control{{ $errors->has('First_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ Auth::user()->first_name}}" required autofocus>
+                                    <input id="First Name" type="text" class="form-control{{ $errors->has('First_name') ? ' is-invalid' : '' }}" name="first_name" placeholder="{{Auth::user()->first_name}}"  autofocus>
 
                                     @if ($errors->has('First_name'))
                                         <span class="invalid-feedback" role="alert">
@@ -45,24 +45,11 @@
                                 <label for="Last Name" class="col-md-4 col-form-label text-md-right">{{ __('Last_name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="Last Name" type="text" class="form-control{{ $errors->has('Last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ Auth::user()->last_name}}" required autofocus>
+                                    <input id="Last Name" type="text" class="form-control{{ $errors->has('Last_name') ? ' is-invalid' : '' }}" name="last_name" placeholder="{{Auth::user()->last_name}}" autofocus>
 
                                     @if ($errors->has('Last_name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('Last_name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email}}" required>
-
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -72,7 +59,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" >
 
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
@@ -86,7 +73,7 @@
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" >
                                 </div>
                             </div>
 
@@ -102,8 +89,26 @@
                 </div>
             </div>
         </div>
+        @if (Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
     </div>
-    </div>
+
     <script src="/js/app.js"></script>
 
 @endsection
