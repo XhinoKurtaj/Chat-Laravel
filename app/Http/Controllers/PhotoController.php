@@ -20,14 +20,14 @@ class PhotoController extends Controller
 
     public function store(Request $request)
     {
-        $userId = auth()->user()->id;
+        $user = auth()->user();
         $request->validate([
             'photo'=>'required | mimes:jpeg,jpg,png | max:1000',
         ]);
         $image = $request->file('photo');
         $photo = Photo::create([
         'photo' =>  $image->store('images',['disk' => 'public']),
-        'user_id' => $userId,
+        'user_id' => $user->id,
         ]);
 
         return back()->with('success', "Photo created successfully");

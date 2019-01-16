@@ -18,6 +18,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        .button-conv{
+            font-size:20px;
+            font-family: "Times New Roman", Times, serif;
+        }
+        .button-conv:hover{
+            color:orangered;
+                 }
+    </style>
 </head>
 <body>
     <div id="app">

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     @if (Session::has('success'))
         <div class="alert alert-success">
             <ul>
@@ -27,7 +28,7 @@
                         @foreach($conversationList as $conversation)
                             <div class="row">
                                 <div class="col-8">
-                                    <a href="{{ route('message.show', $conversation->id) }}"><img src="/storage/{{ $conversation->custom_photo }}" style="width:32px; height:32px;  top:10px; left:10px; border-radius:50%">
+                                   <a href="{{ route('message.show', $conversation->id) }}" class="button-conv"><img src="/storage/{{ $conversation->custom_photo }}" style="width:32px; height:32px;  top:10px; left:10px; border-radius:50%">
                                     {{$conversation->custom_name}}
                                     </a>
                                 </div>

@@ -10,14 +10,10 @@
         <div class="row">
         <div class="col-7 align-self-start">
             <img src="/storage/{{ Auth::user()->photo }}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
-                <h2>{{ $user->name }}'s Profile</h2>
-                <form enctype="multipart/form-data" action="/profile" method="POST">
-                @csrf
-                    <label>Update Profile Image</label>
-                    <input type="file" name="avatar">
-                    <input type="submit" class="pull-right btn btn-sm btn-primary">
-                </form>
-            <br><hr>
+                <h2>{{ Auth::user()->fullName }}'s Profile</h2>
+            <a href="{{route('photo.show')}}">Your photos</a>
+
+            <br><br><hr>
             <a href="{{ route('conversation.list') }}" class="btn btn-outline-secondary">Back</a>
             <br><hr><hr><br>
             <button id="DeleteUser" class="btn btn-outline-danger">Delete User</button>
@@ -106,8 +102,40 @@
                 </ul>
             </div>
         @endif
-
     </div>
+
+
+
+
+
+    {{--<div class="container-fluid">--}}
+        {{--<div class="row">--}}
+            {{--@if (Session::has('success'))--}}
+                {{--<div class="alert alert-success">--}}
+                    {{--<ul>--}}
+                        {{--<li>{!! Session::get('success') !!}</li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--@endif--}}
+        {{--</div>--}}
+        {{--<div class="row">--}}
+            {{--@foreach($photoList as $photo)--}}
+                {{--<div class='col-4 col-md-2 frame'>--}}
+                    {{--<img src="/storage/{{ $photo->photo }}" class='photo' alt='Card image cap'>--}}
+                    {{--<p><small class='text-muted'>{{$photo->created_at}}</small></p>--}}
+                    {{--<form action='' method='GET'>--}}
+                        {{--@csrf--}}
+                        {{--<input type='text' value='{{$photo->added_date}}' name='photoName' style='visibility:hidden'>--}}
+                        {{--<a href="{{ route('profile.photo',$photo->id) }}" type='submit' class='btn btn-sm btn-outline-info' name='profilePhoto'>Set as photo profile</a>&nbsp&nbsp--}}
+                        {{--<a href="{{ route('photo.delete',$photo->id) }}" class='btn btn-sm btn-outline-danger '  name='deletePhoto'>Delete</a>--}}
+                    {{--</form>--}}
+                {{--</div>--}}
+            {{--@endforeach--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
+
+
 
     <script src="/js/app.js"></script>
 

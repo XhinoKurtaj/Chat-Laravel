@@ -28,15 +28,15 @@ Route::get('profile/delete', 'UserController@delete')
     ->name('user.delete');
 
 
-Route::get('home/photo','PhotoController@show')
+Route::get('profile/photo','PhotoController@show')
         ->name('photo.show');
-Route::get('home/photo/create','PhotoController@create')
+Route::get('profile/photo/create','PhotoController@create')
         ->name('photo.create');
-Route::post('home/photo','PhotoController@store')
+Route::post('profile/photo','PhotoController@store')
         ->name('photo.store');
-Route::get('home/photo/{id}','PhotoController@delete')
+Route::get('profile/photo/{id}','PhotoController@delete')
         ->name('photo.delete');
-Route::get('home/photo/profile/{id}','PhotoController@setProfilePhoto')
+Route::get('profile/photo/profile/{id}','PhotoController@setProfilePhoto')
         ->name('profile.photo');
 
 

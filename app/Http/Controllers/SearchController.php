@@ -8,6 +8,11 @@ use App\Conversation;
 use App\Events\UserNotification;
 class SearchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function addMember(Request $request, $id)
     {
         $member = $request->get('member');
@@ -36,7 +41,7 @@ class SearchController extends Controller
             $conversation = Conversation::find($id);
             $conversation->users()->attach($userId);
 
-            event(new UserNotification($id,$fullName));
+            event(new UserNotification($id,$fullName, 'join'));
 
             return back()->with('success', "User <strong>$member </strong> added successfully");
         }else

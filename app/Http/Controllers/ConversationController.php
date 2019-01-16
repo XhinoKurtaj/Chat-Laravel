@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use DemeterChain\C;
 use Illuminate\Http\Request;
 use App\Conversation;
@@ -77,7 +76,7 @@ class ConversationController extends Controller
         $name = auth()->user()->fullName;
         $conversation = Conversation::findOrFail($id);
         $conversation->users()->detach($userId);
-        event(new UserNotification($id,$name));
+        event(new UserNotification($id,$name,'left'));
 
         return redirect('home');
     }

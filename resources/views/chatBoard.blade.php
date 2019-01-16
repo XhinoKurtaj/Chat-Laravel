@@ -39,6 +39,25 @@
         font-size: 20px;
         color: red;
     }
+    .alert-heading{
+        margin:auto;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 18px;
+    }
+    .mb-0{
+        padding-left: 5em;
+    }
+    .sender{
+        text-align: right;
+    }
+    .user-icon{
+        width:32px;
+        height:32px;
+        top:10px;
+        left:10px;
+        border-radius:50%"
+    }
+
     /*#4dc0b5*/
 </style>
 <div id="app" class="container-fluid">
@@ -101,7 +120,6 @@
                 </div>
             @endif
             <br><br>
-            <button onclick="getMembers()">testMembers</button>
             <table class="table table-striped">
                 <thead>
                 <tr class="table-success">
@@ -117,9 +135,9 @@
             <div class="card">
                 <div class="card-body" style="overflow: auto" id="textResponse">
                     <div> <p id="message-display">
-                            <span class="span-position" id="User-notification">User X has left the conversation!!</span>
-                            </div>
-                    </p> </div>
+                    </div></p>
+                    <span class="span-position" id="User-notification"> </span>
+                </div>
                     <div class="container">
                         <div class="row">
                             <div class="col-9">
@@ -131,6 +149,20 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
+
+                        {{--<form action="{{ route('message.store',request()->route('id')) }}" method="POST" enctype="multipart/form-data">--}}
+                            {{--@csrf--}}
+                            {{--<div class="input-group">--}}
+                                {{--<textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>--}}
+                                    {{--<div class="input-group-prepend">--}}
+                                        {{--<span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>--}}
+                                    {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="container">--}}
+                                {{--<label for="profile_pic">Choose file to upload</label>--}}
+                                 {{--<input type="file" class="btn btn-sm " id="attach" name="attachment">--}}
+                            {{--</div>--}}
+                        {{--</form>--}}
                         <div class="input-group">
                             <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
                             <div class="input-group-prepend">
@@ -141,7 +173,9 @@
                             <label for="profile_pic">Choose file to upload</label>
                             <input type="file" class="btn btn-sm " id="attachment" name="attachment">
                         </div>
+
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">
+                        <input type="hidden" value="{{auth()->user()->fullName}}" id="userName">
                     </div>
                 </div>
             </div>

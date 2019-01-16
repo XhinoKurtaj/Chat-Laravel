@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 use App\Attachment;
 class MessageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function read($id)
     {
         $messageList = Message::where('conversation_id',$id)

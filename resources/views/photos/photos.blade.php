@@ -14,10 +14,30 @@
             width:200px;
             height:200px;
         }
+        .wrapp{
+            padding: 10px 5px 20px 5px;
+        }
     </style>
 </head>
 <body>
 <div class="container-fluid">
+    <div class="row">
+        <div class="container-fluid wrapp">
+            <div class="row">
+                <div class="col-4">
+                    <form method="post" action="{{ route('photo.store') }}" enctype="multipart/form-data" >
+                        @csrf
+                        <input type="file" name="photo" >
+                        <input type="submit" class="btn btn-outline-dark" value="Upload">
+                    </form>
+                </div>
+                <div class="col-4">
+                    <a href="{{route('user.profile')}}" class="btn btn-outline-info">Back to profile</a>
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+    </div><hr>
     <div class="row">
         @if (Session::has('success'))
         <div class="alert alert-success">
@@ -27,8 +47,7 @@
         </div>
         @endif
     </div>
-<div class="row">
-
+    <div class="row">
     @foreach($photoList as $photo)
             <div class='col-4 col-md-2 frame'>
                 <img src="/storage/{{ $photo->photo }}" class='photo' alt='Card image cap'>
@@ -41,7 +60,7 @@
                 </form>
             </div>
         @endforeach
-</div>
+    </div>
 </div>
 
 @include('../partial/footer')

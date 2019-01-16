@@ -37,8 +37,8 @@ const notification = $("#User-notification");
 const display = $("#message-display");
 
 ///////////////////////////////
-// var display = $("#showMemberList");
-// var counter = 1;
+const memeberDisplay = $("#showMemberList");
+var counter = 1;
 //////////////////////////////
 
 $('#btn_send').click(function(){
@@ -50,21 +50,96 @@ $('#btn_send').click(function(){
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method: 'post',
         url: id+'/send',
-        dataType: 'json',
         data: {message: message,
                 attachment: attachment,},
         success:function(data){
+
+            console.log(data.attachment);
             $('#msgArea').val(" ");
         }
     })
 });
 
+/////////////////////////////////////////////////////////////////////////////////////
 $(window).on('load', function() {
-    console.log('Call messages')
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: "GET",
+        url: id +'/read',
+        success:function(result){
+            var output = " ";
+            for(var i in result.data)
+            {
+                if (result.data[i].attachment != null) {
+                    output += "<div class='alert alert-primary' role='alert'><p class='alert-heading'>" +
+                        "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
+                        "<p class='mb-0'>" + result.data[i].message + "   " + "<a href=''>" + result.data[i].attachment.attachment + "</a>" +
+                        "</p></div><br>";
+                } else {
+                    output += "<div class='alert alert-primary' role='alert'>" +
+                        "<p class='alert-heading'><img src='/storage/"+result.data[i].sender.photo +"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
+                        "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
+                }
+            }
+            display.html(output);
+        }
+    });
+
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: "GET",
+        url: id +'/members',
+        success:function(data){
+            console.log(data);
+            var output = "";
+            for(var i in data){
+                output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
+                    "<td>"+data[i].fullName +"</td></tr>";
+            }
+            memeberDisplay.html(output);
+        }
+    });
 });
+
+// const name = $("#userName").val();
+// $(window).on('load', function() {
+//     $.ajax({
+//         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+//         type: "GET",
+//         url: id +'/read',
+//         success:function(result){
+//             var output = " ";
+//             for(var i in result.data)
+//             {
+//                 if (result.data[i].attachment != null) {
+//                     if(result.data[i].sender.fullName === name){
+//                         output += "<div class='alert alert-primary' role='alert'> <p class='alert-heading sender'>" + result.data[i].sender.fullName + "</p>" +
+//                             "<p class='mb-0 sender'>" + result.data[i].message + "   " + "<a href='' class='sender'>" + result.data[i].attachment.attachment + "</a>" +
+//                             "</p></div><br>";
+//                     }else {
+//                         output += "<div class='alert alert-primary' role='alert'> <p class='alert-heading'>" + result.data[i].sender.fullName + "</p>" +
+//                             "<p class='mb-0'>" + result.data[i].message + "   " + "<a href=''>" + result.data[i].attachment.attachment + "</a>" +
+//                             "</p></div><br>";
+//                     }
+//                 } else {
+//                     if(result.data[i].sender.fullName === name) {
+//                         output += "<div class='alert alert-primary' role='alert'> <p class='alert-heading sender'>" + result.data[i].sender.fullName + "</p>" +
+//                             "<p class='mb-0 sender'>" + result.data[i].message + "</p></div><br>";
+//                     }else{
+//                         output += "<div class='alert alert-primary' role='alert'> <p class='alert-heading'>" + result.data[i].sender.fullName + "</p>" +
+//                             "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
+//                     }
+//                 }
+//             }
+//             display.html(output);
+//         }
+//     });
+// });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 window.Echo.private('conversation.'+id)
     .listen('MessageSent', event => {
+        console.log(event);
         if(event.sent === 1){
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -75,10 +150,15 @@ window.Echo.private('conversation.'+id)
                     for(var i in result.data)
                     {
                         if (result.data[i].attachment != null) {
-                            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>" + result.data[i].sender.fullName + "</h5>" +
-                                "<p class='mb-0'>" + result.data[i].message + "  " + "<a href='#'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
+                            output += "<div class='alert alert-primary' role='alert'>" +
+                                "<p class='alert-heading'>" +
+                                "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
+                                "<p class='mb-0'>" + result.data[i].message + "  " +
+                                "<a href='#'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
                         } else {
-                            output += "<div class='alert alert-primary' role='alert'> <h5 class='alert-heading'>" + result.data[i].sender.fullName + "</h5>" +
+                            output += "<div class='alert alert-primary' role='alert'>" +
+                                "<p class='alert-heading'>" +
+                                "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
                                 "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
                         }
                     }
@@ -87,26 +167,34 @@ window.Echo.private('conversation.'+id)
             });
         }
     }).listen('UserNotification', event => {
-        // console.log(event);
-        // $.ajax({
-        //     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        //     type: "GET",
-        //     url: id +'/members',
-        //     success:function(data){
-        //         var output = "";
-        //         for(var i in data){
-        //             output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
-        //                 "<td>"+data[i].fullName +"</td></tr>";
-        //         }
-        //         display.html(output);
-        //     }
-        // });
+        console.log(event);
+        if(event.status === 'left'){
+            const body =event.fullName +"  has left the conversation!!"
+            $("#User-notification").html(body);
+        }else{
+            const body =event.fullName +"  has joined the conversation!!"
+            $("#User-notification").html(body);
+        }
+        // $('#User-notification').delay(5000).fadeOut('slow');
+    $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            type: "GET",
+            url: id +'/members',
+            success:function(data){
+                console.log(data);
+                var output = "";
+                for(var i in data){
+                    output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
+                        "<td>"+data[i].fullName +"</td></tr>";
+                }
+                memeberDisplay.html(output);
+            }
+        });
     });
 
 $("#DeleteUser").click(function(){
     const choice = confirm("Are you sure u want to delete this account");
     if(choice == true){
-        debugger;
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             method: 'get',

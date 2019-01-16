@@ -16,6 +16,7 @@ class UserNotification implements ShouldBroadcast
 
     public $conversationId;
     public $fullName;
+    public $status;
 
     /**
      * Create a new event instance.
@@ -23,10 +24,11 @@ class UserNotification implements ShouldBroadcast
      * @param $conversationId
      * @param $username
      */
-    public function __construct($conversationId, $fullName)
+    public function __construct($conversationId, $fullName, $status)
     {
         $this->conversationId = $conversationId;
         $this->fullName = $fullName;
+        $this->status = $status;
     }
 
     /**
