@@ -55,9 +55,6 @@ Route::post('/home/conversation/{id}/edit','ConversationController@updateConvers
 
 
 
-
-
-
 Route::get('home/conversation/{id}','MessageController@show')
         ->name('message.show');
 Route::get('/home/conversation/{id}/read','MessageController@read')
@@ -68,11 +65,8 @@ Route::post('home/conversation/{id}/send','MessageController@store')
 
 Route::get('/home/conversation/{id}/add','SearchController@addMember')
     ->name('add.members');
-//Route::get('/home/conversation/{id}/search','SearchController@search')
-//    ->name('search.user');
 
-
-Route::get('/home/conversation/{id}/attachment','AttachmentController@show')
+Route::get('/home/conversation/{id}/attachment','AttachmentController@index')
     ->name('att.read');
 Route::get('/home/conversation/{id}/download','AttachmentController@download')
     ->name('att.download');
@@ -80,8 +74,8 @@ Route::get('/home/conversation/{id}/download','AttachmentController@download')
 Route::get('/home/conversation/{id}/leave','ConversationController@leaveConversation')
     ->name('leave.conversation');
 
-Route::get('/login/facebook', 'Auth\LoginController@redirectToProvider');
-Route::get('/login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('/login/facebook', 'Auth\FacebookController@redirectToProvider');
+Route::get('/login/facebook/callback', 'Auth\FacebookController@handleProviderCallback');
 
 
 

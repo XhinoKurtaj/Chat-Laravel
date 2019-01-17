@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('../../public/js/vendor/dropzone');
 
 window.Vue = require('vue');
 
@@ -33,13 +34,13 @@ const app = new Vue({
 });
 
 const id=$("#convId").val();
-const notification = $("#User-notification");
 const display = $("#message-display");
-
+const attachmentList = $("#attachment-list");
 ///////////////////////////////
 const memeberDisplay = $("#showMemberList");
 var counter = 1;
-//////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
 
 $('#btn_send').click(function(){
     const message = $('#msgArea').val();
@@ -50,17 +51,15 @@ $('#btn_send').click(function(){
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method: 'post',
         url: id+'/send',
+        dataType: 'json',
         data: {message: message,
-                attachment: attachment,},
+            attachment: attachment,},
         success:function(data){
-
-            console.log(data.attachment);
             $('#msgArea').val(" ");
         }
     })
 });
 
-/////////////////////////////////////////////////////////////////////////////////////
 $(window).on('load', function() {
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -99,7 +98,24 @@ $(window).on('load', function() {
             memeberDisplay.html(output);
         }
     });
+
+
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: "GET",
+        url: id +'/attachment',
+        success:function(result){
+            var output = "";
+            for(var i in result){
+                console.log(result[i].attachment);
+                output += "<li><a href=''>"+result[i].attachment+"</a></li>";
+            }
+            attachmentList.html(output);
+        }
+    });
+
 });
+
 
 // const name = $("#userName").val();
 // $(window).on('load', function() {
@@ -175,7 +191,6 @@ window.Echo.private('conversation.'+id)
             const body =event.fullName +"  has joined the conversation!!"
             $("#User-notification").html(body);
         }
-        // $('#User-notification').delay(5000).fadeOut('slow');
     $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             type: "GET",

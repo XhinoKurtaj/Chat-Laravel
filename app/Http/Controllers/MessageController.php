@@ -47,6 +47,7 @@ class MessageController extends Controller
         if($message){
             event(new MessageSent(1,$id));
         }
+        return redirect()->back();
     }
 
     public function show()

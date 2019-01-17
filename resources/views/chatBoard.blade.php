@@ -68,7 +68,7 @@
                  $conversation = App\Conversation::findOrFail(request()->route('id'))
             @endphp
         <img src="/storage/{{ $conversation->custom_photo }}" style="width:42px; height:42px; border-radius: 50%; top:10px; left:10px;">
-        &nbsp{{$conversation->custom_name }}
+            &nbsp<a href="{{route('show.conversation', $conversation->id)}}">{{$conversation->custom_name }}</a>
         </div>
     </div>
     <div class="row">
@@ -131,7 +131,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-8">
+        <div class="col-7">
             <div class="card">
                 <div class="card-body" style="overflow: auto" id="textResponse">
                     <div> <p id="message-display">
@@ -151,18 +151,19 @@
                     <div class="container">
 
                         {{--<form action="{{ route('message.store',request()->route('id')) }}" method="POST" enctype="multipart/form-data">--}}
-                            {{--@csrf--}}
-                            {{--<div class="input-group">--}}
-                                {{--<textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>--}}
-                                    {{--<div class="input-group-prepend">--}}
-                                        {{--<span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>--}}
-                                    {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="container">--}}
-                                {{--<label for="profile_pic">Choose file to upload</label>--}}
-                                 {{--<input type="file" class="btn btn-sm " id="attach" name="attachment">--}}
-                            {{--</div>--}}
+                        {{--@csrf--}}
+                        {{--<div class="input-group">--}}
+                        {{--<textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>--}}
+                        {{--<div class="input-group-prepend">--}}
+                        {{--<span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="container">--}}
+                        {{--<label for="profile_pic">Choose file to upload</label>--}}
+                        {{--<input type="file" class="btn btn-sm " id="attach" name="attachment">--}}
+                        {{--</div>--}}
                         {{--</form>--}}
+
                         <div class="input-group">
                             <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
                             <div class="input-group-prepend">
@@ -179,11 +180,17 @@
                     </div>
                 </div>
             </div>
+        <div class="col-2">
+            <ul id="attachment-list">
+
+            </ul>
+            <button id="att-button">test</button>
         </div>
-        <div class="col-1"><button onclick="getTest()">test</button></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/vendor/dropzone.js"></script>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
 <script>
 
@@ -201,5 +208,23 @@
         });
     });
 
+
+    // const attachmentList = $("#attachment-list");
+    // $('#att-button').click(function(){
+    //     $.ajax({
+    //         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    //         type: "GET",
+    //         url: id +'/attachment',
+    //         success:function(result){
+    //             var output = "";
+    //             for(var i in result){
+    //                 console.log(result[i].attachment);
+    //                 output += "<li><a href=''>"+result[i].attachment+"</a></li>";
+    //             }
+    //             attachmentList.html(output);
+    //         }
+    //     });
+    //
+    // })
 </script>
 @include('/partial/footer')

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AttachmentController extends Controller
 {
-    public function show($id)
+    public function index($id)
     {
         $attachments = Attachment::where('conversation_id',$id)->get();
         return response()->json($attachments);
