@@ -36,17 +36,27 @@ const app = new Vue({
 const id=$("#convId").val();
 const display = $("#message-display");
 const attachmentList = $("#attachment-list");
-///////////////////////////////
 const memeberDisplay = $("#showMemberList");
 var counter = 1;
-/////////////////////////////////////////////////////////////////////////////////////
+
+$("#add-member").click(function(){
+    console.log("clicked");
+    const member = $("#search-text").val();
+    console.log(member);
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        method: 'get',
+        url: id+'/add',
+        data: {member: member},
+        success: function(data){
+        }
+    });
+});
 
 
 $('#btn_send').click(function(){
     const message = $('#msgArea').val();
     const attachment = $('#attachment').val();
-    console.log(attachment);
-    console.log(message);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method: 'post',
@@ -61,150 +71,25 @@ $('#btn_send').click(function(){
 });
 
 $(window).on('load', function() {
-    $.ajax({
-        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        type: "GET",
-        url: id +'/read',
-        success:function(result){
-            var output = " ";
-            for(var i in result.data)
-            {
-                if (result.data[i].attachment != null) {
-                    output += "<div class='alert alert-primary' role='alert'><p class='alert-heading'>" +
-                        "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
-                        "<p class='mb-0'>" + result.data[i].message + "   " + "<a href=''>" + result.data[i].attachment.attachment + "</a>" +
-                        "</p></div><br>";
-                } else {
-                    output += "<div class='alert alert-primary' role='alert'>" +
-                        "<p class='alert-heading'><img src='/storage/"+result.data[i].sender.photo +"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
-                        "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
-                }
-            }
-            display.html(output);
-        }
-    });
-
-    $.ajax({
-        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        type: "GET",
-        url: id +'/members',
-        success:function(data){
-            console.log(data);
-            var output = "";
-            for(var i in data){
-                output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
-                    "<td>"+data[i].fullName +"</td></tr>";
-            }
-            memeberDisplay.html(output);
-        }
-    });
-
-
-    $.ajax({
-        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        type: "GET",
-        url: id +'/attachment',
-        success:function(result){
-            var output = "";
-            for(var i in result){
-                console.log(result[i].attachment);
-                output += "<li><a href=''>"+result[i].attachment+"</a></li>";
-            }
-            attachmentList.html(output);
-        }
-    });
-
+    getMessages();
+    getMembers();
+    getAttachment();
 });
-
-
-// const name = $("#userName").val();
-// $(window).on('load', function() {
-//     $.ajax({
-//         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-//         type: "GET",
-//         url: id +'/read',
-//         success:function(result){
-//             var output = " ";
-//             for(var i in result.data)
-//             {
-//                 if (result.data[i].attachment != null) {
-//                     if(result.data[i].sender.fullName === name){
-//                         output += "<div class='alert alert-primary' role='alert'> <p class='alert-heading sender'>" + result.data[i].sender.fullName + "</p>" +
-//                             "<p class='mb-0 sender'>" + result.data[i].message + "   " + "<a href='' class='sender'>" + result.data[i].attachment.attachment + "</a>" +
-//                             "</p></div><br>";
-//                     }else {
-//                         output += "<div class='alert alert-primary' role='alert'> <p class='alert-heading'>" + result.data[i].sender.fullName + "</p>" +
-//                             "<p class='mb-0'>" + result.data[i].message + "   " + "<a href=''>" + result.data[i].attachment.attachment + "</a>" +
-//                             "</p></div><br>";
-//                     }
-//                 } else {
-//                     if(result.data[i].sender.fullName === name) {
-//                         output += "<div class='alert alert-primary' role='alert'> <p class='alert-heading sender'>" + result.data[i].sender.fullName + "</p>" +
-//                             "<p class='mb-0 sender'>" + result.data[i].message + "</p></div><br>";
-//                     }else{
-//                         output += "<div class='alert alert-primary' role='alert'> <p class='alert-heading'>" + result.data[i].sender.fullName + "</p>" +
-//                             "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
-//                     }
-//                 }
-//             }
-//             display.html(output);
-//         }
-//     });
-// });
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 window.Echo.private('conversation.'+id)
     .listen('MessageSent', event => {
-        console.log(event);
         if(event.sent === 1){
-            $.ajax({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                type: "GET",
-                url: id +'/read',
-                success:function(result){
-                    var output = " ";
-                    for(var i in result.data)
-                    {
-                        if (result.data[i].attachment != null) {
-                            output += "<div class='alert alert-primary' role='alert'>" +
-                                "<p class='alert-heading'>" +
-                                "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
-                                "<p class='mb-0'>" + result.data[i].message + "  " +
-                                "<a href='#'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
-                        } else {
-                            output += "<div class='alert alert-primary' role='alert'>" +
-                                "<p class='alert-heading'>" +
-                                "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
-                                "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
-                        }
-                    }
-                    display.html(output);
-                }
-            });
+            getMessages();
         }
     }).listen('UserNotification', event => {
-        console.log(event);
         if(event.status === 'left'){
-            const body =event.fullName +"  has left the conversation!!"
+            const body =event.fullName +"  has left the conversation!!";
             $("#User-notification").html(body);
         }else{
-            const body =event.fullName +"  has joined the conversation!!"
+            const body =event.fullName +"  has joined the conversation!!";
             $("#User-notification").html(body);
         }
-    $.ajax({
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            type: "GET",
-            url: id +'/members',
-            success:function(data){
-                console.log(data);
-                var output = "";
-                for(var i in data){
-                    output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
-                        "<td>"+data[i].fullName +"</td></tr>";
-                }
-                memeberDisplay.html(output);
-            }
-        });
+        getMembers();
     });
 
 $("#DeleteUser").click(function(){
@@ -221,10 +106,62 @@ $("#DeleteUser").click(function(){
     }
 });
 
-
-
-
-
+//Functions
+function getMessages(){
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: "GET",
+        url: id +'/read',
+        success:function(result){
+            var output = " ";
+            for(var i in result.data)
+            {
+                if (result.data[i].attachment != null) {
+                    output += "<div class='alert alert-primary' role='alert'>" +
+                        "<p class='alert-heading'>" +
+                        "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
+                        "<p class='mb-0'>" + result.data[i].message + "  " +
+                        "<a href='#'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
+                } else {
+                    output += "<div class='alert alert-primary' role='alert'>" +
+                        "<p class='alert-heading'>" +
+                        "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
+                        "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
+                }
+            }
+            display.html(output);
+        }
+    });
+}
+function getMembers(){
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: "GET",
+        url: id +'/members',
+        success:function(data){
+            var output = "";
+            for(var i in data){
+                output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
+                    "<td>"+data[i].fullName +"</td></tr>";
+            }
+            memeberDisplay.html(output);
+        }
+    });
+}
+function getAttachment() {
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: "GET",
+        url: id + '/attachment',
+        success: function (result) {
+            var output = "";
+            for (var i in result) {
+                output += "<li><a href=''>" + result[i].attachment + "</a></li>";
+            }
+            attachmentList.html(output);
+        }
+    });
+}
 
 
 

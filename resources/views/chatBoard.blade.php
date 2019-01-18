@@ -103,7 +103,7 @@
                         <input type="text" name="member" class="form-control" id="search-text" placeholder="Search">
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-info" id="add-member" >Search</button>
+                        <button class="btn btn-info" id="add-member">Add Memeber</button>
                     </div>
                 </div>
             @if (\Session::has('error'))
@@ -150,7 +150,7 @@
                 <div class="card-body">
                     <div class="container">
 
-                        {{--<form action="{{ route('message.store',request()->route('id')) }}" method="POST" enctype="multipart/form-data">--}}
+                        {{--<form action="{{ route('message.store',request()->route('id')) }}" method="POST" id="ajax" enctype="multipart/form-data">--}}
                         {{--@csrf--}}
                         {{--<div class="input-group">--}}
                         {{--<textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>--}}
@@ -164,16 +164,18 @@
                         {{--</div>--}}
                         {{--</form>--}}
 
+
+
+
                         <div class="input-group">
                             <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
-                            </div>
                         </div>
-                        <div class="container">
-                            <label for="profile_pic">Choose file to upload</label>
-                            <input type="file" class="btn btn-sm " id="attachment" name="attachment">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
                         </div>
+
+
+
 
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">
                         <input type="hidden" value="{{auth()->user()->fullName}}" id="userName">
@@ -181,6 +183,19 @@
                 </div>
             </div>
         <div class="col-2">
+            <form method="post" action="{{ route('attachment.send',request()->route('id')) }}" enctype="multipart/form-data" class="dropzone" id="dropzone">
+                @csrf
+                <div class="fallback">
+                    <input name="file" type="file" multiple  />
+                </div>
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><input type="submit"   id="attachment-send" class="btn-lg btn-success" value="Send"></span>
+                </div>
+            </form>
+
+
+            <hr>
             <ul id="attachment-list">
 
             </ul>
@@ -193,22 +208,20 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
 <script>
+    Dropzone.options.fileupload = {
+        accept: function (file, ) {
+            $.ajax({
+                type: 'POST',
+                url: id+'/attachment/send',
+                data: {file: file.name, _token: $('#csrf-token').val()},
+                dataType: 'html',
+                success: function(data){
+        }
+    }
 
-    const id=$("#convId").val();
-    $("#add-member").click(function(){
-        const member = $("#search-text").val();
-        console.log(member);
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            method: 'get',
-            url: id+'/add',
-            data: {member: member},
-            success: function(data){
-            }
-        });
-    });
+</script>
 
-
+    <script>
     // const attachmentList = $("#attachment-list");
     // $('#att-button').click(function(){
     //     $.ajax({

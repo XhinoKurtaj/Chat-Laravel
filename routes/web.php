@@ -70,6 +70,9 @@ Route::get('/home/conversation/{id}/attachment','AttachmentController@index')
     ->name('att.read');
 Route::get('/home/conversation/{id}/download','AttachmentController@download')
     ->name('att.download');
+Route::post('/home/conversation/{id}/attachment/send','AttachmentController@download')
+    ->name('attachment.send');
+
 
 Route::get('/home/conversation/{id}/leave','ConversationController@leaveConversation')
     ->name('leave.conversation');
