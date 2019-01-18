@@ -15,39 +15,39 @@ class FacebookController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallback(Request $request)
     {
-        $user = Socialite::driver('facebook')->stateless()->user();
+        try {
+            $user = Socialite::driver('facebook')->user();
+        } catch (Exception $e) {
+            return redirect('login/facebook');
+        }
+
+        $authUser = $this->findOrCreateUser($user);
+
+        Auth::login($authUser, true);
+
+        return redirect()->route('conversation.list');
     }
-//    public function handleProviderCallback(Request $request)
-//    {
-//        try {
-//            $user = Socialite::driver('facebook')->user();
-//        } catch (Exception $e) {
-//            echo ($e);
-//            return redirect('login/facebook');
-//        }
-//
-//        $authUser = $this->findOrCreateUser($user);
-//
-//        Auth::login($authUser, true);
-//
-//        return redirect()->route('home');
-//    }
-//
-//    private function findOrCreateUser($facebookUser)
-//    {
-//        $authUser = User::where('facebook_id', $facebookUser->id)->first();
-//
-//        if ($authUser){
-//            return $authUser;
-//        }
-//
-//        return User::create([
-//            'first_name' => $facebookUser->name,
-//            'email' => $facebookUser->email,
-//            'facebook_id' => $facebookUser->id,
-//            'avatar' => $facebookUser->avatar
-//        ]);
-//    }
+
+    private function findOrCreateUser($facebookUser)
+    {
+        $authUser = User::where('facebook_id', $facebookUser->id)->first();
+
+        if ($authUser){
+            return $authUser;
+        }
+
+        $user = new User();
+        $user->fill([
+            'first_name' => $facebookUser->name,
+            'last_name' => ' ',
+            'email' => $facebookUser->email,
+            'facebook_id' => $facebookUser->id,
+            'photo' => $facebookUser->avatar
+        ]);
+        $user->password =' ' ;
+        $user->save();
+        return $user;
+    }
 }

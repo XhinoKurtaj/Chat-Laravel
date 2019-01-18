@@ -7,6 +7,7 @@ use App\Message;
 use App\Conversation;
 use Illuminate\Http\Request;
 use App\Attachment;
+use App\User;
 class MessageController extends Controller
 {
     public function __construct()
@@ -50,9 +51,15 @@ class MessageController extends Controller
         return redirect()->back();
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('chatBoard');
+        $conversation = Conversation::findOrFail($id);
+        $belongsTo = $conversation->users;
+        if($belongsTo)
+            return view('chatBoard');
+        else
+            return back();
+
     }
 }
 
