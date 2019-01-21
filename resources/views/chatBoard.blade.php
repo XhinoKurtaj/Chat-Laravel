@@ -150,50 +150,29 @@
                 <div class="card-body">
                     <div class="container">
 
-                        {{--<form action="{{ route('message.store',request()->route('id')) }}" method="POST" id="ajax" enctype="multipart/form-data">--}}
-                        {{--@csrf--}}
-                        {{--<div class="input-group">--}}
-                        {{--<textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>--}}
-                        {{--<div class="input-group-prepend">--}}
-                        {{--<span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="container">--}}
-                        {{--<label for="profile_pic">Choose file to upload</label>--}}
-                        {{--<input type="file" class="btn btn-sm " id="attach" name="attachment">--}}
-                        {{--</div>--}}
-                        {{--</form>--}}
-
-
-
-
+                        <form action="{{ route('message.store',request()->route('id')) }}" method="POST" id="ajax" enctype="multipart/form-data">
+                        @csrf
                         <div class="input-group">
-                            <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
-                        </div>
+                        <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
+                        <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
                         </div>
-
-
-
-
+                        </div>
+                        <div class="container">
+                        <label for="profile_pic">Choose file to upload</label>
+                        <input type="file" class="btn btn-sm " id="attach" name="attachment">
+                        </div>
+                        </form>
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">
                         <input type="hidden" value="{{auth()->user()->fullName}}" id="userName">
                     </div>
                 </div>
             </div>
         <div class="col-2">
-            <form method="post" action="{{ route('attachment.send',request()->route('id')) }}" enctype="multipart/form-data" class="dropzone" id="dropzone">
+            <form action="{{route('attachment.send',request()->route('id'))}}" class="dropzone">
                 @csrf
-                <div class="fallback">
-                    <input name="file" type="file" multiple  />
-                </div>
 
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><input type="submit"   id="attachment-send" class="btn-lg btn-success" value="Send"></span>
-                </div>
             </form>
-
 
             <hr>
             <ul id="attachment-list">
@@ -201,43 +180,11 @@
             </ul>
             <button id="att-button">test</button>
         </div>
+
     </div>
+</div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
-    <script src="/js/vendor/dropzone.js"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-<script>
-    Dropzone.options.fileupload = {
-        accept: function (file, ) {
-            $.ajax({
-                type: 'POST',
-                url: id+'/attachment/send',
-                data: {file: file.name, _token: $('#csrf-token').val()},
-                dataType: 'html',
-                success: function(data){
-        }
-    }
-
-</script>
-
-    <script>
-    // const attachmentList = $("#attachment-list");
-    // $('#att-button').click(function(){
-    //     $.ajax({
-    //         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-    //         type: "GET",
-    //         url: id +'/attachment',
-    //         success:function(result){
-    //             var output = "";
-    //             for(var i in result){
-    //                 console.log(result[i].attachment);
-    //                 output += "<li><a href=''>"+result[i].attachment+"</a></li>";
-    //             }
-    //             attachmentList.html(output);
-    //         }
-    //     });
-    //
-    // })
-</script>
+    <script src="  https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js" crossorigin="anonymous"></script>
 @include('/partial/footer')

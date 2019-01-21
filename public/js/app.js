@@ -61641,26 +61641,22 @@ $("#add-member").click(function () {
     },
     success: function success(data) {}
   });
-});
-$('#btn_send').click(function () {
-  var message = $('#msgArea').val();
-  var attachment = $('#attachment').val();
-  $.ajax({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    method: 'post',
-    url: id + '/send',
-    dataType: 'json',
-    data: {
-      message: message,
-      attachment: attachment
-    },
-    success: function success(data) {
-      $('#msgArea').val(" ");
-    }
-  });
-});
+}); // $('#btn_send').click(function(){
+//     const message = $('#msgArea').val();
+//     const attachment = $('#attachment').val();
+//     $.ajax({
+//         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+//         method: 'post',
+//         url: id+'/send',
+//         dataType: 'json',
+//         data: {message: message,
+//             attachment: attachment,},
+//         success:function(data){
+//             $('#msgArea').val(" ");
+//         }
+//     })
+// });
+
 $(window).on('load', function () {
   getMessages();
   getMembers();
@@ -61711,7 +61707,7 @@ function getMessages() {
 
       for (var i in result.data) {
         if (result.data[i].attachment != null) {
-          output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'> " + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "  " + "<a href='#'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
+          output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'> " + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "  " + "<a href='" + id + "/download/" + result.data[i].attachment.id + "'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
         } else {
           output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'>" + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
         }

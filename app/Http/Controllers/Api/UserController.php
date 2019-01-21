@@ -24,7 +24,7 @@ class UserController extends Controller
 
         if (auth()->attempt($credentials)) {
             $token = auth()->user()->createToken('login')->accessToken;
-            return response()->json(['token' => $token], 200);
+            return response()->json(['token' => $token, 'user' => auth()->user()], 200);
         } else {
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
@@ -57,7 +57,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->get('password'));
         $user->save();
 
-        $token = $user->createToken('test')->accessToken;
+        $token = $user->createToken('register')->accessToken;
         return response()->json([
             'token' => $token,
             'user'  => $user

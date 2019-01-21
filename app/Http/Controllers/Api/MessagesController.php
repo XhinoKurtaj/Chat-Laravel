@@ -39,7 +39,6 @@ class MessagesController extends Controller
                 'message_id' => $message->id,
             ]);
         }
-
         if($message){
             event(new MessageSent(1,$id));
         }

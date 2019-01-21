@@ -68,7 +68,7 @@ Route::get('/home/conversation/{id}/add','SearchController@addMember')
 
 Route::get('/home/conversation/{id}/attachment','AttachmentController@index')
     ->name('att.read');
-Route::get('/home/conversation/{id}/download','AttachmentController@download')
+Route::get('/home/conversation/{id}/download/{attachment_id}','AttachmentController@download')
     ->name('att.download');
 Route::post('/home/conversation/{id}/attachment/send','AttachmentController@download')
     ->name('attachment.send');

@@ -13,7 +13,7 @@ class PhotoController extends Controller
      * @param Photo $photo
      * @return Photo
      */
-    public function show()
+    public function index()
     {
         $userId = auth()->user()->id;
         $photoList = Photo::where('user_id',$userId)->get();
