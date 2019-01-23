@@ -8,6 +8,7 @@ use App\Conversation;
 use Illuminate\Http\Request;
 use App\Attachment;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 class MessageController extends Controller
 {
     public function __construct()
@@ -37,13 +38,14 @@ class MessageController extends Controller
             'sender_id' => $user->id,
         ]);
         if($request->hasFile('attachment')) {
-            $attatch = $request->file('attachment');
+            $attach = $request->file('attachment');
             $attachment = Attachment::create([
-                'attachment' => $attatch->store('attachments', ['disk' => 'public']),
+                'attachment' => $attach->store('attachments', ['disk' => 'public']),
                 'conversation_id' => $conversation->id,
                 'message_id' => $message->id,
             ]);
         }
+
         if($message){
             event(new MessageSent(1,$id));
         }
@@ -52,13 +54,7 @@ class MessageController extends Controller
 
     public function show($id)
     {
-        $conversation = Conversation::findOrFail($id);
-        $belongsTo = $conversation->users;
-        if($belongsTo)
-            return view('chatBoard');
-        else
-            return back();
-
+        return view('chatBoard');
     }
 }
 

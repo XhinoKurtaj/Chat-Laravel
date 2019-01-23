@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 Route::group(['middleware' => 'auth:api'], function() {
     Route::group(['prefix' => 'users/conversation'], function () {
 
-        Route::get('/test', 'Api\ConversationController@index');
+        Route::get('/all', 'Api\ConversationController@index');
         Route::get('/', 'Api\ConversationController@show');
         Route::post('/', 'Api\ConversationController@store');
         Route::put('/{id}', 'Api\ConversationController@update');

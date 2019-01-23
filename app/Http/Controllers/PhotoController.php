@@ -22,7 +22,7 @@ class PhotoController extends Controller
     {
         $user = auth()->user();
         $request->validate([
-            'photo'=>'required | mimes:jpeg,jpg,png | max:1000',
+            'photo'=>'required|mimes:jpeg,jpg,png ',
         ]);
         $image = $request->file('photo');
         $photo = Photo::create([

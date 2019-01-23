@@ -20,22 +20,6 @@ class AttachmentController extends Controller
         $attachment = Attachment::findOrFail($attachmentId);
         $name = $attachment->attachment;
         $attach = str_replace("attachments/","",$name);
-        $path = storage_path($attach);
-        Storage::download('public\attachments',$attach);
-
-       return redirect()->back();
-
-//        $attachment = Attachment::findOrFail($attachmentId);
-//        $name = $attachment->attachment;
-//        $attach = str_replace("attachments/"," ",$name);
-//        $path = storage_path($attach);
-//        Storage::download('public\attachments',$attach);
-//
-//       return redirect()->back();
-//
-//        $file_path = storage_path("attachments\.$attach");
-//        return Response::download($file_path);
-//        Storage::download($file_path);
-//        return redirect()->back();
+        return response()->download(public_path("/storage/attachments/$attach"));
     }
 }
