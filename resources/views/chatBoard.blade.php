@@ -34,8 +34,8 @@
     }
     .span-position{
         position: absolute;
-        bottom: 40px;
-        right: 10px;
+        top: 0px;
+        left: 25px;
         font-size: 20px;
         color: red;
     }
@@ -55,7 +55,7 @@
         height:32px;
         top:10px;
         left:10px;
-        border-radius:50%"
+        border-radius:50%;
     }
     .col-2 {
         -moz-hyphens:auto;
@@ -137,22 +137,13 @@
         <div class="col-7">
             <div class="card">
                 <div class="card-body" style="overflow: auto" id="textResponse">
-                    <div> <p id="message-display">
-                    </div></p>
+                     <p id="message-display"></p>
                     <span class="span-position" id="User-notification"> </span>
                 </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-9">
-                                <p id="messageField">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="container">
-                        <form action="{{ route('message.store',request()->route('id')) }}" method="POST" id="ajax" enctype="multipart/form-data">
+                        <form id="form" action="{{ route('message.store',request()->route('id')) }}" method="POST" id="ajax" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group">
                                 <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
@@ -162,7 +153,7 @@
                             </div>
                             <div class="container">
                                 <label for="profile_pic">Choose file to upload</label>
-                                <input type="file" class="btn btn-sm " id="attach" name="attachment">
+                                <input type="file" class="btn btn-sm " id="attachment" name="attachment">
                             </div>
                         </form>
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">
@@ -181,4 +172,24 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+<script>
+    const id=$("#convId").val();
+    $('#form').on('submit',function(event){
+        event.preventDefault();
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            method: 'post',
+            url: id+'/send',
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            data: formData,
+        });
+        // $('#msgArea').val(" ");
+        // $('#attachment').val(" ");
+        $("#form")[0].reset();
+
+    });
+</script>
 @include('/partial/footer')

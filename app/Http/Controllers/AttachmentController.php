@@ -25,11 +25,11 @@ class AttachmentController extends Controller
 
     public function store($conversationId,$messageId,$request)
     {
-            $attach = $request->file('attachment');
-            $attachment = Attachment::create([
-                'attachment' => $attach->store('attachments', ['disk' => 'public']),
-                'conversation_id' => $conversationId,
-                'message_id' => $messageId,
-            ]);
+        $attach = $request->file('attachment');
+        $attachment = Attachment::create([
+            'attachment' => $attach->store('attachments', ['disk' => 'public']),
+            'conversation_id' => $conversationId,
+            'message_id' => $messageId,
+        ]);
     }
 }

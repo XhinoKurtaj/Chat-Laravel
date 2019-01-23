@@ -52,16 +52,15 @@ $("#add-member").click(function(){
     });
 });
 
+
 // $('#btn_send').click(function(){
-//     const message = $('#msgArea').val();
-//     const attachment = $('#attachment').val();
+//     var formData = new FormData($(this)[0]);
 //     $.ajax({
 //         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 //         method: 'post',
 //         url: id+'/send',
 //         dataType: 'json',
-//         data: {message: message,
-//             attachment: attachment,},
+//         data: formData,
 //         success:function(data){
 //             $('#msgArea').val(" ");
 //         }
