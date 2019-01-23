@@ -40,7 +40,7 @@ Route::get('profile/photo/profile/{id}','PhotoController@setProfilePhoto')
         ->name('profile.photo');
 
 
-Route::get('home','ConversationController@read')
+Route::get('home','ConversationController@index')
         ->name('conversation.list');
 Route::post('home','ConversationController@store')
         ->name('conversation.store');

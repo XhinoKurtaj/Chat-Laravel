@@ -57,8 +57,13 @@
         left:10px;
         border-radius:50%"
     }
-
-    /*#4dc0b5*/
+    .col-2 {
+        -moz-hyphens:auto;
+        -ms-hyphens:auto;
+        -webkit-hyphens:auto;
+        hyphens:auto;
+        word-wrap:break-word;
+    }
 </style>
 <div id="app" class="container-fluid">
     <div class="container-fluid">
@@ -93,8 +98,6 @@
                         <a href="{{ route('conversation.list') }}" class="dropdown-item onMouse">Conversation List</a>
                         <hr>
                         <a href="{{ route('leave.conversation',request()->route('id')) }}" class="dropdown-item onMouse" onclick="return confirm('Are you sure you want to leave this conversation?')">Leave Conversation</a>
-                        {{--<a href="{{ route('leave.conversation',request()->route('id')) }}" class="dropdown-item onMouse">Leave Conversation</a>--}}
-
                     </div>
                 </div>
             </div>
@@ -149,34 +152,31 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
-
                         <form action="{{ route('message.store',request()->route('id')) }}" method="POST" id="ajax" enctype="multipart/form-data">
-                        @csrf
-                        <div class="input-group">
-                        <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
-                        <div class="input-group-prepend">
-                        <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
-                        </div>
-                        </div>
-                        <div class="container">
-                        <label for="profile_pic">Choose file to upload</label>
-                        <input type="file" class="btn btn-sm " id="attach" name="attachment">
-                        </div>
+                            @csrf
+                            <div class="input-group">
+                                <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <label for="profile_pic">Choose file to upload</label>
+                                <input type="file" class="btn btn-sm " id="attach" name="attachment">
+                            </div>
                         </form>
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">
                         <input type="hidden" value="{{auth()->user()->fullName}}" id="userName">
                     </div>
                 </div>
             </div>
-
         <div class="col-2">
+            <h6>Attachments</h6>
         <hr>
             <ul id="attachment-list">
-
             </ul>
         </div>
     </div>
-</div>
 </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>

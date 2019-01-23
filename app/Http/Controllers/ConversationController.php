@@ -15,6 +15,18 @@ class ConversationController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $user = auth()->user();
+        $conversationList = $user->conversations;
+        return View("home", compact('conversationList'));
+    }
+
+    public function show()
+    {
+        return view('conversation');
+    }
+
     public function store(Request $request)
     {
         $userId = auth()->user()->id;
@@ -27,23 +39,11 @@ class ConversationController extends Controller
          return redirect('home');
     }
 
-    public function read()
-    {
-        $user = auth()->user();
-        $conversationList = $user->conversations;
-        return View("home", compact('conversationList'));
-    }
-
     public function conversationMembers($id)
     {
         $conversation = Conversation::findOrFail($id);
         $memberList = $conversation->users;
         return response()->json($memberList);
-    }
-
-    public function show()
-    {
-        return view('conversation');
     }
 
     public function updateConversation(Request $request,$id)

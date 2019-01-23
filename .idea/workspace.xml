@@ -7,13 +7,11 @@
     <list default="true" id="d0176c28-fc0e-484c-bcb7-5bfbebb4c8ef" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AttachmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttachmentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PhotoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PhotoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConversationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConversationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/chatBoard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chatBoard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,7 +74,7 @@
           <entry key="key" value="2" />
           <entry key="log" value="7" />
           <entry key="md" value="1" />
-          <entry key="php" value="1147" />
+          <entry key="php" value="1153" />
           <entry key="png" value="1" />
           <entry key="svg" value="4" />
           <entry key="ts" value="1" />
@@ -87,13 +85,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="23" />
-          <entry key="Blade" value="165" />
+          <entry key="Blade" value="166" />
           <entry key="CSS" value="1" />
           <entry key="Image" value="34" />
           <entry key="JSON" value="12" />
           <entry key="JavaScript" value="32" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="982" />
+          <entry key="PHP" value="987" />
           <entry key="PLAIN_TEXT" value="19" />
           <entry key="SVG" value="4" />
           <entry key="TypeScript" value="1" />
@@ -107,19 +105,19 @@
           <entry key="env" value="51" />
           <entry key="gitignore" value="6" />
           <entry key="htaccess" value="20" />
-          <entry key="js" value="5883" />
+          <entry key="js" value="5887" />
           <entry key="log" value="1" />
-          <entry key="php" value="41270" />
+          <entry key="php" value="41354" />
           <entry key="vue" value="712" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="51" />
-          <entry key="Blade" value="11614" />
+          <entry key="Blade" value="11676" />
           <entry key="HTML" value="10" />
-          <entry key="JavaScript" value="5873" />
-          <entry key="PHP" value="32748" />
+          <entry key="JavaScript" value="5877" />
+          <entry key="PHP" value="32770" />
           <entry key="PLAIN_TEXT" value="7" />
           <entry key="Vue.js" value="712" />
           <entry key="htaccess" value="20" />
@@ -179,8 +177,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="68" selection-start-line="68" selection-end-line="71" selection-end-column="27" />
+            <state relative-caret-position="265">
+              <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -188,20 +186,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AttachmentController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
-              <folding>
-                <element signature="e#40#59#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="2107">
+              <caret line="156" column="114" selection-start-line="156" selection-start-column="114" selection-end-line="156" selection-end-column="114" />
             </state>
           </provider>
         </entry>
@@ -209,20 +195,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="43" selection-end-column="9" />
+            <state relative-caret-position="-493">
+              <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PhotoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-406">
+              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="700">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
               <folding>
-                <element signature="e#40#67#0#PHP" expanded="true" />
+                <element signature="e#44#72#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/chatBoard.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="570">
+              <caret line="181" lean-forward="true" selection-start-line="181" selection-end-line="181" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/AttachmentController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="957">
+              <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
               <folding>
                 <element signature="e#44#72#0#PHP" expanded="true" />
               </folding>
@@ -231,12 +244,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/AttachmentController.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConversationController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="493">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
               <folding>
-                <element signature="e#44#72#0#PHP" expanded="true" />
+                <element signature="e#40#59#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -292,7 +305,6 @@
         <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/resources/views/photos/photos.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/FacebookController.php" />
@@ -300,7 +312,6 @@
         <option value="$PROJECT_DIR$/app/Http/Middleware/CheckIfUserIsMember.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Events/UserNotification.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ConversationController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SearchController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
         <option value="$PROJECT_DIR$/resources/views/profile.blade.php" />
@@ -316,15 +327,17 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/PhotoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ConversationController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_12_18_140450_create_messages_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/chatBoard.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PhotoController.php" />
-        <option value="$PROJECT_DIR$/resources/js/app.js" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AttachmentController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/AttachmentController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ConversationController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/resources/js/app.js" />
+        <option value="$PROJECT_DIR$/resources/views/chatBoard.blade.php" />
       </list>
     </option>
   </component>
@@ -529,6 +542,17 @@
             <path>
               <item name="larachat" type="b2602c69:ProjectViewProjectNode" />
               <item name="larachat" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="larachat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="larachat" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="larachat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="larachat" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -622,12 +646,21 @@
       <workItem from="1547800916423" duration="25799000" />
       <workItem from="1548060542404" duration="26202000" />
       <workItem from="1548149460239" duration="9293000" />
-      <workItem from="1548233453495" duration="8876000" />
+      <workItem from="1548233453495" duration="10872000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="462539000" />
+    <option name="totallyTimeSpent" value="464535000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -644,10 +677,10 @@
       <window_info anchor="bottom" id="Find" order="5" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.329718" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49413645" weight="0.28850326" />
-      <window_info active="true" anchor="bottom" id="Debug" order="8" sideWeight="0.49307036" visible="true" weight="0.35032538" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49307036" weight="0.35032538" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
+      <window_info anchor="bottom" id="TODO" order="11" weight="0.329718" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="bottom" id="TypeScript" order="13" />
       <window_info anchor="right" id="Database" order="0" />
@@ -655,29 +688,6 @@
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Favorites" order="0" sideWeight="0.50151974" side_tool="true" weight="0.1988273" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49848023" visible="true" weight="0.1988273" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50692964" side_tool="true" weight="0.3449024" />
-      <window_info anchor="bottom" id="Version Control" order="2" weight="0.329718" />
-      <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49413645" weight="0.28850326" />
-      <window_info active="true" anchor="bottom" id="Debug" order="8" sideWeight="0.49307036" visible="true" weight="0.35032538" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="bottom" id="Messages" order="12" />
-      <window_info anchor="bottom" id="TypeScript" order="13" />
-      <window_info anchor="right" id="Database" order="0" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -689,7 +699,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/storage/app/public/images/pYDYZ1m3XPtvClqax8qzIK5GzG78l0MgLXoH8nXk.jpeg" />
     <entry file="file://$PROJECT_DIR$/storage/app/public/images/OnDMjSqEIQY7CnjDWW0oQ9fqACHUSzHAXh61iCwP.jpeg" />
     <entry file="file://$PROJECT_DIR$/storage/app/public/images/Japna8hPQjPiq3veNmueenitHiao18WLXLf3dN13.jpeg" />
     <entry file="file://$PROJECT_DIR$/storage/app/public/images/HJyNMovmOV3b5rzbcAWNLHWNSW6aYq1djG4L7Lv1.png">
@@ -817,11 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SearchController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-261" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Contracts/Filesystem/Filesystem.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
@@ -908,13 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/chatBoard.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="178" selection-start-line="178" selection-end-line="178" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/nikic/php-parser/lib/PhpParser/Node/Stmt/Return_.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
@@ -932,29 +929,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PhotoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="4" column="28" lean-forward="true" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/PhotoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1160">
           <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
           <folding>
             <element signature="e#44#72#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConversationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-406">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-          <folding>
-            <element signature="e#40#59#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -966,20 +946,6 @@
           <folding>
             <element signature="e#44#72#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="68" selection-start-line="68" selection-end-line="71" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1000,10 +966,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="46" column="58" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AttachmentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
+        <state relative-caret-position="174">
+          <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConversationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="e#40#59#0#PHP" expanded="true" />
           </folding>
@@ -1012,25 +999,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="43" selection-end-column="9" />
+        <state relative-caret-position="-493">
+          <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
           <folding>
-            <element signature="e#40#67#0#PHP" expanded="true" />
+            <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SearchController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="46" column="58" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="58" />
+        <state relative-caret-position="-286" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PhotoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-406">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2107">
+          <caret line="156" column="114" selection-start-line="156" selection-start-column="114" selection-end-line="156" selection-end-column="114" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/AttachmentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="957">
+          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
           <folding>
             <element signature="e#44#72#0#PHP" expanded="true" />
           </folding>
@@ -1039,11 +1045,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="700">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="e#44#72#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/chatBoard.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="181" lean-forward="true" selection-start-line="181" selection-end-line="181" />
         </state>
       </provider>
     </entry>

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Message;
 use App\Conversation;
-use App\Attachment;
 use App\Events\MessageSent;
 class MessagesController extends Controller
 {

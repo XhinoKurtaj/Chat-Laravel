@@ -61747,7 +61747,7 @@ function getAttachment() {
       var output = "";
 
       for (var i in result) {
-        output += "<li><a href='" + id + "/download/" + result[i].id + "'>" + result[i].attachment + "</a></li>";
+        output += "<li><a href='" + id + "/download/" + result[i].id + "'>" + result[i].attachment + "</a></li><hr>";
       }
 
       attachmentList.html(output);
