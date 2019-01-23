@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Attachment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use PhpParser\Node\Stmt\Return_;
+use App\Http\Controllers\Controller;
+use App\Attachment;
 
 class AttachmentController extends Controller
 {
@@ -25,11 +24,11 @@ class AttachmentController extends Controller
 
     public function store($conversationId,$messageId,$request)
     {
-            $attach = $request->file('attachment');
-            $attachment = Attachment::create([
-                'attachment' => $attach->store('attachments', ['disk' => 'public']),
-                'conversation_id' => $conversationId,
-                'message_id' => $messageId,
-            ]);
+        $attach = $request->file('attachment');
+        $attachment = Attachment::create([
+            'attachment' => $attach->store('attachments', ['disk' => 'public']),
+            'conversation_id' => $conversationId,
+            'message_id' => $messageId,
+        ]);
     }
 }

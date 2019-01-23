@@ -42,7 +42,6 @@ var counter = 1;
 $("#add-member").click(function(){
     console.log("clicked");
     const member = $("#search-text").val();
-    console.log(member);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method: 'get',
@@ -52,7 +51,6 @@ $("#add-member").click(function(){
         }
     });
 });
-
 
 // $('#btn_send').click(function(){
 //     const message = $('#msgArea').val();
@@ -156,14 +154,11 @@ function getAttachment() {
         success: function (result) {
             var output = "";
             for (var i in result) {
-                output += "<li><a href=''>" + result[i].attachment + "</a></li>";
+                output += "<li><a href='"+id+"/download/"+result[i].id+"'>" +result[i].attachment + "</a></li>";
             }
             attachmentList.html(output);
         }
     });
 }
-
-
-
 
 

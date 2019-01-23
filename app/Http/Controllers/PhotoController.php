@@ -18,6 +18,13 @@ class PhotoController extends Controller
         return view('photos/create');
     }
 
+    public function index()
+    {
+        $userId = auth()->user()->id;
+        $photoList = Photo::where('user_id',$userId)->get();
+        return view('photos.photos', compact('photoList'));
+    }
+
     public function store(Request $request)
     {
         $user = auth()->user();
@@ -31,13 +38,6 @@ class PhotoController extends Controller
         ]);
 
         return back()->with('success', "Photo created successfully");
-    }
-
-    public function show()
-    {
-        $userId = auth()->user()->id;
-        $photoList = Photo::where('user_id',$userId)->get();
-        return view('photos.photos', compact('photoList'));
     }
 
     public function setProfilePhoto($photoId)

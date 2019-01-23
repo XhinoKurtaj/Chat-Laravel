@@ -168,23 +168,17 @@
                     </div>
                 </div>
             </div>
+
         <div class="col-2">
-            <form action="{{route('attachment.send',request()->route('id'))}}" class="dropzone">
-                @csrf
-
-            </form>
-
-            <hr>
+        <hr>
             <ul id="attachment-list">
 
             </ul>
-            <button id="att-button">test</button>
         </div>
-
     </div>
+</div>
 </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-    <script src="  https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js" crossorigin="anonymous"></script>
 @include('/partial/footer')

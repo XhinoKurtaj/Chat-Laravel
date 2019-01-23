@@ -28,7 +28,7 @@ Route::get('profile/delete', 'UserController@delete')
     ->name('user.delete');
 
 
-Route::get('profile/photo','PhotoController@show')
+Route::get('profile/photo','PhotoController@index')
         ->name('photo.show');
 Route::get('profile/photo/create','PhotoController@create')
         ->name('photo.create');
@@ -70,8 +70,6 @@ Route::get('/home/conversation/{id}/attachment','AttachmentController@index')
     ->name('att.read');
 Route::get('/home/conversation/{id}/download/{attachment_id}','AttachmentController@download')
     ->name('att.download');
-Route::post('/home/conversation/{id}/attachment/send','AttachmentController@download')
-    ->name('attachment.send');
 
 
 Route::get('/home/conversation/{id}/leave','ConversationController@leaveConversation')

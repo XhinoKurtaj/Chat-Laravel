@@ -47,5 +47,11 @@ Route::group(['middleware' => 'auth:api'], function() {
             Route::post('/', 'Api\MessagesController@store');
 
         });
+        Route::group(['prefix' => '/{conversation_id}/attachment'], function () {
+            Route::get('/', 'Api\AttachmentController@index');
+            Route::get('/{attachment_id}', 'Api\AttachmentController@download');
+
+        });
+
     });
 });

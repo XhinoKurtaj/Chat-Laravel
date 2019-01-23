@@ -8,6 +8,7 @@ use App\Conversation;
 use Illuminate\Http\Request;
 use App\Attachment;
 use App\User;
+use App\Http\Controllers\AttachmentController;
 use Illuminate\Support\Facades\Storage;
 class MessageController extends Controller
 {
@@ -38,17 +39,10 @@ class MessageController extends Controller
             'sender_id' => $user->id,
         ]);
         if($request->hasFile('attachment')) {
-            $attach = $request->file('attachment');
-            $attachment = Attachment::create([
-                'attachment' => $attach->store('attachments', ['disk' => 'public']),
-                'conversation_id' => $conversation->id,
-                'message_id' => $message->id,
-            ]);
+            $attachment = new AttachmentController();
+            $attachment->store($conversation->id,$message->id,$request);
         }
-
-        if($message){
-            event(new MessageSent(1,$id));
-        }
+        event(new MessageSent(1,$id));
         return redirect()->back();
     }
 

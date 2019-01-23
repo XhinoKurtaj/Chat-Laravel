@@ -32,16 +32,10 @@ class MessagesController extends Controller
             'sender_id' => $user->id,
         ]);
         if($request->hasFile('attachment')) {
-            $attatch = $request->file('attachment');
-            $attachment = Attachment::create([
-                'attachment' => $attatch->store('attachments', ['disk' => 'public']),
-                'conversation_id' => $conversation->id,
-                'message_id' => $message->id,
-            ]);
+            $attachment = new AttachmentController();
+            $attachment->store($conversation->id,$message->id,$request);
         }
-        if($message){
             event(new MessageSent(1,$id));
-        }
         return response(200);
     }
 }
