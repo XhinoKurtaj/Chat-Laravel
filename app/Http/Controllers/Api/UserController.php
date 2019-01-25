@@ -66,15 +66,17 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, [
+       $this->validate($request, [
             'first_name' => 'nullable|string|max:255',
             'last_name' => 'nullable|string|max:255',
         ]);
-
         $user = Auth::user();
-        $user->update($request->only('first_name', 'last_name'));
-
-        return response()->json($user, 200);
+        if($user) {
+            $user->update($request->only('first_name', 'last_name'));
+            return response()->json($user, 200);
+        }else {
+            return response()->json("User not found", 404);
+        }
     }
 
     public function delete()

@@ -20,7 +20,8 @@
         "paypal/rest-api-sdk-php": "^1.14",
         "pusher/pusher-http-laravel": "^4.2",
         "pusher/pusher-php-server": "^3.3",
-        "yab/laravel-scout-mysql-driver": "^2.1"
+        "yab/laravel-scout-mysql-driver": "^2.1",
+        "zircote/swagger-php": "^3.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -43,7 +43,7 @@ class MessageController extends Controller
             $attachment->store($conversation->id,$message->id,$request);
         }
         event(new MessageSent(1,$id));
-        return redirect()->back();
+
     }
 
     public function show($id)

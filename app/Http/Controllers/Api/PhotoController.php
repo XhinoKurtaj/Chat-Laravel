@@ -46,16 +46,15 @@ class PhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Photo $photo
+     * @param $id
      * @return \Illuminate\Http\Response
-     * @throws \Exception
      */
     public function delete($id)
     {
         if ($photo = Photo::find($id)) {
             $photo->delete();
             return response()->json( 204);
-            }else{
+        }else{
             return response()->json('Photo doesnt exist!', 404);
         }
     }

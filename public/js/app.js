@@ -61640,20 +61640,7 @@ $("#add-member").click(function () {
     },
     success: function success(data) {}
   });
-}); // $('#btn_send').click(function(){
-//     var formData = new FormData($(this)[0]);
-//     $.ajax({
-//         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-//         method: 'post',
-//         url: id+'/send',
-//         dataType: 'json',
-//         data: formData,
-//         success:function(data){
-//             $('#msgArea').val(" ");
-//         }
-//     })
-// });
-
+});
 $(window).on('load', function () {
   getMessages();
   getMembers();
@@ -61700,11 +61687,18 @@ function getMessages() {
     type: "GET",
     url: id + '/read',
     success: function success(result) {
+      debugger;
       var output = " ";
 
       for (var i in result.data) {
         if (result.data[i].attachment != null) {
-          output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'> " + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "  " + "<a href='" + id + "/download/" + result.data[i].attachment.id + "'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
+          var str = result.data[i].attachment.attachment;
+
+          if (str.includes(".jpg") || str.includes(".jpeg") || str.includes(".png") || str.includes(".gif")) {
+            output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'> " + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "<hr>" + "<a href='" + id + "/download/" + result.data[i].attachment.id + "'><img src='/storage/" + str + "' class='img-thumbnail'>" + "</a></p></div><br>";
+          } else {
+            output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'> " + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "  " + "<a href='" + id + "/download/" + result.data[i].attachment.id + "'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
+          }
         } else {
           output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'>" + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
         }

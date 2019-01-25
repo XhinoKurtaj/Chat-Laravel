@@ -64,6 +64,10 @@
         hyphens:auto;
         word-wrap:break-word;
     }
+    .img-thumbnail{
+        height: 100px;
+        width: 100px;
+    }
 </style>
 <div id="app" class="container-fluid">
     <div class="container-fluid">
@@ -186,10 +190,7 @@
             contentType: false,
             data: formData,
         });
-        // $('#msgArea').val(" ");
-        // $('#attachment').val(" ");
         $("#form")[0].reset();
-
     });
 </script>
 @include('/partial/footer')

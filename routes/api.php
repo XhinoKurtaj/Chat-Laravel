@@ -21,37 +21,35 @@ Route::post('/register', 'Api\UserController@Register');
 Route::post('/login', 'Api\UserController@login');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('/logout', 'Api\UserController@logout');
-    Route::get('users', 'Api\UserController@index');
-    Route::put('users', 'Api\UserController@update');
-    Route::delete('users', 'Api\UserController@delete');
+    Route::get('user/logout', 'Api\UserController@logout');
+    Route::get('user', 'Api\UserController@index');
+    Route::put('user', 'Api\UserController@update');
+    Route::delete('user', 'Api\UserController@delete');
 });
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('users/photos', 'Api\PhotoController@index');
-    Route::post('users/photos', 'Api\PhotoController@store');
-    Route::delete('users/photos/{id}', 'Api\PhotoController@delete');
+    Route::get('user/photos', 'Api\PhotoController@index');
+    Route::post('user/photos', 'Api\PhotoController@store');
+    Route::delete('user/photos/{photo_id}', 'Api\PhotoController@delete');
 });
+
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::group(['prefix' => 'users/conversation'], function () {
+    Route::group(['prefix' => 'user/conversation'], function () {
 
         Route::get('/all', 'Api\ConversationController@index');
         Route::get('/', 'Api\ConversationController@show');
         Route::post('/', 'Api\ConversationController@store');
-        Route::put('/{id}', 'Api\ConversationController@update');
-        Route::delete('/{id}', 'Api\ConversationController@delete');
+        Route::put('/{conversation_id}', 'Api\ConversationController@update');
+        Route::delete('/{conversation_id}', 'Api\ConversationController@delete');
 
         Route::group(['prefix' => '/{conversation_id}/messages'], function () {
             Route::get('/', 'Api\MessagesController@index');
-//            Route::get('/{id}', 'Api\MessagesController@show');
             Route::post('/', 'Api\MessagesController@store');
-
         });
+
         Route::group(['prefix' => '/{conversation_id}/attachment'], function () {
             Route::get('/', 'Api\AttachmentController@index');
             Route::get('/{attachment_id}', 'Api\AttachmentController@download');
-
         });
-
     });
 });
