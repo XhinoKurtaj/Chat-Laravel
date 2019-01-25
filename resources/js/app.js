@@ -95,36 +95,11 @@ function getMessages(){
         type: "GET",
         url: id +'/read',
         success:function(result){
-            debugger;
-            var output = " ";
-            for(var i in result.data)
-            {
-                if (result.data[i].attachment != null) {
-                    var str = result.data[i].attachment.attachment;
-                    if(str.includes(".jpg")||str.includes(".jpeg")|| str.includes(".png") || str.includes(".gif")){
-                        output += "<div class='alert alert-primary' role='alert'>" +
-                            "<p class='alert-heading'>" +
-                            "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
-                            "<p class='mb-0'>" + result.data[i].message + "<hr>" +
-                            "<a href='"+id+"/download/"+result.data[i].attachment.id+"'><img src='/storage/"+ str +"' class='img-thumbnail'>"+ "</a></p></div><br>";
-                    }else{
-                        output += "<div class='alert alert-primary' role='alert'>" +
-                            "<p class='alert-heading'>" +
-                            "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
-                            "<p class='mb-0'>" + result.data[i].message + "  " +
-                            "<a href='"+id+"/download/"+result.data[i].attachment.id+"'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
-                    }
-                } else {
-                    output += "<div class='alert alert-primary' role='alert'>" +
-                        "<p class='alert-heading'>" +
-                        "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
-                        "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
-                }
-            }
-            display.html(output);
+            buildUp(result);
         }
     });
 }
+
 function getMembers(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -140,6 +115,7 @@ function getMembers(){
         }
     });
 }
+
 function getAttachment() {
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -153,6 +129,37 @@ function getAttachment() {
             attachmentList.html(output);
         }
     });
+}
+
+function buildUp(result){
+    var output = " ";
+    for(var i in result.data)
+    {
+        if (result.data[i].attachment != null) {
+            var str = result.data[i].attachment.attachment;
+            if(str.includes(".jpg")||str.includes(".jpeg")|| str.includes(".png") || str.includes(".gif")){
+                output += "<div class='alert alert-primary' role='alert'>" +
+                    "<p class='alert-heading'>" +
+                    "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
+                    "<p class='mb-0'>" + result.data[i].message + "<hr>" +
+                    "<a href='"+id+"/download/"+result.data[i].attachment.id+"'><img src='/storage/"+ str +"' class='img-thumbnail'>"+
+                    "</a></p></div><br>";
+            }else{
+                output += "<div class='alert alert-primary' role='alert'>" +
+                    "<p class='alert-heading'>" +
+                    "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
+                    "<p class='mb-0'>" + result.data[i].message + "  " +
+                    "<a href='"+id+"/download/"+result.data[i].attachment.id+"'>" + result.data[i].attachment.attachment +
+                    "</a></p></div><br>";
+            }
+        } else {
+            output += "<div class='alert alert-primary' role='alert'>" +
+                "<p class='alert-heading'>" +
+                "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
+                "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
+        }
+    }
+    display.html(output);
 }
 
 
