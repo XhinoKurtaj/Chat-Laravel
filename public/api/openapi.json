@@ -2,13 +2,9 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Laravel Chat",
-
     "version" : "1.0.0"
   },
-  "externalDocs" : {
-    "description" : "Find out more about Swagger",
-    "url" : "http://swagger.io"
-  },
+
   "servers" : [ {
     "url" : "https://laravel-chat.test/api",
     "description" : "Laravel chat project"
@@ -19,15 +15,52 @@
         "tags" : [ "user" ],
         "summary" : "Register a new User",
         "operationId" : "addUser",
-        "requestBody" : {
-          "content" : {
-            "multipart/form-data" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/body"
-              }
-            }
+        "parameters" : [ {
+          "name" : "first_name",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
           }
-        },
+        }, {
+          "name" : "last_name",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "email",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "password confirmation",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -75,7 +108,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     },
@@ -106,22 +139,23 @@
           }
         },
         "security" : [ {
-          "api_key" : [ ]
+          "Authorisation" : [ ]
         } ]
       },
       "post" : {
         "tags" : [ "Conversation" ],
         "summary" : "Create new conversation",
         "operationId" : "createConversation",
-        "requestBody" : {
-          "content" : {
-            "multipart/form-data" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/body_1"
-              }
-            }
+        "parameters" : [ {
+          "name" : "custom_name",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
           }
-        },
+        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -138,7 +172,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     },
@@ -158,16 +192,24 @@
             "type" : "integer",
             "format" : "int64"
           }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/body_2"
-              }
-            }
+        }, {
+          "name" : "custom_name",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
           }
-        },
+        }, {
+          "name" : "custom_photo",
+          "in" : "query",
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "file"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -181,7 +223,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       },
       "delete" : {
@@ -209,7 +251,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     },
@@ -249,7 +291,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       },
       "post" : {
@@ -268,16 +310,25 @@
             "type" : "integer",
             "format" : "int64"
           }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/body_3"
-              }
-            }
+        }, {
+          "name" : "message",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
           }
-        },
+        }, {
+          "name" : "attachment",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "file"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -299,7 +350,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     },
@@ -340,7 +391,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     },
@@ -383,7 +434,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     },
@@ -406,22 +457,23 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       },
       "post" : {
         "tags" : [ "photo" ],
         "summary" : "Upload photo",
         "operationId" : "uploadPhoto",
-        "requestBody" : {
-          "content" : {
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/body_4"
-              }
-            }
+        "parameters" : [ {
+          "name" : "Photo",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "file"
           }
-        },
+        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -443,7 +495,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     },
@@ -475,7 +527,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     },
@@ -485,15 +537,25 @@
         "summary" : "Log in with existing user",
         "description" : "Log in with existing user",
         "operationId" : "loginUser",
-        "requestBody" : {
-          "content" : {
-            "multipart/form-data" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/body_5"
-              }
-            }
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
           }
-        },
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -531,7 +593,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     },
@@ -558,7 +620,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       },
       "put" : {
@@ -570,7 +632,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/body_6"
+                "$ref" : "#/components/schemas/body"
               }
             }
           }
@@ -591,7 +653,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       },
       "delete" : {
@@ -608,7 +670,7 @@
           }
         },
         "security" : [ {
-          "bearerAuth" : [ ]
+          "Authorisation" : [ ]
         } ]
       }
     }
@@ -725,23 +787,14 @@
       "body" : {
         "type" : "object",
         "properties" : {
-          "first name" : {
+          "first_name" : {
             "type" : "string"
           },
-          "last name" : {
-            "type" : "string"
-          },
-          "email" : {
-            "type" : "string"
-          },
-          "password" : {
-            "type" : "string"
-          },
-          "password_confirmation" : {
+          "last_name" : {
             "type" : "string"
           }
         }
-      },
+      }
     },
     "requestBodies" : {
       "User" : {
@@ -762,9 +815,9 @@
       }
     },
     "securitySchemes" : {
-      "bearerAuth" : {
+      "Authorisation" : {
         "type" : "http",
-        "scheme" : "bearer"
+        "scheme": "bearer"
       }
     }
   }
