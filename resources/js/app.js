@@ -135,16 +135,19 @@ function buildUp(result){
     var output = " ";
     for(var i in result.data)
     {
-        if (result.data[i].attachment != null) {
+        if (result.data[i].attachment != null)
+        {
             var str = result.data[i].attachment.attachment;
-            if(str.includes(".jpg")||str.includes(".jpeg")|| str.includes(".png") || str.includes(".gif")){
+            if(str.includes(".jpg")||str.includes(".jpeg")|| str.includes(".png") || str.includes(".gif"))
+            {
                 output += "<div class='alert alert-primary' role='alert'>" +
                     "<p class='alert-heading'>" +
                     "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
                     "<p class='mb-0'>" + result.data[i].message + "<hr>" +
                     "<a href='"+id+"/download/"+result.data[i].attachment.id+"'><img src='/storage/"+ str +"' class='img-thumbnail'>"+
                     "</a></p></div><br>";
-            }else{
+            }else
+                {
                 output += "<div class='alert alert-primary' role='alert'>" +
                     "<p class='alert-heading'>" +
                     "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
@@ -152,7 +155,8 @@ function buildUp(result){
                     "<a href='"+id+"/download/"+result.data[i].attachment.id+"'>" + result.data[i].attachment.attachment +
                     "</a></p></div><br>";
             }
-        } else {
+        } else
+            {
             output += "<div class='alert alert-primary' role='alert'>" +
                 "<p class='alert-heading'>" +
                 "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +

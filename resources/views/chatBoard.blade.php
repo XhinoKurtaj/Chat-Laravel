@@ -84,7 +84,7 @@
         <div class="col-3">
             <div class="card mb-3" style="max-width: 18rem;">
                 <div class="container center">
-                    <img src="/storage/{{ Auth::user()->photo }}" alt="Avatar" id="photo_pic" style="width:200px;height:200px;">
+                    <img src="/storage/{{ Auth::user()->photo }}" alt="Avatar" id="photo_pic" class="img-thumbnail" style="width:200px;height:200px;">
                     <h5 id="username"></h5>
                 </div>
                 <div class="btn-group dropright ">
