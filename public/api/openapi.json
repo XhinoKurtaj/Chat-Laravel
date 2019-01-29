@@ -192,16 +192,23 @@
             "type" : "integer",
             "format" : "int64"
           }
-        } ],
+        },
+          {
+            "name": "custom_name",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }],
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "custom_name":{
-                    "type":"string"
-                  },
                   "custom_photo": {
                     "type":"file",
                     "format": "base64"

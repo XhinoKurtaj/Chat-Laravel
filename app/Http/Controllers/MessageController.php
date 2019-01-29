@@ -48,7 +48,13 @@ class MessageController extends Controller
 
     public function show($id)
     {
-        return view('chatBoard');
+        $user = auth()->user()->id;
+        $conversation = Conversation::findOrFail($id);
+        $belongs = $conversation->users->contains($user);
+        if($belongs)
+            return view('chatBoard');
+        else
+           return redirect()->back();
     }
 }
 
