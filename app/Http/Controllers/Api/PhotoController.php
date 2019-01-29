@@ -7,12 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Photo;
 class PhotoController extends Controller
 {
-    /**
-     * Display the specified resource.
-     *
-     * @param Photo $photo
-     * @return Photo
-     */
     public function index()
     {
         $userId = auth()->user()->id;
@@ -20,12 +14,6 @@ class PhotoController extends Controller
         return $photoList;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $userId = auth()->user()->id;
@@ -43,19 +31,10 @@ class PhotoController extends Controller
             return response()->json("Something went wrong try again later!", 500);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param $id
-     * @return \Illuminate\Http\Response
-     */
     public function delete($id)
     {
-        if ($photo = Photo::find($id)) {
-            $photo->delete();
-            return response()->json( 204);
-        }else{
-            return response()->json('Photo doesnt exist!', 404);
-        }
+        $photo = Photo::find($id);
+        $photo->delete();
+        return response()->json( 204);
     }
 }

@@ -52,11 +52,8 @@ class ConversationController extends Controller
 
     public function delete($id)
     {
-        if ($conversation = Conversation::find($id)) {
-            $conversation->delete();
-            return response()->json(['Conversation deleted successfully!'], 200);
-        }else{
-            return response()->json(['Conversation doesnt exist!'], 404);
-        }
+        $conversation = Conversation::find($id);
+        $conversation->delete();
+        return response()->json(['Conversation deleted successfully!'], 204);
     }
 }

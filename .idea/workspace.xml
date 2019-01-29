@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d0176c28-fc0e-484c-bcb7-5bfbebb4c8ef" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ConversationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ConversationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/PhotoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/PhotoController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/api/openapi.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/api/openapi.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,7 +34,7 @@
     <session id="2130136593">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="31" />
+          <entry key="project.closed" value="32" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="3" />
@@ -43,13 +44,13 @@
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.16" value="5" />
           <entry key="project.open.time.17" value="2" />
-          <entry key="project.open.time.18" value="1" />
+          <entry key="project.open.time.18" value="2" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="37" />
+          <entry key="project.opened" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -67,12 +68,12 @@
           <entry key="jpeg" value="27" />
           <entry key="jpg" value="6" />
           <entry key="js" value="34" />
-          <entry key="json" value="18" />
+          <entry key="json" value="19" />
           <entry key="key" value="2" />
           <entry key="log" value="7" />
           <entry key="md" value="1" />
           <entry key="openapi" value="1" />
-          <entry key="php" value="1203" />
+          <entry key="php" value="1214" />
           <entry key="png" value="1" />
           <entry key="svg" value="4" />
           <entry key="swagger-codegen-ignore" value="1" />
@@ -90,10 +91,10 @@
           <entry key="CSS" value="3" />
           <entry key="HTML" value="5" />
           <entry key="Image" value="34" />
-          <entry key="JSON" value="18" />
+          <entry key="JSON" value="19" />
           <entry key="JavaScript" value="34" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="1036" />
+          <entry key="PHP" value="1047" />
           <entry key="PLAIN_TEXT" value="22" />
           <entry key="SVG" value="4" />
           <entry key="TypeScript" value="1" />
@@ -104,15 +105,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="PHP Console" value="3289" />
+          <entry key="PHP Console" value="3670" />
           <entry key="env" value="51" />
           <entry key="gitignore" value="6" />
           <entry key="htaccess" value="115" />
           <entry key="html" value="1" />
           <entry key="js" value="6422" />
-          <entry key="json" value="413" />
+          <entry key="json" value="857" />
           <entry key="log" value="1" />
-          <entry key="php" value="41971" />
+          <entry key="php" value="41976" />
           <entry key="vue" value="712" />
           <entry key="yaml" value="2" />
         </counts>
@@ -122,9 +123,9 @@
           <entry key=".env file" value="51" />
           <entry key="Blade" value="12017" />
           <entry key="HTML" value="11" />
-          <entry key="JSON" value="413" />
+          <entry key="JSON" value="857" />
           <entry key="JavaScript" value="6412" />
-          <entry key="PHP" value="33243" />
+          <entry key="PHP" value="33629" />
           <entry key="PLAIN_TEXT" value="7" />
           <entry key="Vue.js" value="712" />
           <entry key="YAML" value="2" />
@@ -174,25 +175,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php">
+        <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
-              <folding>
-                <element signature="e#44#72#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="21" />
-              <folding>
-                <element signature="e#23#57#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="294">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -200,35 +186,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/api/openapi.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="631">
-              <caret line="265" column="24" lean-forward="true" selection-start-line="265" selection-start-column="24" selection-end-line="265" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="41" column="37" lean-forward="true" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="37" />
+            <state relative-caret-position="3741">
+              <caret line="321" column="35" lean-forward="true" selection-start-line="321" selection-start-column="35" selection-end-line="321" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/.htaccess">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ConversationController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="38" selection-end-column="11" />
+            <state relative-caret-position="493">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="e#44#72#0#PHP" expanded="true" />
               </folding>
@@ -238,16 +206,26 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/app.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6354" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/swagger/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
+            <state relative-caret-position="1218">
               <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ConversationController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
+              <folding>
+                <element signature="e#44#72#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -255,7 +233,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
+            <state relative-caret-position="3944">
               <caret line="136" column="5" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
             </state>
           </provider>
@@ -264,8 +242,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/PhotoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="406">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="e#44#72#0#PHP" expanded="true" />
               </folding>
@@ -284,7 +262,6 @@
       <find>email</find>
       <find>im</find>
       <find>passwo</find>
-      <find>delete</find>
       <find>test</find>
       <find>msgF</find>
       <find>msg</find>
@@ -304,6 +281,10 @@
       <find>reg</find>
       <find>login</find>
       <find>/user/conver</find>
+      <find>delete</find>
+      <find>ph</find>
+      <find>photo</find>
+      <find>photos</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -347,7 +328,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PhotoController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/PhotoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/AttachmentController.php" />
         <option value="$PROJECT_DIR$/resources/views/chatBoard.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SwaggerController.php" />
@@ -361,8 +341,9 @@
         <option value="$PROJECT_DIR$/app/Message.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_12_18_140450_create_messages_table.php" />
         <option value="$PROJECT_DIR$/public/.htaccess" />
-        <option value="$PROJECT_DIR$/public/api/openapi.json" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ConversationController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/PhotoController.php" />
+        <option value="$PROJECT_DIR$/public/api/openapi.json" />
       </list>
     </option>
   </component>
@@ -514,8 +495,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="217" />
-    <option name="y" value="105" />
+    <option name="x" value="773" />
+    <option name="y" value="135" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -525,7 +506,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -590,6 +570,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -681,12 +662,13 @@
       <workItem from="1548252134457" duration="8299000" />
       <workItem from="1548319747859" duration="19170000" />
       <workItem from="1548406029869" duration="8934000" />
-      <workItem from="1548665163419" duration="20373000" />
+      <workItem from="1548665163419" duration="21097000" />
+      <workItem from="1548752052415" duration="10665000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="524589000" />
+    <option name="totallyTimeSpent" value="535978000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -698,21 +680,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50151974" side_tool="true" weight="0.1988273" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49848023" visible="true" weight="0.17643923" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49848023" visible="true" weight="0.17803837" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5079957" side_tool="true" weight="0.35032538" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50852877" side_tool="true" weight="0.35032538" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.329718" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.329718" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49413645" weight="0.28850326" />
-      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49200428" weight="0.35032538" />
+      <window_info active="true" anchor="bottom" id="Debug" order="8" sideWeight="0.4914712" visible="true" weight="0.35032538" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.329718" />
@@ -725,17 +706,17 @@
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" sideWeight="0.50151974" side_tool="true" weight="0.1988273" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49848023" visible="true" weight="0.17643923" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49848023" visible="true" weight="0.17803837" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5074627" side_tool="true" weight="0.35032538" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50852877" side_tool="true" weight="0.35032538" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.329718" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.329718" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49413645" weight="0.28850326" />
-      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.49253732" visible="true" weight="0.35032538" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.4914712" visible="true" weight="0.35032538" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.329718" />
@@ -760,19 +741,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php</url>
-          <line>19</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php</url>
+          <line>22</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/Api/ConversationController.php</url>
-          <line>54</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/routes/api.php</url>
-          <line>41</line>
-          <option name="timeStamp" value="14" />
+          <line>36</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -806,13 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-58">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SearchController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-286" />
@@ -842,13 +811,6 @@
     <entry file="file://$PROJECT_DIR$/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-303727" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="25" column="46" lean-forward="true" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConversationController.php">
@@ -896,16 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="e#44#72#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/chatBoard.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4727">
@@ -913,82 +865,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SwaggerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swagger/swagger-ui/dist/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/swagger/dist/swagger-ui.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/api/openapi-client-generated/.swagger-codegen/VERSION">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/api/openapi-client-generated/.swagger-codegen-ignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/swagger/dist/oauth2-redirect.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-174" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/swagger/dist/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1189">
-          <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SwaggerController.php" />
+    <entry file="file://$PROJECT_DIR$/swagger/swagger-ui/dist/index.html" />
+    <entry file="file://$PROJECT_DIR$/public/swagger/dist/swagger-ui.css" />
+    <entry file="file://$PROJECT_DIR$/public/api/openapi-client-generated/.swagger-codegen/VERSION" />
+    <entry file="file://$PROJECT_DIR$/public/api/openapi-client-generated/.swagger-codegen-ignore" />
+    <entry file="file://$PROJECT_DIR$/public/swagger/dist/oauth2-redirect.html" />
+    <entry file="file://$PROJECT_DIR$/public/swagger/dist/index.html" />
     <entry file="file://$PROJECT_DIR$/vendor/bin/openapi.bat">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/bin/openapi">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_openapi-yaml-client-generated.zip/openapi.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="564" lean-forward="true" selection-start-line="1" selection-end-line="564" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/api/openapi.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_openapi-yaml-client-generated.zip/openapi.yaml" />
+    <entry file="file://$PROJECT_DIR$/public/api/openapi.yaml" />
     <entry file="file://$PROJECT_DIR$/public/swagger/openapi.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/swagger/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/PhotoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#44#72#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -999,38 +894,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="136" column="5" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="721" selection-start-line="721" selection-end-line="721" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="153" selection-start-line="153" selection-end-line="153" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="59" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
@@ -1039,21 +906,6 @@
         <state relative-caret-position="145">
           <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="21" />
-          <folding>
-            <element signature="e#23#57#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6354" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Message.php">
@@ -1081,50 +933,129 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
           <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-          <folding>
-            <element signature="e#33#72#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
+        <state relative-caret-position="1218">
           <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php">
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/swagger/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        <state relative-caret-position="1218">
+          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3944">
+          <caret line="136" column="5" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
           <folding>
-            <element signature="e#44#72#0#PHP" expanded="true" />
+            <element signature="e#23#57#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/api/openapi.json">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="265" column="24" lean-forward="true" selection-start-line="265" selection-start-column="24" selection-end-line="265" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ConversationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="38" selection-end-column="11" />
-          <folding>
-            <element signature="e#44#72#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="-406">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
-          <caret line="41" column="37" lean-forward="true" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="37" />
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+          <folding>
+            <element signature="e#44#72#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="721" selection-start-line="721" selection-end-line="721" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/PhotoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="e#44#72#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/MessagesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#44#72#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="153" selection-start-line="153" selection-end-line="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/api/openapi.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3741">
+          <caret line="321" column="35" lean-forward="true" selection-start-line="321" selection-start-column="35" selection-end-line="321" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ConversationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#44#72#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

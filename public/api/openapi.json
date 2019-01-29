@@ -176,7 +176,7 @@
         } ]
       }
     },
-    "user/conversation/{conversationId}" : {
+    "/user/conversation/{conversationId}" : {
       "put" : {
         "tags" : [ "Conversation" ],
         "summary" : "update conversation name and photo",
@@ -192,24 +192,25 @@
             "type" : "integer",
             "format" : "int64"
           }
-        }, {
-          "name" : "custom_name",
-          "in" : "query",
-          "required" : true,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "custom_photo",
-          "in" : "query",
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "file"
-          }
         } ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "custom_name":{
+                    "type":"string"
+                  },
+                  "custom_photo": {
+                    "type":"file",
+                    "format": "base64"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -243,7 +244,7 @@
           }
         } ],
         "responses" : {
-          "200" : {
+          "204" : {
             "description" : "Conversation deleted successfully"
           },
           "404" : {
@@ -310,25 +311,25 @@
             "type" : "integer",
             "format" : "int64"
           }
-        }, {
-          "name" : "message",
-          "in" : "query",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "attachment",
-          "in" : "query",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "file"
-          }
         } ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message":{
+                    "type":"string"
+                  },
+                  "attachment": {
+                    "type":"file",
+                    "format": "base64"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -464,16 +465,21 @@
         "tags" : [ "photo" ],
         "summary" : "Upload photo",
         "operationId" : "uploadPhoto",
-        "parameters" : [ {
-          "name" : "Photo",
-          "in" : "query",
-          "required" : true,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "file"
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "photo": {
+                    "type":"file",
+                    "format": "base64"
+                  }
+                }
+              }
+            }
           }
-        } ],
+        },
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -628,15 +634,25 @@
         "summary" : "Update user",
         "description" : "This can only be done by the logged in user.",
         "operationId" : "updateUser",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/body"
-              }
-            }
+        "parameters" : [ {
+          "name" : "first_name",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
           }
-        },
+        }, {
+          "name" : "last_name",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }],
         "responses" : {
           "200" : {
             "description" : "A user object",
