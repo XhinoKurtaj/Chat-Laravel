@@ -40,10 +40,9 @@
     </IfModule>
 
     RewriteEngine On
-#Newly added#################################
+
     RewriteCond %{HTTP:Authorization} ^(.*)
     RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
-##############################################
 
     # Redirect to HTTPS...
     RewriteCond %{HTTPS} off
@@ -58,4 +57,6 @@
     RewriteRule ^ index.php [L]
 
 </IfModule>
+
+
 

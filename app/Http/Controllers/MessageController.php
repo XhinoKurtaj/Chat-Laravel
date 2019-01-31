@@ -10,6 +10,7 @@ use App\Attachment;
 use App\User;
 use App\Http\Controllers\AttachmentController;
 use Illuminate\Support\Facades\Storage;
+
 class MessageController extends Controller
 {
     public function __construct()
@@ -43,7 +44,6 @@ class MessageController extends Controller
             $attachment->store($conversation->id,$message->id,$request);
         }
         event(new MessageSent(1,$id));
-
     }
 
     public function show($id)
@@ -57,6 +57,3 @@ class MessageController extends Controller
            return redirect()->back();
     }
 }
-
-
-

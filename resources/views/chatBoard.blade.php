@@ -92,11 +92,6 @@
                         {{ Auth::user()->fullName}}
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
                         <a href="{{route ('user.profile')}}" class="dropdown-item onMouse">User Profile</a>
                         <a href="{{ route('photo.show') }}" class="dropdown-item onMouse">Choose a photo</a>
                         <a href="{{ route('conversation.list') }}" class="dropdown-item onMouse">Conversation List</a>

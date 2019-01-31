@@ -177,7 +177,7 @@
       }
     },
     "/user/conversation/{conversationId}" : {
-      "put" : {
+      "post" : {
         "tags" : [ "Conversation" ],
         "summary" : "update conversation name and photo",
         "operationId" : "updateConversation",
@@ -488,8 +488,8 @@
           }
         },
         "responses" : {
-          "200" : {
-            "description" : "successful operation",
+          "201" : {
+            "description" : "Photo added successfully",
             "content" : {
               "application/json" : {
                 "schema" : {

@@ -82,5 +82,3 @@ class ConversationController extends Controller
     }
 }
 
-
-

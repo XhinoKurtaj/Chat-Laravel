@@ -81,4 +81,3 @@ Route::get('/login/facebook/callback', 'Auth\FacebookController@handleProviderCa
 
 
 
-
