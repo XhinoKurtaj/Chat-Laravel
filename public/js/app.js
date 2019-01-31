@@ -61731,23 +61731,36 @@ function getAttachment() {
 }
 
 function buildUp(result) {
+  var data = result.data;
   var output = " ";
+  data.forEach(function (element) {
+    var form = build(element.sender.photo, element.sender.fullName, element.message, element.attachment);
+    output += form;
+  });
+  display.html(output);
+}
 
-  for (var i in result.data) {
-    if (result.data[i].attachment != null) {
-      var str = result.data[i].attachment.attachment;
+function build(photo, name, message) {
+  var attachment = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+  var userData = "<img src='/storage/" + photo + "' class='user-icon'>" + name + "</p>";
+  var messageBody = "<p class='mb-0'>" + message;
 
-      if (str.includes(".jpg") || str.includes(".jpeg") || str.includes(".png") || str.includes(".gif")) {
-        output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'> " + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "<hr>" + "<a href='" + id + "/download/" + result.data[i].attachment.id + "'><img src='/storage/" + str + "' class='img-thumbnail'>" + "</a></p></div><br>";
-      } else {
-        output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'> " + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "  " + "<a href='" + id + "/download/" + result.data[i].attachment.id + "'>" + result.data[i].attachment.attachment + "</a></p></div><br>";
-      }
+  if (attachment != null) {
+    var download = "<hr><a href='" + id + "/download/" + attachment.id + "'>";
+    var mimeType = attachment.attachment;
+
+    if (mimeType.includes(".jpg") || mimeType.includes(".jpeg") || mimeType.includes(".png") || mimeType.includes(".gif")) {
+      var attach = "<img src='/storage/" + mimeType + "' class='img-thumbnail'>";
     } else {
-      output += "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + "<img src='/storage/" + result.data[i].sender.photo + "' class='user-icon'>" + result.data[i].sender.fullName + "</p>" + "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
+      var attach = attachment.attachment;
     }
+  } else {
+    download = "";
+    attach = "";
   }
 
-  display.html(output);
+  var html = "<div class='alert alert-primary' role='alert'>" + "<p class='alert-heading'>" + userData + messageBody + download + attach + "</a></p></div><br>";
+  return html;
 }
 
 /***/ }),
@@ -61902,8 +61915,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\PC-Atis\Documents\workspace\laravel\larachat\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\PC-Atis\Documents\workspace\laravel\larachat\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Atis-Laptop\Desktop\Laravel\laravel-chat\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Atis-Laptop\Desktop\Laravel\laravel-chat\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

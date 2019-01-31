@@ -132,38 +132,33 @@ function getAttachment() {
 }
 
 function buildUp(result){
+    const data = result.data;
     var output = " ";
-    for(var i in result.data)
-    {
-        if (result.data[i].attachment != null)
-        {
-            var str = result.data[i].attachment.attachment;
-            if(str.includes(".jpg")||str.includes(".jpeg")|| str.includes(".png") || str.includes(".gif"))
-            {
-                output += "<div class='alert alert-primary' role='alert'>" +
-                    "<p class='alert-heading'>" +
-                    "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
-                    "<p class='mb-0'>" + result.data[i].message + "<hr>" +
-                    "<a href='"+id+"/download/"+result.data[i].attachment.id+"'><img src='/storage/"+ str +"' class='img-thumbnail'>"+
-                    "</a></p></div><br>";
-            }else
-                {
-                output += "<div class='alert alert-primary' role='alert'>" +
-                    "<p class='alert-heading'>" +
-                    "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'> " + result.data[i].sender.fullName + "</p>" +
-                    "<p class='mb-0'>" + result.data[i].message + "  " +
-                    "<a href='"+id+"/download/"+result.data[i].attachment.id+"'>" + result.data[i].attachment.attachment +
-                    "</a></p></div><br>";
-            }
-        } else
-            {
-            output += "<div class='alert alert-primary' role='alert'>" +
-                "<p class='alert-heading'>" +
-                "<img src='/storage/"+result.data[i].sender.photo+"' class='user-icon'>" + result.data[i].sender.fullName + "</p>" +
-                "<p class='mb-0'>" + result.data[i].message + "</p></div><br>";
-        }
-    }
+    data.forEach(function(element) {
+        var form =  build(element.sender.photo,element.sender.fullName,element.message,element.attachment);
+        output += form;
+    });
     display.html(output);
+}
+
+function build(photo,name,message,attachment = null) {
+    var userData = "<img src='/storage/" + photo + "' class='user-icon'>" + name + "</p>";
+    var messageBody = "<p class='mb-0'>" + message ;
+    if (attachment != null) {
+        var download = "<hr><a href='" + id + "/download/" + attachment.id + "'>";
+        var mimeType = attachment.attachment;
+        if (mimeType.includes(".jpg") || mimeType.includes(".jpeg") || mimeType.includes(".png") || mimeType.includes(".gif")) {
+            var attach = "<img src='/storage/" + mimeType + "' class='img-thumbnail'>";
+        } else {
+            var attach = attachment.attachment;
+        }
+    } else {
+        download = "";
+        attach = "";
+    }
+    var html = "<div class='alert alert-primary' role='alert'>" +
+        "<p class='alert-heading'>" + userData + messageBody + download + attach + "</a></p></div><br>";
+    return html;
 }
 
 
