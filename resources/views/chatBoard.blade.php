@@ -68,6 +68,12 @@
         height: 100px;
         width: 100px;
     }
+
+    .deleteMessage{
+        position: absolute;
+        right: 150px;
+        display: none;
+    }
 </style>
 <div id="app" class="container-fluid">
     <div class="container-fluid">
@@ -171,21 +177,4 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-<script>
-    const id=$("#convId").val();
-    $('#form').on('submit',function(event){
-        event.preventDefault();
-        var formData = new FormData($(this)[0]);
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            method: 'post',
-            url: id+'/send',
-            dataType: 'json',
-            processData: false,
-            contentType: false,
-            data: formData,
-        });
-        $("#form")[0].reset();
-    });
-</script>
 @include('/partial/footer')

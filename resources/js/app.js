@@ -39,6 +39,22 @@ const attachmentList = $("#attachment-list");
 const memeberDisplay = $("#showMemberList");
 var counter = 1;
 
+
+$('#form').on('submit',function(event){
+    event.preventDefault();
+    var formData = new FormData($(this)[0]);
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        method: 'post',
+        url: id+'/send',
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        data: formData,
+    });
+    $("#form")[0].reset();
+});
+
 $("#add-member").click(function(){
     console.log("clicked");
     const member = $("#search-text").val();
@@ -135,13 +151,14 @@ function buildUp(result){
     const data = result.data;
     var output = " ";
     data.forEach(function(element) {
-        var form =  build(element.sender.photo,element.sender.fullName,element.message,element.attachment);
+
+        var form =  build(element.sender.photo,element.sender.fullName,element.message,element.attachment,element.id);
         output += form;
     });
     display.html(output);
 }
 
-function build(photo,name,message,attachment = null) {
+function build(photo,name,message,attachment = null, messageId) {
     var userData = "<img src='/storage/" + photo + "' class='user-icon'>" + name + "</p>";
     var messageBody = "<p class='mb-0'>" + message ;
     if (attachment != null) {
@@ -157,8 +174,13 @@ function build(photo,name,message,attachment = null) {
         attach = "";
     }
     var html = "<div class='alert alert-primary' role='alert'>" +
-        "<p class='alert-heading'>" + userData + messageBody + download + attach + "</a></p></div><br>";
+        "<p class='alert-heading show'><span class='deleteMessage'><a href='"+id+"/message/"+messageId+"'class='btn btn-sm btn-outline-danger delMsg'>Delete</a></span>"
+        + userData + messageBody + download + attach + "</a></p></div><br>";
     return html;
 }
 
+$(".show").click(function(){
+    debugger;
+    $(".deleteMessage").css("display","show")
+});
 

@@ -61,6 +61,9 @@ Route::get('/home/conversation/{id}/read','MessageController@read')
         ->name('message.read');
 Route::post('home/conversation/{id}/send','MessageController@store')
     ->name('message.store');
+///////////////
+Route::get('home/conversation/{id}/message/{messageId}','MessageController@delete')
+    ->name('message.delete');
 
 
 Route::get('/home/conversation/{id}/add','SearchController@addMember')

@@ -56,4 +56,11 @@ class MessageController extends Controller
         else
            return redirect()->back();
     }
+
+    public function delete($conversationId,$messageId)
+    {
+        $message = Message::find($messageId)
+                   ->delete();
+        return back();
+    }
 }
