@@ -69,10 +69,11 @@
         width: 100px;
     }
 
-    .deleteMessage{
+    .delete-message{
         position: absolute;
-        right: 150px;
-        display: none;
+        right: 1px;
+        top: 1px;
+        visibility: show;
     }
 </style>
 <div id="app" class="container-fluid">

@@ -30,7 +30,7 @@ class MessageController extends Controller
     public function store(Request $request, $id)
     {
         $this->validate($request, [
-           'message'   => 'required|min:1|max:191'
+           'message'   => 'required|min:1|max:255'
         ]);
         $conversation = Conversation::findOrFail($id);
         $user = auth()->user();

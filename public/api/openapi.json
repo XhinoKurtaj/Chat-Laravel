@@ -12,7 +12,7 @@
   "paths" : {
     "/register" : {
       "post" : {
-        "tags" : [ "user" ],
+        "tags" : [ "User" ],
         "summary" : "Register a new User",
         "operationId" : "addUser",
         "parameters" : [ {
@@ -265,7 +265,7 @@
     },
     "/user/conversation/{conversationId}/messages" : {
       "get" : {
-        "tags" : [ "message" ],
+        "tags" : [ "Message" ],
         "summary" : "Returns messages of conversation",
         "description" : "Returns a map of status codes to quantities",
         "operationId" : "getMessages",
@@ -303,7 +303,7 @@
         } ]
       },
       "post" : {
-        "tags" : [ "message" ],
+        "tags" : [ "Message" ],
         "summary" : "Send Message",
         "operationId" : "sendMessage",
         "parameters" : [ {
@@ -362,9 +362,51 @@
         } ]
       }
     },
+    "/user/conversation/{conversationId}/messages/{messageId}" : {
+      "delete" : {
+        "tags" : [ "Message" ],
+        "summary" : "Deletes a message",
+        "operationId" : "deleteMessage",
+        "parameters" : [ {
+          "name" : "conversationId",
+          "in" : "path",
+          "description" : "Conversation id which message belongs to",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        },
+          {
+            "name" : "messageId",
+            "in" : "path",
+            "description" : "Message id to delete",
+            "required" : true,
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "integer",
+              "format" : "int64"
+            }
+          }],
+        "responses" : {
+          "204" : {
+            "description" : "Message deleted successfully"
+          },
+          "404" : {
+            "description" : "Message not found"
+          }
+        },
+        "security" : [ {
+          "Authorisation" : [ ]
+        } ]
+      }
+    },
     "/user/conversation/{conversationId}/attachment" : {
       "get" : {
-        "tags" : [ "attachment" ],
+        "tags" : [ "Attachment" ],
         "summary" : "Returns attachments of conversation",
         "description" : "Returns attachments of conversation",
         "operationId" : "getAttachments",
@@ -405,7 +447,7 @@
     },
     "/user/conversation/{conversationId}/attachment/{attachmentId}" : {
       "get" : {
-        "tags" : [ "attachment" ],
+        "tags" : [ "Attachment" ],
         "summary" : "Download Attachment",
         "operationId" : "downloadAttachment",
         "parameters" : [ {
@@ -448,7 +490,7 @@
     },
     "/user/photos" : {
       "get" : {
-        "tags" : [ "photo" ],
+        "tags" : [ "Photo" ],
         "summary" : "Returns user photos",
         "description" : "Returns photos that belongs to logged user",
         "operationId" : "getPhotos",
@@ -469,7 +511,7 @@
         } ]
       },
       "post" : {
-        "tags" : [ "photo" ],
+        "tags" : [ "Photo" ],
         "summary" : "Upload photo",
         "operationId" : "uploadPhoto",
         "requestBody": {
@@ -514,7 +556,7 @@
     },
     "/user/photos/{photoId}" : {
       "delete" : {
-        "tags" : [ "photo" ],
+        "tags" : [ "Photo" ],
         "summary" : "Delete photo by ID",
         "description" : "For valid response try integer IDs with positive integer value.\\ \\ Negative or non-integer values will generate API errors",
         "operationId" : "deletePhoto",
@@ -546,7 +588,7 @@
     },
     "/login" : {
       "post" : {
-        "tags" : [ "user" ],
+        "tags" : [ "User" ],
         "summary" : "Log in with existing user",
         "description" : "Log in with existing user",
         "operationId" : "loginUser",
@@ -590,7 +632,7 @@
     },
     "/user/logout" : {
       "get" : {
-        "tags" : [ "user" ],
+        "tags" : [ "User" ],
         "summary" : "Logs out current logged in user session",
         "operationId" : "logoutUser",
         "responses" : {
@@ -612,7 +654,7 @@
     },
     "/user" : {
       "get" : {
-        "tags" : [ "user" ],
+        "tags" : [ "User" ],
         "summary" : "Get all users",
         "operationId" : "getAllUsers",
         "responses" : {
@@ -637,7 +679,7 @@
         } ]
       },
       "put" : {
-        "tags" : [ "user" ],
+        "tags" : [ "User" ],
         "summary" : "Update user",
         "description" : "This can only be done by the logged in user.",
         "operationId" : "updateUser",
@@ -680,7 +722,7 @@
         } ]
       },
       "delete" : {
-        "tags" : [ "user" ],
+        "tags" : [ "User" ],
         "summary" : "Delete user",
         "description" : "This can only be done by the logged in user.",
         "operationId" : "deleteUser",

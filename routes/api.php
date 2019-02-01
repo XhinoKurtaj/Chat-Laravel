@@ -45,6 +45,8 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::group(['prefix' => '/{conversation_id}/messages'], function () {
             Route::get('/', 'Api\MessagesController@index');
             Route::post('/', 'Api\MessagesController@store');
+            Route::delete('/{messageId}','MessageController@delete');
+
         });
 
         Route::group(['prefix' => '/{conversation_id}/attachment'], function () {

@@ -39,7 +39,6 @@ const attachmentList = $("#attachment-list");
 const memeberDisplay = $("#showMemberList");
 var counter = 1;
 
-
 $('#form').on('submit',function(event){
     event.preventDefault();
     var formData = new FormData($(this)[0]);
@@ -173,14 +172,8 @@ function build(photo,name,message,attachment = null, messageId) {
         download = "";
         attach = "";
     }
-    var html = "<div class='alert alert-primary' role='alert'>" +
-        "<p class='alert-heading show'><span class='deleteMessage'><a href='"+id+"/message/"+messageId+"'class='btn btn-sm btn-outline-danger delMsg'>Delete</a></span>"
-        + userData + messageBody + download + attach + "</a></p></div><br>";
+    var html = "<div class='alert alert-primary show-delete-btn' role='alert' tabindex='0'>" +
+        "<p class='alert-heading '><span class='delete-message'><a href='"+id+"/messages/"+messageId+"'class='btn btn-sm btn-outline-danger'>" +
+        "Delete</a></span>" + userData + messageBody + download + attach + "</a></p></div><br>";
     return html;
 }
-
-$(".show").click(function(){
-    debugger;
-    $(".deleteMessage").css("display","show")
-});
-

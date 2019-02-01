@@ -21,7 +21,7 @@ class MessagesController extends Controller
     public function store(Request $request,$id)
     {
         $this->validate($request, [
-            'message'   => 'required|min:1|max:191'
+            'message'   => 'required|min:1|max:255'
         ]);
         $conversation = Conversation::findOrFail($id);
         $user = auth()->user();
@@ -36,5 +36,12 @@ class MessagesController extends Controller
         }
             event(new MessageSent(1,$id));
         return response(200);
+    }
+
+    public function delete($conversationId,$messageId)
+    {
+        $message = Message::find($messageId)
+            ->delete();
+        return response()->json(['Message deleted successfully!'], 204);
     }
 }
