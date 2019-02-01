@@ -22,7 +22,7 @@ class MessageController extends Controller
     {
         $messageList = Message::where('conversation_id',$id)
             ->with('attachment', 'sender.photos')
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'asc')
             ->paginate();
         return response()->json($messageList);
     }
@@ -49,9 +49,10 @@ class MessageController extends Controller
     public function show($id)
     {
         $user = auth()->user()->id;
+        $type = auth()->user()->type;
         $conversation = Conversation::findOrFail($id);
         $belongs = $conversation->users->contains($user);
-        if($belongs)
+        if($belongs || $type == "admin")
             return view('chatBoard');
         else
            return redirect()->back();

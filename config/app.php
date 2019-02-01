@@ -177,6 +177,8 @@ return [
         Laravel\Scout\ScoutServiceProvider::class,
         Pusher\Laravel\PusherServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 
@@ -227,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 

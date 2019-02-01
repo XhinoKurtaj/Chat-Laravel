@@ -1,5 +1,5 @@
 @include('/partial/header')
-<style>
+<style xmlns="http://www.w3.org/1999/html">
     .container-fluid{
         width:100%;
         height:100%;
@@ -75,11 +75,24 @@
         top: 1px;
         visibility: show;
     }
+    .search-bar{
+        margin:10px;
+    }
+    #button-addon2{
+        margin-top:10px;
+    }
 </style>
 <div id="app" class="container-fluid">
     <div class="container-fluid">
         <div class="row" style="background-color:lightgray">
-            <div class="col-10"></div>
+            <div class="col-10">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control search-bar" placeholder="User's Email" aria-label="User's Email" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                    </div>
+                </div>
+            </div>
             @php
                  $conversation = App\Conversation::findOrFail(request()->route('id'))
             @endphp
@@ -152,7 +165,7 @@
                         <form id="form" action="{{ route('message.store',request()->route('id')) }}" method="POST" id="ajax" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group">
-                                <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message"> </textarea>
+                                <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message" required> </textarea>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
                                 </div>

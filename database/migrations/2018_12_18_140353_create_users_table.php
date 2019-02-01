@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 255);
             $table->string('facebook_id', 255)->nullable();
             $table->string('photo', 255)->nullable();
+            $table->string('type')->default('default');
             $table->rememberToken();
         });
     }

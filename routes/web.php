@@ -82,5 +82,9 @@ Route::get('/login/facebook', 'Auth\FacebookController@redirectToProvider');
 Route::get('/login/facebook/callback', 'Auth\FacebookController@handleProviderCallback');
 
 
-
-
+Route::get('/admin', 'UserController@admin')
+    ->middleware('is_admin')
+    ->name('admin');
+Route::get('/admin', 'UserController@index')
+    ->middleware('is_admin')
+    ->name('admin');

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 use Image;
 use App\User;
+use App\Conversation;
 
 class UserController extends Controller
 {
@@ -42,5 +43,16 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function admin()
+    {
+        return view('admin');
+    }
+
+    public function index()
+    {
+        $conversationList = Conversation::all();
+        $userList = User::all();
+        return View("admin", compact('userList','conversationList'));
+    }
 
 }
