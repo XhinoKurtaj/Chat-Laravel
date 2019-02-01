@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Conversation;
 use App\Events\UserNotification;
-use Datatables;
+use Yajra\Datatables\Datatables;
 class SearchController extends Controller
 {
     public function __construct()
@@ -14,13 +14,13 @@ class SearchController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         return Datatables::of(User::query())->make(true);
     }
     
     public function create()
     {
-        return view('displaydata');
+        return view('data');
     }
 }

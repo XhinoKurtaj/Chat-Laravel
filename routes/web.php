@@ -88,3 +88,10 @@ Route::get('/admin', 'UserController@admin')
 Route::get('/admin', 'UserController@index')
     ->middleware('is_admin')
     ->name('admin');
+
+
+Route::get('users', 'SearchController@create')
+    ->name('data.table');
+Route::get('users/data', 'SearchController@index')
+    ->name('data');
+Route::get('/users/{id}','UserController@show')->name('search.user');

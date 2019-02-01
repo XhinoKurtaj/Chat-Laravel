@@ -55,4 +55,10 @@ class UserController extends Controller
         return View("admin", compact('userList','conversationList'));
     }
 
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('userProfile',compact('$user'));
+    }
+
 }

@@ -64,6 +64,10 @@
                     </div>
                 </div>
             </form>
+            <div class="input-group-append">
+                <a href='{{route('data.table')}}' class="btn btn-outline-secondary btn-lg" type="button" id="button-addon2">Search for users</a>
+            </div>
+
         </div>
     </div>
 </div>
