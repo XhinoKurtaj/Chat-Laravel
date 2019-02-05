@@ -23,7 +23,7 @@ class MessageController extends Controller
         $messageList = Message::where('conversation_id',$id)
             ->with('attachment', 'sender.photos')
             ->orderBy('id', 'asc')
-            ->paginate();
+            ->get();
         return response()->json($messageList);
     }
 

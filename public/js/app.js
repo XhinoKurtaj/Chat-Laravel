@@ -61643,7 +61643,6 @@ $('#form').on('submit', function (event) {
   $("#form")[0].reset();
 });
 $("#add-member").click(function () {
-  console.log("clicked");
   var member = $("#search-text").val();
   $.ajax({
     headers: {
@@ -61654,7 +61653,12 @@ $("#add-member").click(function () {
     data: {
       member: member
     },
-    success: function success(data) {}
+    dataType: "json",
+    success: function success(response) {
+      counsole.log(response);
+      $("#alert-warning").text(response);
+      $("#search-text").val(' ');
+    }
   });
 });
 $(window).on('load', function () {
@@ -61665,6 +61669,7 @@ $(window).on('load', function () {
 window.Echo.private('conversation.' + id).listen('MessageSent', function (event) {
   if (event.sent === 1) {
     getMessages();
+    getAttachment();
   }
 }).listen('UserNotification', function (event) {
   if (event.status === 'left') {
@@ -61696,6 +61701,9 @@ $("#DeleteUser").click(function () {
 }); //Functions
 
 function getMessages() {
+  $('#textResponse').stop().animate({
+    scrollTop: $('#textResponse').get(0).scrollHeight
+  }, 2000);
   $.ajax({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -61706,7 +61714,8 @@ function getMessages() {
       buildUp(result);
     }
   });
-}
+} // alert-primary
+
 
 function getMembers() {
   $.ajax({
@@ -61719,7 +61728,7 @@ function getMembers() {
       var output = "";
 
       for (var i in data) {
-        output += "<tr class='table-active'><td ><strong>" + counter++ + "</strong></td>" + "<td>" + data[i].fullName + "</td></tr>";
+        output += "<tr class='table-active'><td ><strong>" + counter++ + "</strong></td>" + "<td><a href='/users/" + data[i].id + "'>" + data[i].fullName + "</a></td></tr>";
       }
 
       memeberDisplay.html(output);
@@ -61744,12 +61753,22 @@ function getAttachment() {
       attachmentList.html(output);
     }
   });
-}
+} // with paginate
+// function buildUp(result){
+//     const data = result.data;
+//     var output = " ";
+//     data.forEach(function(element) {
+//
+//         var form =  build(element.sender.photo,element.sender.fullName,element.message,element.attachment,element.id);
+//         output += form;
+//     });
+//     display.html(output);
+// }
+
 
 function buildUp(result) {
-  var data = result.data;
   var output = " ";
-  data.forEach(function (element) {
+  result.forEach(function (element) {
     var form = build(element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
     output += form;
   });

@@ -29,9 +29,12 @@ class ConversationController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'custom_name' => 'required|string|max:255',
+        ]);
         $userId = auth()->user()->id;
         $conversationId = Conversation::insertGetId([
-            'custom_name' => $request->get('conv')
+            'custom_name' => $request->get('custom_name')
             ]);
         $user = User::find($userId);
         $user->conversations()->attach($conversationId);
@@ -60,7 +63,6 @@ class ConversationController extends Controller
             $conversation->custom_photo = $custom_photo;
         }
             $conversation->save();
-
         return redirect()->route('conversation.list')->with('success', "Conversation was updated successfully");
     }
 

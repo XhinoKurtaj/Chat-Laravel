@@ -37,6 +37,7 @@ const id=$("#convId").val();
 const display = $("#message-display");
 const attachmentList = $("#attachment-list");
 const memeberDisplay = $("#showMemberList");
+
 var counter = 1;
 
 $('#form').on('submit',function(event){
@@ -55,14 +56,17 @@ $('#form').on('submit',function(event){
 });
 
 $("#add-member").click(function(){
-    console.log("clicked");
     const member = $("#search-text").val();
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method: 'get',
         url: id+'/add',
         data: {member: member},
-        success: function(data){
+        dataType: "json",
+        success: function(response){
+            counsole.log(response);
+            $("#alert-warning").text(response);
+            $("#search-text").val(' ');
         }
     });
 });
@@ -77,6 +81,7 @@ window.Echo.private('conversation.'+id)
     .listen('MessageSent', event => {
         if(event.sent === 1){
             getMessages();
+            getAttachment();
         }
     }).listen('UserNotification', event => {
         if(event.status === 'left'){
@@ -105,6 +110,9 @@ $("#DeleteUser").click(function(){
 
 //Functions
 function getMessages(){
+    $('#textResponse').stop().animate({
+        scrollTop: $('#textResponse').get(0).scrollHeight
+    }, 2000);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: "GET",
@@ -115,6 +123,7 @@ function getMessages(){
     });
 }
 
+// alert-primary
 function getMembers(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -124,7 +133,7 @@ function getMembers(){
             var output = "";
             for(var i in data){
                 output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
-                    "<td>"+data[i].fullName +"</td></tr>";
+                    "<td><a href='/users/"+data[i].id+"'>"+data[i].fullName +"</a></td></tr>";
             }
             memeberDisplay.html(output);
         }
@@ -146,18 +155,29 @@ function getAttachment() {
     });
 }
 
-function buildUp(result){
-    const data = result.data;
-    var output = " ";
-    data.forEach(function(element) {
+// with paginate
+// function buildUp(result){
+//     const data = result.data;
+//     var output = " ";
+//     data.forEach(function(element) {
+//
+//         var form =  build(element.sender.photo,element.sender.fullName,element.message,element.attachment,element.id);
+//         output += form;
+//     });
+//     display.html(output);
+// }
 
+function buildUp(result){
+    var output = " ";
+    result.forEach(function(element) {
         var form =  build(element.sender.photo,element.sender.fullName,element.message,element.attachment,element.id);
         output += form;
     });
     display.html(output);
 }
 
-function build(photo,name,message,attachment = null, messageId) {
+function build(photo,name,message,attachment = null, messageId)
+{
     var userData = "<img src='/storage/" + photo + "' class='user-icon'>" + name + "</p>";
     var messageBody = "<p class='mb-0'>" + message ;
     if (attachment != null) {

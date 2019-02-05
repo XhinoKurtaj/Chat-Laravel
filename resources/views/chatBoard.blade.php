@@ -86,7 +86,6 @@
     <div class="container-fluid">
         <div class="row" style="background-color:lightgray">
             <div class="col-10">
-
             </div>
             @php
                  $conversation = App\Conversation::findOrFail(request()->route('id'))
@@ -123,19 +122,6 @@
                         <button class="btn btn-info" id="add-member">Add Memeber</button>
                     </div>
                 </div>
-            @if (\Session::has('error'))
-                <div class="alert alert-success">
-                    <ul>
-                        <li>{!! \Session::get('error') !!}</li>
-                    </ul>
-                </div>
-            @elseif (\Session::has('success'))
-                <div class="alert alert-success">
-                    <ul>
-                        <li>{!! \Session::get('success') !!}</li>
-                    </ul>
-                </div>
-            @endif
             <br><br>
             <table class="table table-striped">
                 <thead>

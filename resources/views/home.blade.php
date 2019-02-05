@@ -52,13 +52,14 @@
             <div class="card">
                 <div class="card-header"><img src="/storage/{{ Auth::user()->photo }}" alt="Avatar" id="photo_pic" style="width:200px;height:200px;"></div>
                 <div class="card-body">
-                    <h6>{{Auth::user()->first_name}}  {{Auth::user()->last_name}}</h6>
+                    <h5>{{Auth::user()->fullName}}</h5>
+                    <h5 style="text-align: right;">{{Auth::user()->email}} </h5>
                 </div>
             </div><br>
             <form action="{{ route('conversation.store') }}" method="POST">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Enter Conversation Name" name="conv" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" placeholder="Enter Conversation Name" name="custom_name" aria-describedby="button-addon2">
                     <div class="input-group-append">
                         <input type="submit" class="btn btn-sm btn-outline-secondary" value="Create Conversation" id="button-addon2">
                     </div>
