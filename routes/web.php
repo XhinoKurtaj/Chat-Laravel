@@ -94,4 +94,7 @@ Route::get('users', 'SearchController@create')
     ->name('data.table');
 Route::get('users/data', 'SearchController@index')
     ->name('data');
-Route::get('/users/{id}','UserController@show')->name('search.user');
+Route::get('/users/{id}','UserController@show')
+    ->name('search.user');
+
+Route::get('/users/add/{id}','ConversationController@messageUser');

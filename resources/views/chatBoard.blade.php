@@ -86,12 +86,7 @@
     <div class="container-fluid">
         <div class="row" style="background-color:lightgray">
             <div class="col-10">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control search-bar" placeholder="User's Email" aria-label="User's Email" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-                    </div>
-                </div>
+
             </div>
             @php
                  $conversation = App\Conversation::findOrFail(request()->route('id'))

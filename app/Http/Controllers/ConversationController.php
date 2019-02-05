@@ -31,7 +31,7 @@ class ConversationController extends Controller
     {
         $userId = auth()->user()->id;
         $conversationId = Conversation::insertGetId([
-            'custom_name' => $request->post('conv')
+            'custom_name' => $request->get('conv')
             ]);
         $user = User::find($userId);
         $user->conversations()->attach($conversationId);
@@ -79,6 +79,21 @@ class ConversationController extends Controller
         event(new UserNotification($id,$name,'left'));
 
         return redirect('home');
+    }
+
+    public function messageUser($guestId)
+    {
+        $authUser = auth()->user();
+        $userGuest = User::find($guestId);
+        $fullNameAuth = $authUser->first_name." ".$authUser->last_name;
+        $fullNameGuest = $userGuest->first_name." ".$userGuest->last_name;
+        $conversationId = Conversation::insertGetId([
+            'custom_name' => $fullNameAuth." ".$fullNameGuest,
+        ]);
+        $authUser->conversations()->attach($conversationId);
+        $userGuest->conversations()->attach($conversationId);
+
+        return redirect('/home/conversation/'.$conversationId);
     }
 }
 

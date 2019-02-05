@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
+    <a href="{{ route('conversation.list') }}" class="btn btn-outline-secondary " id="back-btn">Back</a><hr>
+
     <table class="table table-bordered" id="users-table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Name</th>
             <th>Email</th>
         </tr>
         </thead>
@@ -21,13 +21,13 @@
                 serverSide: true,
                 ajax: '{!! route('data') !!}',
                 columns: [
-                    { data: 'id', name: 'id', render: function ( data ) {
-                            return '<a href="users/'+data+'">'+data+'</a>';
-                        }},
-                    { data: 'first_name', name: 'first_name' },
-                    { data: 'last_name', name: 'last_name' },
+                    { data: 'name', name: 'name', searchable:false, render: function ( data ) {
+                        console.log(data[0]);
+                            return '<a href="users/'+data[0]+'">'+data+'</a>';
+                                    }},
                     { data: 'email', name: 'email' }
                 ]
+
             });
         });
     </script>

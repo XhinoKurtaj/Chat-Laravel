@@ -7,6 +7,7 @@ use App\User;
 use App\Conversation;
 use App\Events\UserNotification;
 use Yajra\Datatables\Datatables;
+use DB;
 class SearchController extends Controller
 {
     public function __construct()
@@ -16,7 +17,9 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
-        return Datatables::of(User::query())->make(true);
+        $users = User::select([DB::raw("CONCAT(id,' ',first_name,' ',last_name) AS name"),'email',]);
+        return Datatables::of($users)->make();
+//        return Datatables::of(User::query())->make(true);
     }
     
     public function create()
