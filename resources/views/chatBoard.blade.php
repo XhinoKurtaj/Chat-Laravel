@@ -19,7 +19,7 @@
     #photo_pic{
         width:90%;
         margin-top: 10px;
-        padding: 5px 0px 0px 5px;
+        padding: 5px 0 0 5px;
     }
     #username{
         text-align: center;
@@ -34,7 +34,7 @@
     }
     .span-position{
         position: absolute;
-        top: 0px;
+        top: 0;
         left: 25px;
         font-size: 20px;
         color: red;
@@ -71,9 +71,8 @@
 
     .delete-message{
         position: absolute;
-        right: 1px;
-        top: 1px;
-        visibility: show;
+        right: 3px;
+        bottom: 3px;
     }
     .search-bar{
         margin:10px;
@@ -81,17 +80,27 @@
     #button-addon2{
         margin-top:10px;
     }
+    #nameDropDown{
+        margin: 0 10px 10px 10px;
+    }
+    #conversation-name{
+        font-size:15px;
+        text-align: right;
+    }
+
 </style>
 <div id="app" class="container-fluid">
     <div class="container-fluid">
-        <div class="row" style="background-color:lightgray">
-            <div class="col-10">
+        <div class="row " style="background-color:lightgray">
+            <div class="col-8">
             </div>
             @php
                  $conversation = App\Conversation::findOrFail(request()->route('id'))
             @endphp
+            <span class="float-right">
         <img src="/storage/{{ $conversation->custom_photo }}" style="width:42px; height:42px; border-radius: 50%; top:10px; left:10px;">
-            &nbsp<a href="{{route('show.conversation', $conversation->id)}}">{{$conversation->custom_name }}</a>
+            &nbsp<a  id='conversation-name' href="{{route('show.conversation', $conversation->id)}}"><em><strong>{{$conversation->custom_name }}<strong></strong></em></a>
+                </span>
         </div>
     </div>
     <div class="row">
@@ -101,16 +110,16 @@
                     <img src="/storage/{{ Auth::user()->photo }}" alt="Avatar" id="photo_pic" class="img-thumbnail" style="width:200px;height:200px;">
                     <h5 id="username"></h5>
                 </div>
-                <div class="btn-group dropright ">
-                    <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btnSettings">
+                <div class="btn-group dropdown ">
+                    <button type="button" class="btn btn-sm btn-info dropdown-toggle btn-block" id="nameDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btnSettings">
                         {{ Auth::user()->fullName}}
                     </button>
                     <div class="dropdown-menu">
-                        <a href="{{route ('user.profile')}}" class="dropdown-item onMouse">User Profile</a>
-                        <a href="{{ route('photo.show') }}" class="dropdown-item onMouse">Choose a photo</a>
-                        <a href="{{ route('conversation.list') }}" class="dropdown-item onMouse">Conversation List</a>
+                        <a href="{{route ('user.profile')}}" class="dropdown-item onMouse"><i class="fas fa-user-alt"></i> User Profile</a>
+                        <a href="{{ route('photo.show') }}" class="dropdown-item onMouse"><i class="fas fa-images"></i> Choose a photo</a>
+                        <a href="{{ route('conversation.list') }}" class="dropdown-item onMouse"><i class="fas fa-list-alt"></i> Conversation List</a>
                         <hr>
-                        <a href="{{ route('leave.conversation',request()->route('id')) }}" class="dropdown-item onMouse" onclick="return confirm('Are you sure you want to leave this conversation?')">Leave Conversation</a>
+                        <a href="{{ route('leave.conversation',request()->route('id')) }}" class="dropdown-item onMouse" onclick="return confirm('Are you sure you want to leave this conversation?')"><i class="fas fa-sign-out-alt"></i> Leave Conversation</a>
                     </div>
                 </div>
             </div>
@@ -129,7 +138,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr class="table-success">
-                    <th scope="col">#</th>
+                    <th scope="col"><i class="fas fa-users"></i></th>
                     <th scope="col" class="">Conversation Members</th>
                 </tr>
                 </thead>
@@ -139,33 +148,30 @@
         </div>
         <div class="col-7">
             <div class="card">
-                <div class="card-body" style="overflow: auto" id="textResponse">
+                <div class="card-body" style="overflow:auto" id="textResponse">
                      <p id="message-display"></p>
                     <span class="span-position" id="User-notification"> </span>
                 </div>
                 </div>
-                <div class="card-body">
-                    <div class="container">
+                <div class="card-body" style="padding: 5px 0 5px 0 ;">
+                    <div class="container ">
                         <form id="form" action="{{ route('message.store',request()->route('id')) }}" method="POST" id="ajax" enctype="multipart/form-data">
                             @csrf
-                            <div class="input-group">
-                                <textarea class="form-control" aria-label="With textarea" id="msgArea" name="message" required> </textarea>
+                            <div class="input-group ">
+                                <textarea class="form-control shadow p-3 mb-5 bg-white rounded " aria-label="With textarea" id="msgArea" name="message" required style="resize: none;" maxlength="255"> </textarea>
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
+                                    <span class="input-group-text shadow p-3 mb-5 bg-white rounded"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
                                 </div>
                             </div>
-                            <div class="container">
                                 <label for="profile_pic">Choose file to upload</label>
-                                <input type="file" class="btn btn-sm " id="attachment" name="attachment">
-                            </div>
+                                <input type="file"  class="btn btn-sm" id="attachment" name="attachment">
                         </form>
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">
-                        <input type="hidden" value="{{auth()->user()->fullName}}" id="userName">
                     </div>
                 </div>
             </div>
         <div class="col-2">
-            <h6>Attachments</h6>
+            <h6>Attachments <i class="fas fa-paperclip"></i></h6>
         <hr>
             <ul id="attachment-list">
             </ul>
@@ -175,4 +181,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+<script>
+    $('#attachment').on('change',function(){
+        var fileName = $(this).val();
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
 @include('/partial/footer')

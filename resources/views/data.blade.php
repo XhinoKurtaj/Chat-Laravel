@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <a href="{{ route('conversation.list') }}" class="btn btn-outline-secondary " id="back-btn">Back</a><hr>
+    <a href="{{ route('conversation.list') }}" class="btn btn-outline-secondary " id="back-btn"><i class="fas fa-arrow-circle-left"></i> Back</a><hr>
 
     <table class="table table-bordered" id="users-table">
         <thead>

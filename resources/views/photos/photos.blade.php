@@ -28,11 +28,11 @@
                     <form method="post" action="{{ route('photo.store') }}" enctype="multipart/form-data" >
                         @csrf
                         <input type="file" name="photo" >
-                        <input type="submit" class="btn btn-outline-dark" value="Upload">
+                        <input type="submit" class="btn btn-outline-dark " value="Upload">
                     </form>
                 </div>
                 <div class="col-4">
-                    <a href="{{route('user.profile')}}" class="btn btn-outline-info">Back to profile</a>
+                    <a href="{{route('user.profile')}}" class="btn btn-outline-info"><i class="fas fa-arrow-circle-left"></i> Back to profile</a>
                 </div>
                 <div class="col-4"></div>
             </div>
@@ -55,8 +55,8 @@
                 <form action='' method='GET'>
                     @csrf
                     <input type='text' value='{{$photo->added_date}}' name='photoName' style='visibility:hidden'>
-                    <a href="{{ route('profile.photo',$photo->id) }}" type='submit' class='btn btn-sm btn-outline-info' name='profilePhoto'>Set as photo profile</a>&nbsp&nbsp
-                    <a href="{{ route('photo.delete',$photo->id) }}" class='btn btn-sm btn-outline-danger '  name='deletePhoto'>Delete</a>
+                    <a href="{{ route('profile.photo',$photo->id) }}" type='submit' class='btn btn-sm btn-outline-info' name='profilePhoto'><i class="far fa-image"></i> Set Profile Photo</a>&nbsp
+                    <a href="{{ route('photo.delete',$photo->id) }}" class='btn btn-sm btn-outline-danger '  name='deletePhoto'><i class="far fa-trash-alt"></i> Delete</a>
                 </form>
             </div>
         @endforeach

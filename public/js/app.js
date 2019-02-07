@@ -61703,7 +61703,7 @@ $("#DeleteUser").click(function () {
 function getMessages() {
   $('#textResponse').stop().animate({
     scrollTop: $('#textResponse').get(0).scrollHeight
-  }, 2000);
+  }, 1000);
   $.ajax({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -61768,7 +61768,6 @@ function getAttachment() {
 
 function buildUp(result) {
   var output = " ";
-  debugger;
   result.forEach(function (element) {
     console.log(element);
     var form = build(element.created_at, element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
@@ -61797,7 +61796,7 @@ function build(created, photo, name, message) {
     attach = "";
   }
 
-  var html = "<div class='alert alert-primary show-delete-btn' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'>" + "Delete</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p></div><br>";
+  var html = "<div class='alert alert-primary show-delete-btn' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> " + "</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p></div><br>";
   return html;
 }
 

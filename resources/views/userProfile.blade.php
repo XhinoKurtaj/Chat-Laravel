@@ -31,13 +31,13 @@
                                 </div>
                                 @else
                                 <div class="col-md-4">
-                                    <a href="/users/add/{{$user->id}}" id="Message_user" class="btn btn-outline-success">Send Message to User</a>
+                                    <a href="/users/add/{{$user->id}}" id="Message_user" class="btn btn-outline-success"><i class="fas fa-comment-alt"></i> Send Message to User</a>
                                     <br><hr><br>
                                     <h5> {{$user->email}}</h5>
                                 </div>
                                 @endif
                             <div class="col-md-4">
-                                <a href="{{ url()->previous() }}" class="btn btn-outline-secondary" id="back-btn">Back</a>
+                                <a href="{{ url()->previous() }}" class="btn btn-outline-secondary" id="back-btn"><i class="fas fa-arrow-circle-left"></i> Back</a>
 
                             </div>
                         </div>

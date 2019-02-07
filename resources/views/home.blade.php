@@ -26,16 +26,15 @@
                             <li>You dont have any conversation</li>
                         @else
                         @foreach($conversationList as $conversation)
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-8">
                                    <a href="{{ route('message.show', $conversation->id) }}" class="button-conv"><img src="/storage/{{ $conversation->custom_photo }}" style="width:32px; height:32px;  top:10px; left:10px; border-radius:50%">
                                     {{$conversation->custom_name}}
                                     </a>
                                 </div>
                                 <div class="col-4">
-                                    {{--<a href="{{ route('message.show', $conversation->id) }}" class="btn btn-outline-success">Join</a>--}}
-                                    <a href="{{ route('show.conversation', $conversation->id)}}"  class="btn btn-outline-success" >Edit</a>
-                                    <a onclick="return confirm('Are you sure u want to delete this conversation?')" href="{{ route('conversation.delete', $conversation->id) }}"  class="btn btn-outline-danger" >Delete</a>
+                                    <a href="{{ route('show.conversation', $conversation->id)}}"  class="btn btn-outline-success btn-sm" ><i class="fas fa-edit"></i> Edit</a>
+                                    <a onclick="return confirm('Are you sure u want to delete this conversation?')" href="{{ route('conversation.delete', $conversation->id) }}"  class="btn btn-outline-danger btn-sm" ><i class="far fa-trash-alt"> Delete</i></a>
                                 </div>
                             </div><hr>
                         @endforeach
@@ -66,7 +65,7 @@
                 </div>
             </form>
             <div class="input-group-append">
-                <a href='{{route('data.table')}}' class="btn btn-outline-secondary btn-lg" type="button" id="button-addon2">Search for users</a>
+                <a href='{{route('data.table')}}' class="btn btn-outline-secondary btn-lg" type="button" id="button-addon2"><i class="fas fa-search"></i> Search for users</a>
             </div>
 
         </div>

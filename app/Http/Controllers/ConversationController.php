@@ -87,14 +87,15 @@ class ConversationController extends Controller
     public function messageUser($guestId)
     {
         $authUser = auth()->user();
-        $userGuest = User::find($guestId);
+        $userGuest = User::findOrFail($guestId);
         $fullNameGuest = $userGuest->first_name." ".$userGuest->last_name;
         $authUserName = $authUser->first_name." ".$authUser->last_name;
         $exist = Conversation::where('custom_name',$authUserName.' '.$fullNameGuest)
                                 ->orWhere('custom_name',$fullNameGuest.' '.$authUserName)
                                 ->get();
-        if($exist[0] != null && $exist[0]->custom_name == $authUserName.' '.$fullNameGuest
-                                || $exist[0]->custom_name == $fullNameGuest.' '.$authUserName){
+        if($exist[0] != null && $exist->type == 'default' &&
+             $exist[0]->custom_name == $authUserName.' '.$fullNameGuest
+             || $exist[0]->custom_name == $fullNameGuest.' '.$authUserName){
             $getConversationId = $exist[0]->id;
             return redirect('/home/conversation/'.$getConversationId);
         }else{
@@ -109,5 +110,5 @@ class ConversationController extends Controller
             return redirect('/home/conversation/'.$conversationId);
         }
     }
-}
 
+}
