@@ -35,20 +35,19 @@ class SearchController extends Controller
             if ($search[0] == null)
             {
                 return response()->json("We couldn't find any user with that email");
-            }else
+            }else{
+                $user = User::find($search[0]);
+                $exist = $user->conversations()->where('id', $id)->exists();
+                if ($exist)
                 {
-                    $user = User::find($search[0]);
-                    $exist = $user->conversations()->where('id', $id)->exists();
-                    if ($exist)
-                    {
-                        return response()->json("user already exist in this conversation");
-                    }
-                    $conversation = Conversation::find($id);
-                    $conversation->users()->attach($user->id);
-
-                    event(new UserNotification($id, $user->fullName, 'join'));
-                    return response()->json("User <strong>$member </strong> added successfully");
+                    return response()->json("user already exist in this conversation");
                 }
+                $conversation = Conversation::find($id);
+                $conversation->users()->attach($user->id);
+
+                event(new UserNotification($id, $user->fullName, 'join'));
+                return response()->json("User <strong>$member </strong> added successfully");
+            }
         }
     }
 }

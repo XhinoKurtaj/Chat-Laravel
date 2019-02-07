@@ -22,9 +22,10 @@
                 ajax: '{!! route('data') !!}',
                 columns: [
                     { data: 'name', name: 'name', searchable:false, render: function ( data ) {
-                        console.log(data[0]);
-                            return '<a href="users/'+data[0]+'">'+data+'</a>';
-                                    }},
+                        console.log(data.substring(0, 4));
+                        var usersID = data.substring(0, 4);
+                        return '<a href="users/'+usersID+'">'+data+'</a>';
+                        }},
                     { data: 'email', name: 'email' }
                 ]
 

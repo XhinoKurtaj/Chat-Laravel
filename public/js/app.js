@@ -61768,17 +61768,19 @@ function getAttachment() {
 
 function buildUp(result) {
   var output = " ";
+  debugger;
   result.forEach(function (element) {
-    var form = build(element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
+    console.log(element);
+    var form = build(element.created_at, element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
     output += form;
   });
   display.html(output);
 }
 
-function build(photo, name, message) {
-  var attachment = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-  var messageId = arguments.length > 4 ? arguments[4] : undefined;
-  var userData = "<img src='/storage/" + photo + "' class='user-icon'>" + name + "</p>";
+function build(created, photo, name, message) {
+  var attachment = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+  var messageId = arguments.length > 5 ? arguments[5] : undefined;
+  var userData = "<img src='/storage/" + photo + "' class='user-icon'> &nbsp" + name + "</p>";
   var messageBody = "<p class='mb-0'>" + message;
 
   if (attachment != null) {
@@ -61795,7 +61797,7 @@ function build(photo, name, message) {
     attach = "";
   }
 
-  var html = "<div class='alert alert-primary show-delete-btn' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'>" + "Delete</a></span>" + userData + messageBody + download + attach + "</a></p></div><br>";
+  var html = "<div class='alert alert-primary show-delete-btn' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'>" + "Delete</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p></div><br>";
   return html;
 }
 

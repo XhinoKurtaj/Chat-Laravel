@@ -13,7 +13,6 @@ class Message extends Model
         'message','attachment','conversation_id','sender_id'
     ];
 
-    public $timestamps = false;
 
     public function conversation()
     {

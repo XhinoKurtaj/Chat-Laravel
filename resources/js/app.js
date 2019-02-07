@@ -169,16 +169,18 @@ function getAttachment() {
 
 function buildUp(result){
     var output = " ";
+    debugger;
     result.forEach(function(element) {
-        var form =  build(element.sender.photo,element.sender.fullName,element.message,element.attachment,element.id);
+        console.log(element);
+        var form =  build(element.created_at, element.sender.photo,element.sender.fullName,element.message,element.attachment,element.id);
         output += form;
     });
     display.html(output);
 }
 
-function build(photo,name,message,attachment = null, messageId)
+function build(created,photo,name,message,attachment = null, messageId)
 {
-    var userData = "<img src='/storage/" + photo + "' class='user-icon'>" + name + "</p>";
+    var userData = "<img src='/storage/" + photo + "' class='user-icon'> &nbsp" + name + "</p>";
     var messageBody = "<p class='mb-0'>" + message ;
     if (attachment != null) {
         var download = "<hr><a href='" + id + "/download/" + attachment.id + "'>";
@@ -194,6 +196,6 @@ function build(photo,name,message,attachment = null, messageId)
     }
     var html = "<div class='alert alert-primary show-delete-btn' role='alert' tabindex='0'>" +
         "<p class='alert-heading '><span class='delete-message'><a href='"+id+"/messages/"+messageId+"'class='btn btn-sm btn-outline-danger'>" +
-        "Delete</a></span>" + userData + messageBody + download + attach + "</a></p></div><br>";
+        "Delete</a></span>" + userData + messageBody + download + attach + "</a><br><small>"+created+"</small></p></div><br>";
     return html;
 }
