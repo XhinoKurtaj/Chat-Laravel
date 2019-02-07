@@ -61,7 +61,7 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Enter Conversation Name" name="custom_name" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                        <input type="submit" class="btn btn-sm btn-outline-secondary" value="Create Conversation" id="button-addon2">
+                        <input type="submit" class="btn btn-sm btn-outline-secondary" value="Create Group Conversation" id="button-addon2">
                     </div>
                 </div>
             </form>

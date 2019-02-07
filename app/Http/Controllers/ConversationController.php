@@ -34,7 +34,8 @@ class ConversationController extends Controller
         ]);
         $userId = auth()->user()->id;
         $conversationId = Conversation::insertGetId([
-            'custom_name' => $request->get('custom_name')
+            'custom_name' => $request->get('custom_name'),
+            'type' => Conversation::GROUP_TYPE,
             ]);
         $user = User::find($userId);
         $user->conversations()->attach($conversationId);
@@ -87,15 +88,26 @@ class ConversationController extends Controller
     {
         $authUser = auth()->user();
         $userGuest = User::find($guestId);
-        $fullNameAuth = $authUser->first_name." ".$authUser->last_name;
         $fullNameGuest = $userGuest->first_name." ".$userGuest->last_name;
-        $conversationId = Conversation::insertGetId([
-            'custom_name' => $fullNameAuth." ".$fullNameGuest,
-        ]);
-        $authUser->conversations()->attach($conversationId);
-        $userGuest->conversations()->attach($conversationId);
+        $authUserName = $authUser->first_name." ".$authUser->last_name;
+        $exist = Conversation::where('custom_name',$authUserName.' '.$fullNameGuest)
+                                ->orWhere('custom_name',$fullNameGuest.' '.$authUserName)
+                                ->get();
+        if($exist[0] != null && $exist[0]->custom_name == $authUserName.' '.$fullNameGuest
+                                || $exist[0]->custom_name == $fullNameGuest.' '.$authUserName){
+            $getConversationId = $exist[0]->id;
+            return redirect('/home/conversation/'.$getConversationId);
+        }else{
+            $conversationId = Conversation::insertGetId([
+                'custom_name' => $authUserName.' '.$fullNameGuest,
+                'custom_photo' =>$userGuest->photo,
+                'type' => Conversation::DEFAULT_TYPE,
+            ]);
+            $authUser->conversations()->attach($conversationId);
+            $userGuest->conversations()->attach($conversationId);
 
-        return redirect('/home/conversation/'.$conversationId);
+            return redirect('/home/conversation/'.$conversationId);
+        }
     }
 }
 
