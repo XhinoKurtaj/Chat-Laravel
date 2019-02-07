@@ -88,6 +88,22 @@
         text-align: right;
     }
 
+    .table-wrapper-scroll-y {
+        display: block;
+        max-height: 500px;
+        overflow-y: auto;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    .attachment-wrapper-scroll-y {
+        display: block;
+        max-height: 850px;
+        overflow-y: auto;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+
 </style>
 <div id="app" class="container-fluid">
     <div class="container-fluid">
@@ -134,17 +150,18 @@
                 </div>
                 <br><br>
                     @endif
-
-            <table class="table table-striped">
-                <thead>
-                <tr class="table-success">
-                    <th scope="col"><i class="fas fa-users"></i></th>
-                    <th scope="col" class="">Conversation Members</th>
-                </tr>
-                </thead>
-                <tbody id="showMemberList">
-                </tbody>
-            </table>
+            <div class="table-wrapper-scroll-y">
+                <table class="table table-striped ">
+                    <thead>
+                    <tr class="table-success">
+                        <th scope="col"><i class="fas fa-users"></i></th>
+                        <th scope="col" class="">Conversation Members</th>
+                    </tr>
+                    </thead>
+                    <tbody id="showMemberList">
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="col-7">
             <div class="card">
@@ -171,10 +188,12 @@
                 </div>
             </div>
         <div class="col-2">
-            <h6>Attachments <i class="fas fa-paperclip"></i></h6>
-        <hr>
-            <ul id="attachment-list">
-            </ul>
+            <div class="attachment-wrapper-scroll-y">
+                <h6>Attachments <i class="fas fa-paperclip"></i></h6>
+                <hr>
+                <ul id="attachment-list">
+                </ul>
+            </div>
         </div>
     </div>
 </div>

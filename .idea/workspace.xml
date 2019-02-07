@@ -3,19 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d0176c28-fc0e-484c-bcb7-5bfbebb4c8ef" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConversationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConversationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/chatBoard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chatBoard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/conversation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/conversation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/data.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partial/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partial/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/photos/photos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/photos/photos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/userProfile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/userProfile.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,10 +38,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/chatBoard.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="168" column="92" selection-start-line="168" selection-start-column="92" selection-end-line="168" selection-end-column="92" />
+            <state relative-caret-position="451">
+              <caret line="103" column="19" lean-forward="true" selection-start-line="103" selection-start-column="19" selection-end-line="103" selection-end-column="19" />
               <folding>
-                <element signature="e#4928#4949#0#HTML" expanded="true" />
+                <element signature="e#5503#5524#0#HTML" expanded="true" />
                 <element signature="e#5343#5361#0#HTML" expanded="true" />
                 <element signature="e#5602#5623#0#HTML" expanded="true" />
               </folding>
@@ -60,55 +50,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="62" column="99" selection-start-line="62" selection-start-column="93" selection-end-line="62" selection-end-column="99" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/profile.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="89" selection-start-line="16" selection-start-column="89" selection-end-line="16" selection-end-column="129" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/photos/photos.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="30" column="73" selection-start-line="30" selection-start-column="73" selection-end-line="30" selection-end-column="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/master.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="12" column="198" selection-start-line="12" selection-start-column="198" selection-end-line="12" selection-end-column="198" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConversationController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-354">
-              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+            <state relative-caret-position="710">
+              <caret line="115" column="8" selection-start-line="115" selection-start-column="8" selection-end-line="115" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -117,7 +62,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>edit</find>
       <find>console</find>
       <find>upload</find>
       <find>success</find>
@@ -133,7 +77,6 @@
       <find>conver</find>
       <find>mess</find>
       <find>attach</find>
-      <find>message</find>
       <find>route</find>
       <find>#users-table</find>
       <find>form</find>
@@ -147,6 +90,8 @@
       <find>your pho</find>
       <find>bac</find>
       <find>create</find>
+      <find>message</find>
+      <find>over</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="PhpDebugGeneral" hide_empty_superglobals="false" listening_started="true" />
+  <component name="PhpDebugGeneral" hide_empty_superglobals="false" />
   <component name="PhpServers">
     <servers>
       <server host="127.0.0.1" id="596ac628-38be-4bd1-aaf3-89bb0a357128" name="127.0.0.1" port="8000" />
@@ -521,7 +466,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="628183000" />
+    <option name="totallyTimeSpent" value="630362000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -863,23 +808,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+    <entry file="file://$PROJECT_DIR$/resources/views/partial/header.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-354">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        <state relative-caret-position="396">
+          <caret line="18" column="206" selection-start-line="18" selection-start-column="206" selection-end-line="18" selection-end-column="206" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConversationController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
+        <state relative-caret-position="1826">
           <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
         </state>
       </provider>
@@ -912,19 +850,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partial/header.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="206" selection-start-line="18" selection-start-column="206" selection-end-line="18" selection-end-column="206" />
+        <state relative-caret-position="-354">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="710">
+          <caret line="115" column="8" selection-start-line="115" selection-start-column="8" selection-end-line="115" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/chatBoard.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="168" column="92" selection-start-line="168" selection-start-column="92" selection-end-line="168" selection-end-column="92" />
+        <state relative-caret-position="451">
+          <caret line="103" column="19" lean-forward="true" selection-start-line="103" selection-start-column="19" selection-end-line="103" selection-end-column="19" />
           <folding>
-            <element signature="e#4928#4949#0#HTML" expanded="true" />
+            <element signature="e#5503#5524#0#HTML" expanded="true" />
             <element signature="e#5343#5361#0#HTML" expanded="true" />
             <element signature="e#5602#5623#0#HTML" expanded="true" />
           </folding>

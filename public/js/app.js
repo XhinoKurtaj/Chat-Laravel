@@ -61655,7 +61655,6 @@ $("#add-member").click(function () {
     },
     dataType: "json",
     success: function success(response) {
-      counsole.log(response);
       $("#alert-warning").text(response);
       $("#search-text").val(' ');
     }
@@ -61673,12 +61672,11 @@ window.Echo.private('conversation.' + id).listen('MessageSent', function (event)
   }
 }).listen('UserNotification', function (event) {
   if (event.status === 'left') {
-    var body = event.fullName + "  has left the conversation!!";
-    $("#User-notification").html(body);
+    var body = "<div class='alert alert-danger' role='alert' tabindex='0'>" + "<p class='alert-heading '>" + event.fullName + " has left the conversation!!" + "</p></div><br>";
+    display.append(body);
   } else {
-    var _body = event.fullName + "  has joined the conversation!!";
-
-    $("#User-notification").html(_body);
+    var body = "<div class='alert alert-success' role='alert' tabindex='0'>" + "<p class='alert-heading '>" + event.fullName + " has joined the conversation!!" + "</p></div><br>";
+    display.append(body);
   }
 
   getMembers();
@@ -61703,7 +61701,7 @@ $("#DeleteUser").click(function () {
 function getMessages() {
   $('#textResponse').stop().animate({
     scrollTop: $('#textResponse').get(0).scrollHeight
-  }, 1000);
+  }, 2000);
   $.ajax({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -61769,7 +61767,6 @@ function getAttachment() {
 function buildUp(result) {
   var output = " ";
   result.forEach(function (element) {
-    console.log(element);
     var form = build(element.created_at, element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
     output += form;
   });
