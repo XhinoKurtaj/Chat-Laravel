@@ -61625,6 +61625,7 @@ var id = $("#convId").val();
 var display = $("#message-display");
 var attachmentList = $("#attachment-list");
 var memeberDisplay = $("#showMemberList");
+var displayAlerts = $("#alerts");
 var counter = 1;
 $('#form').on('submit', function (event) {
   event.preventDefault();
@@ -61655,8 +61656,12 @@ $("#add-member").click(function () {
     },
     dataType: "json",
     success: function success(response) {
-      $("#alert-warning").text(response);
-      $("#search-text").val(' ');
+      var alert = "<div class='alert alert-light' role='alert' tabindex='0'>" + "<p class='alert-heading '>" + response + "</p></div><br>";
+      displayAlerts.html(alert);
+      $("#search-text").val('');
+      setTimeout(function () {
+        displayAlerts.html(' ');
+      }, 3000);
     }
   });
 });

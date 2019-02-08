@@ -80,7 +80,7 @@
                         <button type="submit" class="btn btn-sm btn-outline-secondary " id="conversation-group"><i class="fas fa-users"></i> Create Group Conversation</button>
                     </div>
                 </div>
-            </form>
+            </form><hr>
             <div class="input-group-append">
                 <a href='{{route('data.table')}}' class="btn btn-outline-secondary btn-lg" type="button" id="button-addon2"><i class="fas fa-search"></i> Search for users</a>
             </div>

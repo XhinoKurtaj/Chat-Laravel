@@ -37,6 +37,7 @@ const id=$("#convId").val();
 const display = $("#message-display");
 const attachmentList = $("#attachment-list");
 const memeberDisplay = $("#showMemberList");
+const displayAlerts = $("#alerts");
 
 var counter = 1;
 
@@ -64,8 +65,13 @@ $("#add-member").click(function(){
         data: {member: member},
         dataType: "json",
         success: function(response){
-            $("#alert-warning").text(response);
-            $("#search-text").val(' ');
+            var alert = "<div class='alert alert-light' role='alert' tabindex='0'>" +
+                "<p class='alert-heading '>"+response+ "</p></div><br>";
+            displayAlerts.html(alert);
+            $("#search-text").val('');
+            setTimeout(function(){
+                displayAlerts.html(' ');
+            }, 3000);
         }
     });
 });
