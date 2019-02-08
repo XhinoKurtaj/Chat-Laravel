@@ -1,5 +1,21 @@
 @extends('layouts.app')
+<style>
+    #conversation-group{
+        width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 
+    }
+    #conversation-group:hover{
+        width: 185px;
+        overflow: visible;
+    }
+    .profile-redirect{
+        color: black;
+    }
+
+</style>
 @section('content')
 
     @if (Session::has('success'))
@@ -51,8 +67,8 @@
             <div class="card">
                 <div class="card-header"><img src="/storage/{{ Auth::user()->photo }}" alt="Avatar" id="photo_pic" style="width:200px;height:200px;"></div>
                 <div class="card-body">
-                    <h5>{{Auth::user()->fullName}}</h5>
-                    <h5 style="text-align: right;">{{Auth::user()->email}} </h5>
+                    <h5><a href="{{ url('/profile') }}" class="profile-redirect"><i class="fa fa-btn fa-user"></i> {{Auth::user()->fullName}}</a></h5>
+                    <h5 style="text-align: right;"><a>{{Auth::user()->email}}</a></h5>
                 </div>
             </div><br>
             <form action="{{ route('conversation.store') }}" method="POST">
@@ -60,7 +76,8 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Enter Conversation Name" name="custom_name" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                        <input type="submit" class="btn btn-sm btn-outline-secondary" value="Create Group Conversation" id="button-addon2">
+                        {{--<input type="submit" class="btn btn-sm btn-outline-secondary" value="Create Group Conversation" id="button-addon2">--}}
+                        <button type="submit" class="btn btn-sm btn-outline-secondary " id="conversation-group"><i class="fas fa-users"></i> Create Group Conversation</button>
                     </div>
                 </div>
             </form>

@@ -84,24 +84,21 @@ class ConversationController extends Controller
         return redirect('home');
     }
 
-    public function messageUser($guestId)
+    public function messageSingleUser($guestId)
     {
         $authUser = auth()->user();
         $userGuest = User::findOrFail($guestId);
-        $fullNameGuest = $userGuest->first_name." ".$userGuest->last_name;
-        $authUserName = $authUser->first_name." ".$authUser->last_name;
-        $exist = Conversation::where('custom_name',$authUserName.' '.$fullNameGuest)
-                                ->orWhere('custom_name',$fullNameGuest.' '.$authUserName)
-                                ->get();
-        if($exist[0] != null && $exist->type == 'default' &&
-             $exist[0]->custom_name == $authUserName.' '.$fullNameGuest
-             || $exist[0]->custom_name == $fullNameGuest.' '.$authUserName){
-            $getConversationId = $exist[0]->id;
-            return redirect('/home/conversation/'.$getConversationId);
+        $fullNameGuest = $userGuest->first_name . " " . $userGuest->last_name;
+        $authUserName = $authUser->first_name . " " . $authUser->last_name;
+        $conversationObj = Conversation::where('custom_name', $authUserName . ' ' . $fullNameGuest)
+            ->orWhere('custom_name', $fullNameGuest . ' ' . $authUserName)
+            ->get();
+        $conversation = $conversationObj->toArray();
+        if($conversation != null && $conversation[0]['type'] == 'default'){
+            return redirect('/home/conversation/'.$conversation[0]['id']);
         }else{
             $conversationId = Conversation::insertGetId([
                 'custom_name' => $authUserName.' '.$fullNameGuest,
-                'custom_photo' =>$userGuest->photo,
                 'type' => Conversation::DEFAULT_TYPE,
             ]);
             $authUser->conversations()->attach($conversationId);

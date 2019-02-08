@@ -92,7 +92,7 @@ Route::get('users/data', 'SearchController@index')
     ->name('data');
 Route::get('/users/{id}','UserController@show')
     ->name('search.user');
-Route::get('/users/add/{id}','ConversationController@messageUser');
+Route::get('/users/add/{id}','ConversationController@messageSingleUser');
 
 Route::get('/home/conversation/{id}/add','SearchController@inviteUser')
     ->name('add.members');
