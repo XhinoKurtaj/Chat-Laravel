@@ -30,6 +30,17 @@ class PhotoController extends Controller
         else
             return response()->json("Something went wrong try again later!", 500);
     }
+    public function profilePhoto($photoId)
+    {
+        $photo = Photo::findOrFail($photoId);
+        $photoName = $photo->photo;
+
+        $user = auth()->user();
+        $user->photo = $photoName;
+        $user->save();
+
+        return response()->json("Profile photo updated successfully", 201);
+    }
 
     public function delete($id)
     {

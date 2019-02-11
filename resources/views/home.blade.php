@@ -14,6 +14,12 @@
     .profile-redirect{
         color: black;
     }
+    .conversation-wrapper-scroll-y {
+        display: block;
+        max-height: 550px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
 </style>
 @section('content')
@@ -36,11 +42,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Conversation List</div>
+                <div class="card-header"><i class="fas fa-list-alt"></i> Conversation List</div>
                 <div class="card-body">
                         @if(empty($conversationList))
                             <li>You dont have any conversation</li>
                         @else
+                        <div class="conversation-wrapper-scroll-y">
                         @foreach($conversationList as $conversation)
                             <div class="row" >
                                 <div class="col-8">
@@ -54,6 +61,7 @@
                                 </div>
                             </div><hr>
                         @endforeach
+                        </div>
                         @endif
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

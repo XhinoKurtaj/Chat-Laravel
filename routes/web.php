@@ -30,7 +30,7 @@ Route::get('profile/delete', 'UserController@delete')
 
 Route::get('profile/photo','PhotoController@index')
         ->name('photo.show');
-Route::get('profile/photo/create','PhotoController@create')
+Route::get('profile/photo/create','PhotoController@show')
         ->name('photo.create');
 Route::post('profile/photo','PhotoController@store')
         ->name('photo.store');

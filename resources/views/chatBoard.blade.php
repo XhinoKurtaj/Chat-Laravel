@@ -84,8 +84,15 @@
         margin: 0 10px 10px 10px;
     }
     #conversation-name{
-        font-size:15px;
+        font-size:20px;
+        font-family: "Times New Roman", Times, serif;
+        color: black;
+        margin-left: 10px;
         text-align: right;
+    }
+    #conversation-name:hover{
+        color: blueviolet;
+        font-family: "Nunito", sans-serif;
     }
 
     .table-wrapper-scroll-y {
@@ -108,15 +115,13 @@
 <div id="app" class="container-fluid">
     <div class="container-fluid">
         <div class="row " style="background-color:lightgray">
-            <div class="col-8">
+            <div class="col-5">
             </div>
             @php
                  $conversation = App\Conversation::findOrFail(request()->route('id'))
             @endphp
-            <span class="float-right">
         <img src="/storage/{{ $conversation->custom_photo }}" style="width:42px; height:42px; border-radius: 50%; top:10px; left:10px;">
             &nbsp<a  id='conversation-name' href="{{route('show.conversation', $conversation->id)}}"><em><strong>{{$conversation->custom_name }}<strong></strong></em></a>
-                </span>
         </div>
     </div>
     <div class="row">
@@ -183,7 +188,7 @@
                                     <span class="input-group-text shadow p-3 mb-5 bg-white rounded"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
                                 </div>
                             </div>
-                                <label for="profile_pic">Choose file to upload</label>
+                                <label for="profile_pic">Choose file to upload <i class="fas fa-upload"></i></label>
                                 <input type="file"  class="btn btn-sm" id="attachment" name="attachment">
                         </form>
                         <input type="hidden" value="{{request()->route('id')}}" id="convId">

@@ -13,7 +13,7 @@ class PhotoController extends Controller
         $this->middleware('auth');
     }
 
-    public function create()
+    public function show()
     {
         return view('photos/create');
     }

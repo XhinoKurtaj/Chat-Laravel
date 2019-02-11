@@ -263,6 +263,130 @@
         } ]
       }
     },
+    "/user/conversation/{conversationId}/members" : {
+      "get" : {
+        "tags" : [ "Conversation" ],
+        "summary" : "Conversation members",
+        "operationId" : "conversationMembers",
+        "parameters" : [ {
+          "name" : "conversationId",
+          "in" : "path",
+          "description" : "Conversation id which will be used to get members ",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "additionalProperties" : {
+                    "type" : "integer",
+                    "format" : "int32"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "Authorisation" : [ ]
+        } ]
+      }
+    },
+    "/user/conversation/{conversationId}/leave" : {
+      "get" : {
+        "tags" : [ "Conversation" ],
+        "summary" : "Leave conversation",
+        "operationId" : "leaveConversation",
+        "parameters" : [ {
+          "name" : "conversationId",
+          "in" : "path",
+          "description" : "Conversation Id ",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "additionalProperties" : {
+                    "type" : "integer",
+                    "format" : "int32"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "Authorisation" : [ ]
+        } ]
+      }
+    },
+    "/user/conversation/{conversationId}/add" : {
+      "post" : {
+        "tags" : [ "Search" ],
+        "summary" : "Add member to conversation",
+        "operationId" : "addMember",
+        "parameters" : [ {
+          "name" : "conversationId",
+          "in" : "path",
+          "description" : "Conversation id which member will be added",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        },
+          {
+            "name": "member",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "additionalProperties" : {
+                    "type" : "integer",
+                    "format" : "int32"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "Authorisation" : [ ]
+        } ]
+      }
+    },
     "/user/conversation/{conversationId}/messages" : {
       "get" : {
         "tags" : [ "Message" ],
@@ -584,6 +708,47 @@
         "security" : [ {
           "Authorisation" : [ ]
         } ]
+      },
+      "get" : {
+        "tags" : [ "Photo" ],
+        "summary" : "Set profile photo",
+        "operationId" : "profilePhoto",
+        "parameters" : [ {
+          "name" : "photoId",
+          "in" : "path",
+          "description" : "ID of the photo that will be setted as profile photo",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Profile photo updated successfully",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Photo"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Photo"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid Photo"
+          }
+        },
+        "security" : [ {
+          "Authorisation" : [ ]
+        } ]
       }
     },
     "/login" : {
@@ -628,6 +793,63 @@
             }
           }
         }
+      }
+    },
+    "/user/send/{user_id}" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "Send message to a user",
+        "operationId" : "messageUser",
+        "parameters" : [ {
+          "name" : "user_id",
+          "in" : "path",
+          "description" : "ID of the user which you will send message",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "Authorisation" : [ ]
+        } ]
+      }
+    },
+    "/user/data" : {
+      "get" : {
+        "tags" : [ "Search" ],
+        "summary" : "Get users from database",
+        "operationId" : "clientSearchUsers",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "Authorisation" : [ ]
+        } ]
       }
     },
     "/user/logout" : {

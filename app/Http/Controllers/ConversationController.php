@@ -107,5 +107,4 @@ class ConversationController extends Controller
             return redirect('/home/conversation/'.$conversationId);
         }
     }
-
 }
