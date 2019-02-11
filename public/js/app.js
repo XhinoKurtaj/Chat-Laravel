@@ -61677,10 +61677,12 @@ window.Echo.private('conversation.' + id).listen('MessageSent', function (event)
   }
 }).listen('UserNotification', function (event) {
   if (event.status === 'left') {
-    var body = "<div class='alert alert-danger' role='alert' tabindex='0'>" + "<p class='alert-heading '>" + event.fullName + " has left the conversation!!" + "</p></div><br>";
+    var statusLeft = "has left the conversation!!";
+    var body = memberNotification(event.fullName, statusLeft);
     display.append(body);
   } else {
-    var body = "<div class='alert alert-success' role='alert' tabindex='0'>" + "<p class='alert-heading '>" + event.fullName + " has joined the conversation!!" + "</p></div><br>";
+    var statusJoined = "has joined the conversation!!";
+    var body = memberNotification(event.fullName, statusJoined);
     display.append(body);
   }
 
@@ -61717,6 +61719,11 @@ function getMessages() {
       buildUp(result);
     }
   });
+}
+
+function memberNotification(event, status) {
+  var body = "<div class='alert alert-success' role='alert' tabindex='0'>" + "<p class='alert-heading '>" + event + " " + status + "</p></div><br>";
+  return body;
 } // alert-primary
 
 

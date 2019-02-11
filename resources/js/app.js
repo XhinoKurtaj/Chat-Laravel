@@ -90,12 +90,12 @@ window.Echo.private('conversation.'+id)
         }
     }).listen('UserNotification', event => {
         if(event.status === 'left'){
-            var body = "<div class='alert alert-danger' role='alert' tabindex='0'>" +
-                "<p class='alert-heading '>"+event.fullName +" has left the conversation!!" + "</p></div><br>";
+            const statusLeft = "has left the conversation!!";
+            var body = memberNotification(event.fullName,statusLeft);
             display.append(body);
         }else{
-            var body = "<div class='alert alert-success' role='alert' tabindex='0'>" +
-                "<p class='alert-heading '>"+event.fullName +" has joined the conversation!!"+"</p></div><br>";
+            const statusJoined = "has joined the conversation!!";
+            var body = memberNotification(event.fullName,statusJoined);
             display.append(body);
         }
         getMembers();
@@ -128,6 +128,13 @@ function getMessages(){
             buildUp(result);
         }
     });
+}
+
+function memberNotification(event,status)
+{
+    var body = "<div class='alert alert-success' role='alert' tabindex='0'>" +
+        "<p class='alert-heading '>"+event +" "+ status + "</p></div><br>";
+    return body
 }
 
 // alert-primary

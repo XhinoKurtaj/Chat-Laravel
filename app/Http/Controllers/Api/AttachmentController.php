@@ -17,9 +17,9 @@ class AttachmentController extends Controller
     public function download($id,$attachmentId)
     {
         $attachment = Attachment::findOrFail($attachmentId);
-            $name = $attachment->attachment;
-            $attach = str_replace("attachments/","",$name);
-            return response()->download(public_path("/storage/attachments/$attach"));
+        $name = $attachment->attachment;
+        $attach = str_replace("attachments/","",$name);
+        return response()->download(public_path("/storage/attachments/$attach"));
     }
 
     public function store($conversationId,$messageId,$request)

@@ -22,6 +22,6 @@
             </div>
         </div>
         <br><hr>
-        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">Back</a>
+        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-circle-left"></i> Back</a>
     </div>
 @endsection
