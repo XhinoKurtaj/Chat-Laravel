@@ -17,6 +17,7 @@ class CreateConversationsTable extends Migration
             $table->increments('id');
             $table->string('custom_name', 255);
             $table->string('custom_photo', 255)->default('No Image');
+            $table->string('type')->default('default');
             $table->timestamps();
         });
     }
