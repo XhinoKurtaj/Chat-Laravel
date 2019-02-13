@@ -48,14 +48,7 @@ class MessageController extends Controller
 
     public function show($id)
     {
-        $user = auth()->user()->id;
-        $type = auth()->user()->type;
-        $conversation = Conversation::findOrFail($id);
-        $belongs = $conversation->users->contains($user);
-        if($belongs || $type == "admin")
-            return view('chatBoard');
-        else
-           return redirect()->back();
+        return view('chatBoard');
     }
 
     public function delete($conversationId,$messageId)

@@ -44,34 +44,38 @@ Route::get('home','ConversationController@index')
         ->name('conversation.list');
 Route::post('home','ConversationController@store')
         ->name('conversation.store');
-Route::get('home/conversation/{id}/delete','ConversationController@delete')
+
+Route::group(['middleware' => ['belongs_to']], function () {
+
+    Route::get('home/conversation/{id}/delete','ConversationController@delete')
         ->name('conversation.delete');
-Route::get('/home/conversation/{id}/members','ConversationController@conversationMembers')
-    ->name('conversation.members');
+    Route::get('/home/conversation/{id}/members','ConversationController@conversationMembers')
+        ->name('conversation.members');
+    Route::get('home/conversation/{id}/edit','ConversationController@show')
+        ->name('show.conversation');
+    Route::post('/home/conversation/{id}/edit','ConversationController@updateConversation');
 
-Route::get('home/conversation/{id}/edit','ConversationController@show')
-    ->name('show.conversation');
-Route::post('/home/conversation/{id}/edit','ConversationController@updateConversation');
-
-
-
-Route::get('home/conversation/{id}','MessageController@show')
+    Route::get('home/conversation/{id}','MessageController@show')
         ->name('message.show');
-Route::get('/home/conversation/{id}/read','MessageController@read')
+    Route::get('/home/conversation/{id}/read','MessageController@read')
         ->name('message.read');
-Route::post('home/conversation/{id}/send','MessageController@store')
-    ->name('message.store');
-Route::get('home/conversation/{id}/messages/{messageId}','MessageController@delete')
-    ->name('message.delete');
+    Route::post('home/conversation/{id}/send','MessageController@store')
+        ->name('message.store');
+    Route::get('home/conversation/{id}/messages/{messageId}','MessageController@delete')
+        ->name('message.delete');
 
-Route::get('/home/conversation/{id}/attachment','AttachmentController@index')
-    ->name('att.read');
-Route::get('/home/conversation/{id}/download/{attachment_id}','AttachmentController@download')
-    ->name('att.download');
+    Route::get('/home/conversation/{id}/attachment','AttachmentController@index')
+        ->name('att.read');
+    Route::get('/home/conversation/{id}/download/{attachment_id}','AttachmentController@download')
+        ->name('att.download');
 
+    Route::get('/home/conversation/{id}/leave','ConversationController@leaveConversation')
+        ->name('leave.conversation');
 
-Route::get('/home/conversation/{id}/leave','ConversationController@leaveConversation')
-    ->name('leave.conversation');
+    Route::get('/home/conversation/{id}/add','SearchController@inviteUser')
+        ->name('add.members');
+});
+
 
 Route::get('/login/facebook', 'Auth\FacebookController@redirectToProvider');
 Route::get('/login/facebook/callback', 'Auth\FacebookController@handleProviderCallback');
@@ -93,5 +97,5 @@ Route::get('/users/{id}','UserController@show')
     ->name('search.user');
 Route::get('/users/add/{id}','ConversationController@messageSingleUser');
 
-Route::get('/home/conversation/{id}/add','SearchController@inviteUser')
-    ->name('add.members');
+
+
