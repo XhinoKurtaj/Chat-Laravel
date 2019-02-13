@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -30,6 +31,40 @@
         .button-conv:hover{
             color:orangered;
                  }
+
+        .img-thumbnail{
+            height: 200px;
+            width: 200px;
+            word-wrap: break-word;
+        }
+
+        .col-2 {
+            -moz-hyphens:auto;
+            -ms-hyphens:auto;
+            -webkit-hyphens:auto;
+            hyphens:auto;
+            word-wrap:break-word;
+        }
+        .ahref-style
+        {
+            font-size: 15px;
+            width:200px;
+            height:200px;
+            border:1px solid red;
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+
+        }
+
+        .table-wrapper-scroll-y {
+            display: block;
+            max-height: 370px;
+            overflow-y: auto;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
     </style>
 </head>
 <body>
@@ -62,15 +97,12 @@
                                 </li>
                             @endif
                         @else
-
                             {{--==================================================================================================================================--}}
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
                                 <img src="/storage/{{ Auth::user()->photo }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             {{--===================================================================================================================================--}}
-
-
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name." ".Auth::user()->last_name }} <span class="caret"></span>
@@ -85,8 +117,6 @@
                                                      document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                                         {{ __('Logout') }}
                                     </a>
-
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -102,5 +132,54 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        $(window).on('load', function() {
+            getAttachment();
+            getMembers();
+        });
+        function getAttachment() {
+            var id = $("#conversation-id").val();
+            const attachmentList = $("#attachment-list");
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: "GET",
+                url: '/home/conversation/'+id+'/attachment',
+                success: function (result) {
+                    var output = "";
+                    for (var i in result) {
+                        var mimeType = result[i].attachment;
+                        if (mimeType.includes(".jpg") || mimeType.includes(".jpeg") || mimeType.includes(".png") || mimeType.includes(".gif")) {
+                            output += "<div class='column'><a href='/home/conversation/"+id+"/download/"+result[i].id+"'>" +
+                                "<img src='/storage/" + mimeType + "' class='img-thumbnail'></a></div>";
+                    }else{
+                            output += "<div class='column ahref-style'><a style='text-decoration:none' href='/home/conversation/"+id+"/download/"+result[i].id+"'>"+result[i].attachment + "<br><br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp" +
+                                "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i class='fas fa-download' style='color:gray'></i></a></div>";
+                        }
+                }
+                attachmentList.html(output);
+            }
+        });
+    }
+
+        function getMembers(){
+            var id = $("#conversation-id").val();
+            const memeberDisplay = $("#showMemberList");
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: "GET",
+                url: '/home/conversation/'+id +'/members',
+                success:function(data){
+                    var output = "";
+                    for(var i in data){
+                        output += "<tr class='table-active'>"+
+                            "<td><strong><a href='/users/"+data[i].id+"'>"+data[i].fullName +"</a></strong></td></tr>";
+                    }
+                    memeberDisplay.html(output);
+                }
+            });
+        }
+</script>
 </body>
 </html>
+
+

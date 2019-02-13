@@ -60,5 +60,4 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('userProfile',compact('user'));
     }
-
 }

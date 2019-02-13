@@ -61,7 +61,6 @@ Route::get('/home/conversation/{id}/read','MessageController@read')
         ->name('message.read');
 Route::post('home/conversation/{id}/send','MessageController@store')
     ->name('message.store');
-///////////////
 Route::get('home/conversation/{id}/messages/{messageId}','MessageController@delete')
     ->name('message.delete');
 

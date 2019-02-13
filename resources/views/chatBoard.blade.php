@@ -139,8 +139,8 @@
                         <a href="{{route ('user.profile')}}" class="dropdown-item onMouse"><i class="fas fa-user-alt"></i> User Profile</a>
                         <a href="{{ route('photo.show') }}" class="dropdown-item onMouse"><i class="fas fa-images"></i> Choose a photo</a>
                         <a href="{{ route('conversation.list') }}" class="dropdown-item onMouse"><i class="fas fa-list-alt"></i> Conversation List</a>
-                        <hr>
-                        <a href="{{ route('leave.conversation',request()->route('id')) }}" class="dropdown-item onMouse" onclick="return confirm('Are you sure you want to leave this conversation?')"><i class="fas fa-sign-out-alt"></i> Leave Conversation</a>
+                        {{--<hr>--}}
+                        {{--<a href="{{ route('leave.conversation',request()->route('id')) }}" class="dropdown-item onMouse" onclick="return confirm('Are you sure you want to leave this conversation?')"><i class="fas fa-sign-out-alt"></i> Leave Conversation</a>--}}
                     </div>
                 </div>
             </div>
