@@ -38,13 +38,6 @@
             word-wrap: break-word;
         }
 
-        .col-2 {
-            -moz-hyphens:auto;
-            -ms-hyphens:auto;
-            -webkit-hyphens:auto;
-            hyphens:auto;
-            word-wrap:break-word;
-        }
         .ahref-style
         {
             font-size: 15px;

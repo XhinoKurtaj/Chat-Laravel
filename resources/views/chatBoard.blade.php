@@ -147,7 +147,7 @@
             @if($conversation->type == 'group')
                 <div class="row">
                         <div class="col-md-6">
-                            <input type="text" name="member" class="form-control" id="search-text" placeholder="Search">
+                            <input type="email" name="member" class="form-control" id="search-text" placeholder="Search">
                         </div>
                         <div class="col-md-6">
                             <button class="btn btn-info" id="add-member">Add Memeber</button>

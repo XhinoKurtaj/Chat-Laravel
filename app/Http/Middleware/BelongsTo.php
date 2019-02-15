@@ -13,7 +13,6 @@ class BelongsTo
      * @param  \Closure  $next
      * @return mixed
      */
-
     public function handle($request, Closure $next)
     {
         $user = auth()->user()->id;

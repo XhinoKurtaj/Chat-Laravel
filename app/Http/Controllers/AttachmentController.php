@@ -11,7 +11,9 @@ class AttachmentController extends Controller
 {
     public function index($id)
     {
-        $attachments = Attachment::where('conversation_id',$id)->get();
+        $attachments = Attachment::where('conversation_id',$id)
+            ->orderBy('id', 'desc')
+            ->get();
         return response()->json($attachments);
     }
 
