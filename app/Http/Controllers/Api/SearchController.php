@@ -23,7 +23,7 @@ class SearchController extends Controller
         if($member != null)
         {
             $search = DB::table('users')->where('email', 'like', '%' . $member . '%')->pluck('id');
-            if ($search[0] == null) {
+            if (empty($search[0])) {
                 return response()->json("We couldn't find any user with that email",404);
             }else{
                 $user = User::find($search[0]);

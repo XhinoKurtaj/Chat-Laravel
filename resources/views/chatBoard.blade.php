@@ -125,7 +125,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3">
+        <div class="col-4">
             <div class="card mb-3" style="max-width: 18rem;">
                 <div class="container center">
                     <img src="/storage/{{ Auth::user()->photo }}" alt="Avatar" id="photo_pic" class="img-thumbnail" style="width:200px;height:200px;">
@@ -147,7 +147,7 @@
             @if($conversation->type == 'group')
                 <div class="row">
                         <div class="col-md-6">
-                            <input type="email" name="member" class="form-control" id="search-text" placeholder="Search">
+                            <input type="email" name="member" class="form-control" id="search-text" placeholder="Email">
                         </div>
                         <div class="col-md-6">
                             <button class="btn btn-info" id="add-member">Add Memeber</button>
@@ -156,7 +156,6 @@
                 <br><br>
                     @endif
             <div id="alerts">
-
             </div>
             <div class="table-wrapper-scroll-y">
                 <table class="table table-striped ">
@@ -171,7 +170,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-7">
+        <div class="col-8">
             <div class="card">
                 <div class="card-body" style="overflow:auto" id="textResponse">
                      <p id="message-display"></p>
@@ -183,7 +182,7 @@
                         <form id="form" action="{{ route('message.store',request()->route('id')) }}" method="POST" id="ajax" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group ">
-                                <textarea class="form-control shadow p-3 mb-5 bg-white rounded " aria-label="With textarea" id="msgArea" name="message" required style="resize: none;" maxlength="255"> </textarea>
+                                <textarea class="form-control shadow p-3 mb-5 bg-white rounded " aria-label="With textarea" id="msgArea" name="message" required style="resize: none;" maxlength="255" placeholder="Write your message..."> </textarea>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text shadow p-3 mb-5 bg-white rounded"><input type="submit"   id="btn_send" class="btn-lg btn-success" value="Send"></span>
                                 </div>
@@ -195,23 +194,24 @@
                     </div>
                 </div>
             </div>
-        <div class="col-2">
-            <div class="attachment-wrapper-scroll-y">
-                <h6>Attachments <i class="fas fa-paperclip"></i></h6>
-                <hr>
-                <ul id="attachment-list">
-                </ul>
-            </div>
-        </div>
+        {{--<div class="col-2">--}}
+            {{--<div class="attachment-wrapper-scroll-y">--}}
+                {{--<h6>Attachments <i class="fas fa-paperclip"></i></h6>--}}
+                {{--<hr>--}}
+                {{--<ul id="attachment-list">--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 </div>
-    {{--<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>--}}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/js/app.js"></script>
-    {{--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>--}}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
 <script>
     $('#attachment').on('change',function(){
         var fileName = $(this).val();
         $(this).next('.custom-file-label').html(fileName);
     })
 </script>
+
 @include('/partial/footer')
