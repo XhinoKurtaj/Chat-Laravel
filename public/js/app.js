@@ -61724,8 +61724,7 @@ function getMessages() {
 function memberNotification(event, status) {
   var body = "<div class='alert alert-success' role='alert' tabindex='0'>" + "<p class='alert-heading '>" + event + " " + status + "</p></div><br>";
   return body;
-} // alert-primary
-
+}
 
 function getMembers() {
   $.ajax({
@@ -61805,7 +61804,7 @@ function build(created, photo, name, message) {
     attach = "";
   }
 
-  var html = "<div class='alert alert-primary show-delete-btn' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> " + "</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p></div><br>";
+  var html = "<div class='alert alert-primary show-delete-btn message-position' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> " + "</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p></div><br>";
   return html;
 }
 

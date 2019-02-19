@@ -114,7 +114,6 @@ $("#DeleteUser").click(function(){
         })
     }
 });
-
 //Functions
 function getMessages(){
     $('#textResponse').stop().animate({
@@ -136,8 +135,6 @@ function memberNotification(event,status)
         "<p class='alert-heading '>"+event +" "+ status + "</p></div><br>";
     return body
 }
-
-// alert-primary
 function getMembers(){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -153,7 +150,6 @@ function getMembers(){
         }
     });
 }
-
 function getAttachment() {
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -206,7 +202,7 @@ function build(created,photo,name,message,attachment = null, messageId)
         download = "";
         attach = "";
     }
-    var html = "<div class='alert alert-primary show-delete-btn' role='alert' tabindex='0'>" +
+    var html = "<div class='alert alert-primary show-delete-btn message-position' role='alert' tabindex='0'>" +
         "<p class='alert-heading '><span class='delete-message'><a href='"+id+"/messages/"+messageId+"'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> " +
         "</a></span>" + userData + messageBody + download + attach + "</a><br><small>"+created+"</small></p></div><br>";
     return html;

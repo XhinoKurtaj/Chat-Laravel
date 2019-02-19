@@ -39,7 +39,8 @@ class MessageController extends Controller
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
         ]);
-        if($request->hasFile('attachment')) {
+        if($request->hasFile('attachment'))
+        {
             $attachment = new AttachmentController();
             $attachment->store($conversation->id,$message->id,$request);
         }

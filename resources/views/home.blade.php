@@ -1,27 +1,5 @@
 @extends('layouts.app')
-<style>
-    #conversation-group{
-        width: 100px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-
-    }
-    #conversation-group:hover{
-        width: 185px;
-        overflow: visible;
-    }
-    .profile-redirect{
-        color: black;
-    }
-    .conversation-wrapper-scroll-y {
-        display: block;
-        max-height: 550px;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-</style>
+<link href="/css/conversation-list-style.css" rel="stylesheet">
 @section('content')
 
     @if (Session::has('success'))

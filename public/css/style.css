@@ -1,0 +1,117 @@
+
+.container-fluid{
+    width:100%;
+    height:100%;
+    margin-top:20px;
+}
+.card-body{
+    border-style:outset;
+    border-width:5px;
+    font-family: "Times New Roman", Times, serif;
+}
+#textResponse{
+    height:700px;
+    overflow:auto;
+}
+.onMouse:hover{
+    background-color:lightgray;
+}
+#photo_pic{
+    width:90%;
+    margin-top: 10px;
+    padding: 5px 0 0 5px;
+}
+#username{
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    color:orange;
+}
+#btnSettings{
+    margin-bottom: 10px;
+}
+.center{
+    text-align: center;
+}
+.span-position{
+    position: absolute;
+    top: 0;
+    left: 25px;
+    font-size: 20px;
+    color: red;
+}
+.alert-heading{
+    margin:auto;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+}
+.mb-0{
+    padding-left: 5em;
+}
+.sender{
+    text-align: right;
+}
+.user-icon{
+    width:32px;
+    height:32px;
+    top:10px;
+    left:10px;
+    border-radius:50%;
+}
+.col-2 {
+    -moz-hyphens:auto;
+    -ms-hyphens:auto;
+    -webkit-hyphens:auto;
+    hyphens:auto;
+    word-wrap:break-word;
+}
+.img-thumbnail{
+    height: 100px;
+    width: 100px;
+}
+.delete-message{
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+}
+.search-bar{
+    margin:10px;
+}
+#button-addon2{
+    margin-top:10px;
+}
+#nameDropDown{
+    margin: 0 10px 10px 10px;
+}
+#conversation-name{
+    font-size:20px;
+    font-family: "Times New Roman", Times, serif;
+    color: black;
+    margin-left: 10px;
+    text-align: right;
+}
+#conversation-name:hover{
+    color: blueviolet;
+    font-family: "Nunito", sans-serif;
+}
+.table-wrapper-scroll-y {
+    display: block;
+    max-height: 500px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.attachment-wrapper-scroll-y {
+    display: block;
+    max-height: 850px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+/*#message-display{*/
+/*position:absolute;*/
+/*width:800px;*/
+/*bottom: 0;*/
+/*left: 10px;*/
+/*}*/
+.message-position{
+    top:500px;
+}
+

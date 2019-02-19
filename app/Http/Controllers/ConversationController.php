@@ -58,7 +58,8 @@ class ConversationController extends Controller
         $custom_name = $request->get('custom_name');
         $conversation = Conversation::findOrFail($id);
         $conversation->custom_name = $custom_name;
-        if($request->hasFile('custom_photo')) {
+        if($request->hasFile('custom_photo'))
+        {
             $image = $request->file('custom_photo');
             $custom_photo = $image->store('images/conversation-images', ['disk' => 'public']);
             $conversation->custom_photo = $custom_photo;
@@ -94,7 +95,8 @@ class ConversationController extends Controller
             ->orWhere('custom_name', $fullNameGuest . ' ' . $authUserName)
             ->get();
         $conversation = $conversationObj->toArray();
-        if($conversation != null && $conversation[0]['type'] == 'default'){
+        if($conversation != null && $conversation[0]['type'] == 'default')
+        {
             return redirect('/home/conversation/'.$conversation[0]['id']);
         }else{
             $conversationId = Conversation::insertGetId([
