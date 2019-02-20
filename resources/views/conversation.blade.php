@@ -21,9 +21,12 @@
                 </form>
                 <input type="hidden" id="conversation-id" value="{{$conversation->id}}">
                 <br><br><br><br>
-                @if($conversation->type == "group")
+                @if($conversation->type == "group" && auth()->user()->type != "admin")
                 <a href="{{ route('leave.conversation',request()->route('id')) }}" class="btn btn-small btn-outline-danger" onclick="return confirm('Are you sure you want to leave this conversation?')">
                     <i class="fas fa-sign-out-alt"></i> Leave Conversation</a>
+                    @endif
+                @if(auth()->user()->type == "admin")
+                    <a onclick="return confirm('Are you sure u want to delete this conversation?')" href="{{ route('conversation.delete', $conversation->id) }}"  class="btn btn-outline-danger btn-sm" ><i class="far fa-trash-alt"> Delete Conversation</i></a>
                     @endif
             </div>
         </div>
@@ -49,7 +52,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection

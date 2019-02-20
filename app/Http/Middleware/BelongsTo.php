@@ -18,7 +18,7 @@ class BelongsTo
         $user = auth()->user()->id;
         $conversation = Conversation::findOrFail($request->id);
         $belongs = $conversation->users->contains($user);
-        if($belongs) {
+        if($belongs || auth()->user()->type == "admin") {
             return $next($request);
         }
         return redirect('home');

@@ -17,13 +17,24 @@ class SearchController extends Controller
 
     public function index()
     {
-        $users = User::select([DB::raw("CONCAT(id,' ',first_name,' ',last_name) AS name"),'email',]);
+        $users = User::select([DB::raw("CONCAT(id,'/',first_name,' ',last_name) AS name"),'email',]);
         return Datatables::of($users)->make();
     }
     
     public function create()
     {
         return view('data');
+    }
+
+    public function conversationData()
+    {
+        return view('ConversationsData');
+    }
+
+    public function indexConversationData()
+    {
+        $conversation = Conversation::select([DB::raw("CONCAT(id,'/',custom_name) AS name")]);
+        return Datatables::of($conversation)->make();
     }
 
     public function inviteUser(Request $request, $id)

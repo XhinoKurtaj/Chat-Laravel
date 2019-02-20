@@ -40,7 +40,7 @@
                 <div class="card text-white bg-secondary mb-3" style="width: 18rem;">
                     <div class="card-body">
                         <h1 class="card-title"><i class="fas fa-list-ul"></i></i></h1>
-                        <a href="#"><h3 class="card-name name">Conversations</h3></a>
+                        <a href="/conversations"><h3 class="card-name name">Conversations</h3></a>
                         <h3 class="card-name">{{count($conversationList)}}</h3>
                     </div>
                 </div>

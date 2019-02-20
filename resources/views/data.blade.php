@@ -22,13 +22,12 @@
                 ajax: '{!! route('data') !!}',
                 columns: [
                     { data: 'name', name: 'name', searchable:false, render: function ( data ) {
-                        console.log(data.substring(0, 4));
-                        var usersID = data.substring(0, 4);
-                        return '<a href="users/'+usersID+'">'+data+'</a>';
+                        var id = data.substr(0, data.indexOf('/'));
+                        var name = data.substr(data.indexOf('/')+1,data.length-1);
+                        return '<a href="users/'+id+'">'+name+'</a>';
                         }},
                     { data: 'email', name: 'email' }
                 ]
-
             });
         });
     </script>

@@ -101,6 +101,12 @@ Route::get('users/data', 'SearchController@index')
 Route::get('/users/{id}','UserController@show')
     ->name('search.user');
 
+Route::get('conversations', 'SearchController@conversationData')
+    ->name('conversation.table');
+Route::get('conversations/data', 'SearchController@indexConversationData')
+    ->name('conversation.data');
+
+
 
 
 

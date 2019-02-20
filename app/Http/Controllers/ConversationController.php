@@ -71,7 +71,11 @@ class ConversationController extends Controller
     public function delete($id)
     {
         $conversation = Conversation::find($id)->delete();
-        return back()->with('success-delete',"Conversation was deleted successfully");
+        if(auth()->user()->type == "admin"){
+            return redirect()->route('conversation.table');
+        }else {
+            return back()->with('success-delete', "Conversation was deleted successfully");
+        }
     }
 
     public function leaveConversation($id)

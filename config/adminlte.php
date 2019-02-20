@@ -121,7 +121,7 @@ return [
         ],
         [
             'text' => 'Conversations',
-            'url'  => '/profile',
+            'url'  => '/conversations',
             'icon' => 'List',
         ],
         [
