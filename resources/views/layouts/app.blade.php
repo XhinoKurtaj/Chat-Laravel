@@ -58,6 +58,9 @@
             overflow-y: auto;
             -ms-overflow-style: -ms-autohiding-scrollbar;
         }
+        #comment-area{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -102,7 +105,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if(Auth::user()->type == 'admin')
-                                    <a class="dropdown-item" href="{{  route('admin') }}">Admin</a>
+                                    <a class="dropdown-item" href="{{  route('admin') }}"><i class="fas fa-user-cog"></i> Admin</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ url('/profile') }}"><i class="fa fa-btn fa-user"></i> Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -148,13 +151,14 @@
                             output += "<div class='column ahref-style'><a style='text-decoration:none' href='/home/conversation/"+id+"/download/"+result[i].id+"'>"+result[i].attachment + "<br><br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp" +
                                 "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i class='fas fa-download' style='color:gray'></i></a></div>";
                         }
-                }
+                 }
                 attachmentList.html(output);
-            }
-        });
-    }
+                }
+            });
+        }
 
         function getMembers(){
+
             var id = $("#conversation-id").val();
             const memeberDisplay = $("#showMemberList");
             $.ajax({
@@ -164,6 +168,7 @@
                 success:function(data){
                     var output = "";
                     for(var i in data){
+                        console.log(data[i].fullName);
                         output += "<tr class='table-active'>"+
                             "<td><strong><a href='/users/"+data[i].id+"'>"+data[i].fullName +"</a></strong></td></tr>";
                     }

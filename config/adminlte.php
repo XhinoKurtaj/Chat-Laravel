@@ -114,6 +114,31 @@ return [
             'url'  => '/profile',
             'icon' => 'user',
         ],
+        [
+            'text' => 'Users',
+            'url'  => '/users',
+            'icon' => 'users',
+        ],
+        [
+            'text' => 'Conversations',
+            'url'  => '/profile',
+            'icon' => 'List',
+        ],
+        [
+            'text' => 'Photos',
+            'url'  => '/profile',
+            'icon' => 'Photo',
+        ],
+        [
+            'text' => 'Messages',
+            'url'  => '/profile',
+            'icon' => 'Envelope',
+        ],
+        [
+            'text' => 'Attachments',
+            'url'  => '/profile',
+            'icon' => 'Paperclip',
+        ],
 
         [
             'text'    => 'Multilevel',

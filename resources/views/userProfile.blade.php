@@ -9,6 +9,9 @@
         position: absolute;
         right: 15px;
     }
+    .wrapp-comments{
+        border: 0.5px solid black;
+    }
 
 </style>
 
@@ -30,15 +33,20 @@
                                     <h5> {{$user->email}}</h5>
                                 </div>
                                 @else
-                                <div class="col-md-4">
-                                    <a href="/users/add/{{$user->id}}" id="Message_user" class="btn btn-outline-success"><i class="fas fa-comment-alt"></i> Send Message to User</a>
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <a href="/users/add/{{$user->id}}" id="Message_user" class="btn btn-outline-success btn-sm">
+                                            <i class="fas fa-comment-alt"></i> Send Message to User</a>
+                                        </div>
+                                        <div class="col-6"><h5> {{$user->email}}</h5></div>
+                                    </div>
                                     <br><hr><br>
-                                    <h5> {{$user->email}}</h5>
                                 </div>
                                 @endif
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <a href="{{ url()->previous() }}" class="btn btn-outline-secondary" id="back-btn"><i class="fas fa-arrow-circle-left"></i> Back</a>
-
+                                <input id="user" type="hidden" value="{{$user->id}}">
                             </div>
                         </div>
                     </div>

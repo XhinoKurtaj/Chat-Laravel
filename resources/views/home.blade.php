@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link href="/css/conversation-list-style.css" rel="stylesheet">
+
 @section('content')
 
     @if (Session::has('success'))

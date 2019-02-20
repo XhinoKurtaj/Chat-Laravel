@@ -8,7 +8,9 @@ use Auth;
 use Image;
 use App\User;
 use App\Conversation;
-
+use App\Message;
+use App\Photo;
+use App\Attachment;
 class UserController extends Controller
 {
     public function __construct()
@@ -50,9 +52,12 @@ class UserController extends Controller
 
     public function index()
     {
-        $conversationList = Conversation::all();
         $userList = User::all();
-        return View("admin", compact('userList','conversationList'));
+        $conversationList = Conversation::all();
+        $photoList = Photo::all();
+        $messageList = Message::all();
+        $attachmentList = Attachment::all();
+        return View("admin", compact('userList','conversationList','photoList','messageList','attachmentList'));
     }
 
     public function show($id)
@@ -60,4 +65,5 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('userProfile',compact('user'));
     }
+
 }

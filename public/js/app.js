@@ -61778,15 +61778,16 @@ function getAttachment() {
 function buildUp(result) {
   var output = " ";
   result.forEach(function (element) {
-    var form = build(element.created_at, element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
+    console.log(element); // message id = element.id
+
+    var form = build(element.id, element.created_at, element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
     output += form;
   });
   display.html(output);
 }
 
-function build(created, photo, name, message) {
-  var attachment = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
-  var messageId = arguments.length > 5 ? arguments[5] : undefined;
+function build(messageId, created, photo, name, message) {
+  var attachment = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : null;
   var userData = "<img src='/storage/" + photo + "' class='user-icon'> &nbsp" + name + "</p>";
   var messageBody = "<p class='mb-0'>" + message;
 
@@ -61804,7 +61805,7 @@ function build(created, photo, name, message) {
     attach = "";
   }
 
-  var html = "<div class='alert alert-primary show-delete-btn message-position' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> " + "</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p></div><br>";
+  var html = "<div class='alert alert-primary show-buttons message-position' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> " + "</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p>" + "<button class='btn btn-sm btn-outline-success comment-message'><i class='fas fa-comment'></i></button>" + "<details><summary>Comments</summary><ul></ul></div><br>";
   return html;
 }
 

@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <style>
     .size{
@@ -8,45 +9,68 @@
         font-family: "Times New Roman", Times, serif;
         color: black;
     }
+    .card-title{
+        text-align: center;
+        font-size: 60px;
+    }
+    .card-name{
+        text-align: center;
+        color:whitesmoke;
+        font-family: "Times New Roman", Times, serif;
+    }
+    .name:hover{
+        font-family: "Arial"
+    }
 </style>
 @section('title', 'Admin Panel')
 
 @section('content_header')
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-md-6"><h1>Users</h1><hr>
-                @foreach($userList as $user)
-                    <div class="row">
-                        <div class="col-8">
-                            <div class='alert alert-dark' role='alert'>
-                                <p class='alert-heading'>
-                                    <a href="" class="button-conv"><img src="/storage/{{$user->photo}}" style="width:32px; height:32px;  top:10px; left:10px; border-radius:50%">
-                                        &nbsp&nbsp<span class="size"><strong>{{$user->fullName}}</strong></span><br>
-                                        <span class="size"><strong>{{$user->email}}</strong></span>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
+            <div class="col-4">
+                <div class="card text-white bg-primary mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h1 class="card-title"><i class="fas fa-users"></i></h1>
+                        <a href="/users"><h3 class="card-name name">Users</h3></a>
+                        <h3 class="card-name">{{count($userList)}}</h3>
                     </div>
-                @endforeach
-
+                </div>
             </div>
-            <div class="col-md-6"><h1>Conversations</h1><hr>
-
-                @foreach($conversationList as $conversation)
-                    <div class="row alert alert-dark">
-                        <div class="col-4">
-                            <a href="{{ route('message.show', $conversation->id) }}" class="button-conv"><img src="/storage/{{ $conversation->custom_photo }}" style="width:32px; height:32px;  top:10px; left:10px; border-radius:50%">
-                                <span class="size"><strong>{{$conversation->custom_name}}</strong></span>
-                            </a>
-                        </div>
-                        <div class="col-4">
-                            <a href="{{ route('show.conversation', $conversation->id)}}"  class="btn btn-outline-success" >Edit</a>
-                            <a onclick="return confirm('Are you sure u want to delete this conversation?')" href="{{ route('conversation.delete', $conversation->id) }}"  class="btn btn-outline-danger" >Delete</a>
-                        </div>
-                    </div><hr>
-                @endforeach
-
+            <div class="col-4">
+                <div class="card text-white bg-secondary mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h1 class="card-title"><i class="fas fa-list-ul"></i></i></h1>
+                        <a href="#"><h3 class="card-name name">Conversations</h3></a>
+                        <h3 class="card-name">{{count($conversationList)}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card text-white bg-success mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h1 class="card-title"><i class="fas fa-image"></i></h1>
+                        <a href="#"><h3 class="card-name name">Photos</h3></a>
+                        <h3 class="card-name name">{{count($photoList)}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card text-white bg-info mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h1 class="card-title"><i class="fas fa-envelope"></i></h1>
+                        <a href="#"><h3 class="card-name name">Messages</h3></a>
+                        <h3 class="card-name name">{{count($messageList)}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card  text-white bg-danger mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h1 class="card-title"><i class="fas fa-paperclip"></i></h1>
+                        <a href="#"><h3 class="card-name name">Attachments</h3></a>
+                        <h3 class="card-name">{{count($attachmentList)}}</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

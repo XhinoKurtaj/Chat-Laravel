@@ -70,5 +70,9 @@ class User extends Authenticatable
         return $this->hasMany(Message::class,'sender_id');
     }
 
-
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
 }

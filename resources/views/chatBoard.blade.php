@@ -4,6 +4,12 @@
         /*width: 0px;*/
     }
 
+    /*.delete-message{*/
+        /*display: none;*/
+    /*}*/
+    /*.comment-message{*/
+        /*display: none;*/
+    /*}*/
 </style>
 <div id="app" class="container-fluid">
     <div class="container-fluid">
@@ -94,7 +100,20 @@
     $('#attachment').on('change',function(){
         var fileName = $(this).val();
         $(this).next('.custom-file-label').html(fileName);
-    })
+    });
+
+    // $("#message-display").on('click','.comment-message',function(){
+    //         console.log("clicked");
+    // });
+
+    // $("#message-display").on('focus','.show-buttons',function(){
+    //     $(".delete-message").slideToggle("slow");
+    //     $(".comment-message").slideToggle("slow");
+    // });
+    // $("#message-display").on('focusout','.show-buttons',function(){
+    //     $(".delete-message").slideToggle("slow");
+    //     $(".comment-message").slideToggle("slow");
+    // });
 </script>
 
 @include('/partial/footer')

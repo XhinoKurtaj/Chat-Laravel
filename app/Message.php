@@ -28,4 +28,9 @@ class Message extends Model
     {
         return $this->hasOne(Attachment::class,'message_id');
     }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 }

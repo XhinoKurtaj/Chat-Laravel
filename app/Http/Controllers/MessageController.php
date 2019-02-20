@@ -21,7 +21,7 @@ class MessageController extends Controller
     public function read($id)
     {
         $messageList = Message::where('conversation_id',$id)
-            ->with('attachment', 'sender.photos')
+            ->with('sender','attachment', 'sender.photos')
             ->orderBy('id', 'asc')
             ->get();
         return response()->json($messageList);

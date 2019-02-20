@@ -74,6 +74,11 @@ Route::group(['middleware' => ['belongs_to']], function () {
 
     Route::get('/home/conversation/{id}/add','SearchController@inviteUser')
         ->name('add.members');
+
+    Route::get('/home/conversation/{id}/comment/{messageId}','CommentController@messageComments')
+        ->name('commentMessage.get');
+    Route::post('/home/conversation/{id}/comment/{messageId}','CommentController@store')
+        ->name('commentMessage.store');
 });
 
 
@@ -95,6 +100,10 @@ Route::get('users/data', 'SearchController@index')
     ->name('data');
 Route::get('/users/{id}','UserController@show')
     ->name('search.user');
+
+
+
+
 Route::get('/users/add/{id}','ConversationController@messageSingleUser');
 
 
