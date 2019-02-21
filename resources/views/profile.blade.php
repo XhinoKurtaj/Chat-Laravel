@@ -16,7 +16,7 @@
             <br><br><hr>
             <a href="{{ route('conversation.list') }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-circle-left"></i> Back</a>
             <br><hr><hr><br>
-            <button id="DeleteUser" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Delete User</button>
+            <a href="/profile/{{auth()->user()->id}}/delete" onclick="return confirm('Are you sure u want to delete this User?')" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Delete User</a>
         </div>
         <div class="col-5 align-self-end">
             <div class="card">
@@ -28,7 +28,7 @@
                                 <label for="First Name" class="col-md-4 col-form-label text-md-right">{{ __('First_name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="First Name" type="text" class="form-control{{ $errors->has('First_name') ? ' is-invalid' : '' }}" name="first_name" placeholder="{{Auth::user()->first_name}}"  autofocus>
+                                    <input id="First Name" type="text" class="form-control{{ $errors->has('First_name') ? ' is-invalid' : '' }}" name="first_name" placeholder="{{Auth::user()->first_name}}" value="{{Auth::user()->first_name}}" autofocus>
 
                                     @if ($errors->has('First_name'))
                                         <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                                 <label for="Last Name" class="col-md-4 col-form-label text-md-right">{{ __('Last_name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="Last Name" type="text" class="form-control{{ $errors->has('Last_name') ? ' is-invalid' : '' }}" name="last_name" placeholder="{{Auth::user()->last_name}}" autofocus>
+                                    <input id="Last Name" type="text" class="form-control{{ $errors->has('Last_name') ? ' is-invalid' : '' }}" name="last_name" placeholder="{{Auth::user()->last_name}}" value="{{Auth::user()->last_name}}" autofocus>
 
                                     @if ($errors->has('Last_name'))
                                         <span class="invalid-feedback" role="alert">

@@ -56,6 +56,27 @@ class MessageController extends Controller
     {
         $message = Message::find($messageId)
                    ->delete();
-        return back();
+        return redirect()->back();
+    }
+
+
+    public function messageDetails($id)
+    {
+        $check = Message::find($id);
+        if($check){
+            $messageDetails = Message::where('id',$id)
+                ->with('sender','conversation','attachment')
+                ->get();
+            return view('MessageView', compact('messageDetails'));
+        }else{
+            return back();
+        }
+    }
+
+    public function deleteFromAdmin($messageId)
+    {
+        $message = Message::find($messageId)
+            ->delete();
+        return redirect("messages");
     }
 }

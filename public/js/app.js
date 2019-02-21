@@ -61687,22 +61687,6 @@ window.Echo.private('conversation.' + id).listen('MessageSent', function (event)
   }
 
   getMembers();
-});
-$("#DeleteUser").click(function () {
-  var choice = confirm("Are you sure u want to delete this account");
-
-  if (choice == true) {
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      method: 'get',
-      url: 'profile/delete',
-      success: function success(data) {
-        alert("User deleted successfully");
-      }
-    });
-  }
 }); //Functions
 
 function getMessages() {
@@ -61805,7 +61789,7 @@ function build(messageId, created, photo, name, message) {
     attach = "";
   }
 
-  var html = "<div class='alert alert-primary show-buttons message-position' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> " + "</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p>" + "<button class='btn btn-sm btn-outline-success comment-message'><i class='fas fa-comment'></i></button>" + "<details><summary>Comments</summary><ul></ul></div><br>";
+  var html = "<div class='alert alert-primary show-buttons message-position' role='alert' tabindex='0'>" + "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> " + "</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p></div><br>";
   return html;
 }
 

@@ -24,7 +24,7 @@ Route::get('profile', 'UserController@profile')
     ->name('user.profile');
 Route::post('profile', 'UserController@update')
     ->name('user.update');
-Route::get('profile/delete', 'UserController@delete')
+Route::get('profile/{id}/delete', 'UserController@delete')
     ->name('user.delete');
 
 
@@ -101,13 +101,34 @@ Route::get('users/data', 'SearchController@index')
 Route::get('/users/{id}','UserController@show')
     ->name('search.user');
 
-Route::get('conversations', 'SearchController@conversationData')
-    ->name('conversation.table');
-Route::get('conversations/data', 'SearchController@indexConversationData')
-    ->name('conversation.data');
 
 
 
+Route::group(['middleware' => ['is_admin']], function () {
+    Route::get('conversations', 'SearchController@conversationData')
+        ->name('conversation.table');
+    Route::get('conversations/data', 'SearchController@indexConversationData')
+        ->name('conversation.data');
+
+    Route::get('photos', 'SearchController@photoData')
+        ->name('photos.table');
+    Route::get('photos/data', 'SearchController@indexPhotoData')
+        ->name('photos.data');
+    Route::get('photos/{id}', 'PhotoController@photoDetails')
+        ->name('show.photo');
+    Route::get('photos/{id}/delete', 'PhotoController@delete')
+        ->name('delete.photo');
+
+    Route::get('messages', 'SearchController@messageData')
+        ->name('messages.table');
+    Route::get('messages/data', 'SearchController@indexMessageData')
+        ->name('messages.data');
+    Route::get('messages/{id}', 'MessageController@messageDetails')
+        ->name('show.message');
+    Route::get('messages/{id}/delete', 'MessageController@deleteFromAdmin')
+        ->name('delete.message');
+
+});
 
 
 Route::get('/users/add/{id}','ConversationController@messageSingleUser');

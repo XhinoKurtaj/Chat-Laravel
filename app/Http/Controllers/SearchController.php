@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Conversation;
+use App\Photo;
+use App\Message;
 use App\Events\UserNotification;
 use Yajra\Datatables\Datatables;
 use DB;
@@ -36,6 +38,29 @@ class SearchController extends Controller
         $conversation = Conversation::select([DB::raw("CONCAT(id,'/',custom_name) AS name")]);
         return Datatables::of($conversation)->make();
     }
+
+    public function photoData()
+    {
+        return view('PhotosData');
+    }
+
+    public function indexPhotoData()
+    {
+        $photo = Photo::select([DB::raw("CONCAT(id,'/',photo) AS photo")]);
+        return Datatables::of($photo)->make();
+    }
+
+    public function messageData()
+    {
+        return view('MessagesData');
+    }
+
+    public function indexMessageData()
+    {
+        $message = Message::select([DB::raw("CONCAT(id,'/',message) AS message")]);
+        return Datatables::of($message)->make();
+    }
+
 
     public function inviteUser(Request $request, $id)
     {

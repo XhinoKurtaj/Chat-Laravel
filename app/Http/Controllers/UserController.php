@@ -23,13 +23,19 @@ class UserController extends Controller
         return view('profile', array('user' => Auth::user()) );
     }
 
-    public function delete()
+    public function delete($id)
     {
-        $user = User::find(Auth::user()->id);
-        Auth::logout();
+
+        $user = User::findOrFail($id);
         if ($user->delete())
         {
-            return redirect()->route('login');
+            if(auth()->user()->type == "admin")
+            {
+                return redirect('users');
+            }else{
+                return redirect()->route('login');
+            }
+
         }
     }
 
@@ -39,10 +45,18 @@ class UserController extends Controller
             'first_name' => 'nullable|string|max:255',
             'last_name' => 'nullable|string|max:255',
         ]);
-        $user = Auth::user();
-        $user->update($request->only('first_name', 'last_name'));
 
-        return redirect()->back();
+        $userId = $request->user_id;
+        if($userId == null || $userId == auth()->user()->id)
+        {
+            $user = Auth::user();
+            $user->update($request->only('first_name','last_name'));
+            return redirect()->back();
+        }else{
+            $targetUser = User::find($userId);
+            $targetUser->update($request->only('first_name', 'last_name'));
+            return redirect()->back();
+        }
     }
 
     public function admin()
@@ -62,8 +76,15 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return view('userProfile',compact('user'));
+        $check = User::findOrFail($id);
+        if($check)
+        {
+            $user = User::where("id",$id)
+                ->with('photos')
+                ->get();
+            return view('userProfile',compact('user'));
+        }
+
     }
 
 }

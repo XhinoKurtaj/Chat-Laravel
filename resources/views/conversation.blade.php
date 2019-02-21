@@ -26,8 +26,11 @@
                     <i class="fas fa-sign-out-alt"></i> Leave Conversation</a>
                     @endif
                 @if(auth()->user()->type == "admin")
-                    <a onclick="return confirm('Are you sure u want to delete this conversation?')" href="{{ route('conversation.delete', $conversation->id) }}"  class="btn btn-outline-danger btn-sm" ><i class="far fa-trash-alt"> Delete Conversation</i></a>
-                    @endif
+                    <a onclick="return confirm('Are you sure u want to delete this conversation?')" href="{{ route('conversation.delete', $conversation->id) }}"  class="btn btn-outline-danger btn-sm" >
+                        <i class="far fa-trash-alt"> Delete Conversation</i></a>
+                    <a href="/home/conversation/{{$conversation->id}}" class="btn btn-outline-primary">
+                        <i class="fas fa-comment-alt"></i> Go to Chat</a>
+                @endif
             </div>
         </div>
         <br><hr>

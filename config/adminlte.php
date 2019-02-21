@@ -108,11 +108,11 @@ return [
     */
 
     'menu' => [
-        'ACCOUNT SETTINGS',
+        'MAIN NAVIGATION',
         [
-            'text' => 'Profile',
-            'url'  => '/profile',
-            'icon' => 'user',
+            'text' => 'Blog',
+            'url'  => 'admin/blog',
+            'can'  => 'manage-blog',
         ],
         [
             'text' => 'Users',
@@ -126,12 +126,12 @@ return [
         ],
         [
             'text' => 'Photos',
-            'url'  => '/profile',
+            'url'  => '/photos',
             'icon' => 'Photo',
         ],
         [
             'text' => 'Messages',
-            'url'  => '/profile',
+            'url'  => '/messages',
             'icon' => 'Envelope',
         ],
         [
@@ -140,6 +140,12 @@ return [
             'icon' => 'Paperclip',
         ],
 
+        'ACCOUNT SETTINGS',
+        [
+            'text' => 'Profile',
+            'url'  => '/profile',
+            'icon' => 'user',
+        ],
         [
             'text'    => 'Multilevel',
             'icon'    => 'share',

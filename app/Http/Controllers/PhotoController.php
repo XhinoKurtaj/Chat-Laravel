@@ -55,6 +55,22 @@ class PhotoController extends Controller
     public function delete($id)
     {
         $photo = Photo::find($id)->delete();
-        return back();
+        if(auth()->user()->type == "admin")
+            return redirect()->route('photos.table');
+        else
+            return back();
+    }
+
+    public function photoDetails($id)
+    {
+        $check = Photo::find($id);
+        if($check){
+            $photoDetails = Photo::where('id',$id)
+                ->with('user')
+                ->get();
+            return view('PhotoView', compact('photoDetails'));
+        }else{
+            return back();
+        }
     }
 }
