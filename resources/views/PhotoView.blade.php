@@ -12,6 +12,10 @@
         bottom: 0;
         left: 15px;
     }
+    td a{
+        color: black;
+        text-decoration: none;
+    }:hover{font-family:"Arial"}
 </style>
 @section('content')
     <div class="container">
@@ -43,16 +47,16 @@
                         <td>{{$photoDetails[0]->created_at}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">User Name</th>
-                        <td>{{$photoDetails[0]->user->fullName}}</td>
-                    </tr>
-                    <tr>
                         <th scope="row">User Id</th>
                         <td>{{$photoDetails[0]->user->id}}</td>
                     </tr>
                     <tr>
+                        <th scope="row">User Name</th>
+                        <td><a href="/users/{{$photoDetails[0]->user->id}}">{{$photoDetails[0]->user->fullName}}</a></td>
+                    </tr>
+                    <tr>
                         <th scope="row">User Email</th>
-                        <td>{{$photoDetails[0]->user->email}}</td>
+                        <td><a href="/users/{{$photoDetails[0]->user->id}}">{{$photoDetails[0]->user->email}}</a></td>
                     </tr>
                     <tr>
                         <th scope="row">User Type</th>
@@ -65,7 +69,7 @@
             </div>
         </div>
         <br><hr>
-        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-circle-left"></i> Back</a>
+        <a href="{{ route('photos.table') }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-circle-left"></i> Back</a>
     </div>
 
 @endsection

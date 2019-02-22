@@ -136,7 +136,7 @@ return [
         ],
         [
             'text' => 'Attachments',
-            'url'  => '/profile',
+            'url'  => '/attachments',
             'icon' => 'Paperclip',
         ],
 

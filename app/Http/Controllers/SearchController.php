@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
 use Illuminate\Http\Request;
 use App\User;
 use App\Conversation;
@@ -61,6 +62,16 @@ class SearchController extends Controller
         return Datatables::of($message)->make();
     }
 
+    public function attachmentData()
+    {
+        return view('AttachmentData');
+    }
+
+    public function indexAttachmentsData()
+    {
+        $attachment = Attachment::select([DB::raw("CONCAT(id,'/',attachment) AS attachment")]);
+        return Datatables::of($attachment)->make();
+    }
 
     public function inviteUser(Request $request, $id)
     {

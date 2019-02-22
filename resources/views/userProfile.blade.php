@@ -64,7 +64,7 @@
                                         <div class="row" >
                                             <div class="column">
                                             @foreach($user[0]->photos as $photo)
-                                                    <img src="/storage/{{$photo->photo}}" class='img-thumbnail'>
+                                                    <a href="/photos/{{$photo->id}}"><img src="/storage/{{$photo->photo}}" class='img-thumbnail'></a>
                                                 @endforeach
                                             </div>
                                         </div>

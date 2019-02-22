@@ -34,4 +34,17 @@ class AttachmentController extends Controller
             'message_id' => $messageId,
         ]);
     }
+
+    public function attachmentDetails($id)
+    {
+        $check = Attachment::find($id);
+        if($check){
+            $attachmentDetails = Attachment::where('id',$id)
+                ->with('conversation','message','message.sender')
+                ->get();
+            return view('AttachmentView', compact('attachmentDetails'));
+        }else{
+            return back();
+        }
+    }
 }

@@ -128,6 +128,13 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('messages/{id}/delete', 'MessageController@deleteFromAdmin')
         ->name('delete.message');
 
+    Route::get('attachments', 'SearchController@attachmentData')
+        ->name('attachments.table');
+    Route::get('attachments/data', 'SearchController@indexAttachmentsData')
+        ->name('attachments.data');
+    Route::get('attachment/{id}', 'AttachmentController@attachmentDetails')
+        ->name('show.attachment');
+
 });
 
 
