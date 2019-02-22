@@ -115,7 +115,16 @@
             <!-- Main content -->
             <section class="content">
 
-                @yield('content')
+                @yield('content-message')
+                @yield('content-message-details')
+                @yield('content-photo')
+                @yield('content-photo-details')
+                @yield('content-attachment')
+                @yield('content-attachment-details')
+                @yield('content-conversation')
+                @yield('content-conversation-details')
+                @yield('content-users')
+                @yield('content-users-details')
 
             </section>
             <!-- /.content -->

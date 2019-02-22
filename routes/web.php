@@ -105,34 +105,40 @@ Route::get('/users/{id}','UserController@show')
 
 
 Route::group(['middleware' => ['is_admin']], function () {
-    Route::get('conversations', 'SearchController@conversationData')
-        ->name('conversation.table');
-    Route::get('conversations/data', 'SearchController@indexConversationData')
-        ->name('conversation.data');
+    Route::get('admin/users', 'SearchController@userData')
+        ->name('users.table');
+    Route::get('admin/users/{id}','UserController@userDetails')
+        ->name('search.user');
 
-    Route::get('photos', 'SearchController@photoData')
+    Route::get('admin/conversations', 'SearchController@conversationData')
+        ->name('conversation.table');
+    Route::get('admin/conversations/data', 'SearchController@indexConversationData')
+        ->name('conversation.data');
+    Route::get('admin/conversations/{id}','ConversationController@conversationDetails');
+
+    Route::get('admin/photos', 'SearchController@photoData')
         ->name('photos.table');
-    Route::get('photos/data', 'SearchController@indexPhotoData')
+    Route::get('admin/photos/data', 'SearchController@indexPhotoData')
         ->name('photos.data');
-    Route::get('photos/{id}', 'PhotoController@photoDetails')
+    Route::get('admin/photos/{id}', 'PhotoController@photoDetails')
         ->name('show.photo');
-    Route::get('photos/{id}/delete', 'PhotoController@delete')
+    Route::get('admin/photos/{id}/delete', 'PhotoController@delete')
         ->name('delete.photo');
 
-    Route::get('messages', 'SearchController@messageData')
+    Route::get('admin/messages', 'SearchController@messageData')
         ->name('messages.table');
-    Route::get('messages/data', 'SearchController@indexMessageData')
+    Route::get('admin/messages/data', 'SearchController@indexMessageData')
         ->name('messages.data');
-    Route::get('messages/{id}', 'MessageController@messageDetails')
+    Route::get('admin/messages/{id}', 'MessageController@messageDetails')
         ->name('show.message');
-    Route::get('messages/{id}/delete', 'MessageController@deleteFromAdmin')
+    Route::get('admin/messages/{id}/delete', 'MessageController@deleteFromAdmin')
         ->name('delete.message');
 
-    Route::get('attachments', 'SearchController@attachmentData')
+    Route::get('admin/attachments', 'SearchController@attachmentData')
         ->name('attachments.table');
-    Route::get('attachments/data', 'SearchController@indexAttachmentsData')
+    Route::get('admin/attachments/data', 'SearchController@indexAttachmentsData')
         ->name('attachments.data');
-    Route::get('attachment/{id}', 'AttachmentController@attachmentDetails')
+    Route::get('admin/attachment/{id}', 'AttachmentController@attachmentDetails')
         ->name('show.attachment');
 
 });

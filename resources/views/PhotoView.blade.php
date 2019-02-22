@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 <style>
     #img{
         width:350px;
@@ -15,9 +15,9 @@
     td a{
         color: black;
         text-decoration: none;
-    }:hover{font-family:"Arial"}
+    }:hover{color:blue}
 </style>
-@section('content')
+@section('content-photo-details')
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -52,11 +52,11 @@
                     </tr>
                     <tr>
                         <th scope="row">User Name</th>
-                        <td><a href="/users/{{$photoDetails[0]->user->id}}">{{$photoDetails[0]->user->fullName}}</a></td>
+                        <td><a href="/admin/users/{{$photoDetails[0]->user->id}}">{{$photoDetails[0]->user->fullName}}</a></td>
                     </tr>
                     <tr>
                         <th scope="row">User Email</th>
-                        <td><a href="/users/{{$photoDetails[0]->user->id}}">{{$photoDetails[0]->user->email}}</a></td>
+                        <td><a href="/admin/users/{{$photoDetails[0]->user->id}}">{{$photoDetails[0]->user->email}}</a></td>
                     </tr>
                     <tr>
                         <th scope="row">User Type</th>

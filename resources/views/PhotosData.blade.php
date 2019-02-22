@@ -1,9 +1,15 @@
-@extends('layouts.master')
+@extends('adminlte::page')
 
-@section('content')
+@section('content-photo')
+    <style>
+        a {
+            color:black;
+            font-size: 17px;
+        }
+    </style>
     <a href="{{route('admin')}}" class="btn btn-outline-secondary " id="back-btn"><i class="fas fa-arrow-circle-left"></i> Back</a><hr>
 
-    <table class="table table-bordered" id="photos-table">
+    <table class="table table-bordered"  style="background: white" id="photos-table">
         <thead>
         <tr>
             <th>Photo Name</th>
@@ -22,7 +28,7 @@
                     { data: 'photo', name: 'photo', render: function(data){
                             var id = data.substr(0, data.indexOf('/'));
                             var name = data.substr(data.indexOf('/')+1,data.length-1);
-                            return '<a href="/photos/'+id+'">'+name+'</a>';
+                            return '<a href="photos/'+id+'">'+name+'</a>';
                         }
                     },
                 ]

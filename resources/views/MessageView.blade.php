@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 <style>
     td a{
         color: black;
         text-decoration: none;
-    }:hover{font-family:"Arial"}
+    }:hover{color:blue}
 </style>
-@section('content')
+@section('content-message-details')
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -13,9 +13,9 @@
                     <thead>
                     <tr>
                         @if($messageDetails[0]->attachment != null)
-                        <th colspan="8">Details</th>
+                        <th colspan="8">Message Details</th>
                             @else
-                            <th colspan="6">Details</th>
+                            <th colspan="6">Message Details</th>
                             @endif
                     </tr>
                     </thead>
@@ -45,18 +45,19 @@
                         <td >{{$messageDetails[0]->message}}</td>
                         <th scope="row">Sender Name</th>
                         <td>
-                            <a href="/users/{{$messageDetails[0]->sender->id}}">
+                            <a href="/admin/users/{{$messageDetails[0]->sender->id}}">
                                 {{$messageDetails[0]->sender->fullName}}</a>
                         </td>
                         <th scope="row">Conversation Name</th>
                         <td>
-                            <a href="/home/conversation/{{$messageDetails[0]->conversation->id}}/edit">
+
+                            <a href="/admin/conversations/{{$messageDetails[0]->conversation->id}}">
                                 {{$messageDetails[0]->conversation->custom_name}}</a>
                         </td>
                         @if($messageDetails[0]->attachment != null)
                             <th scope="row">Attachment</th>
                             <td style="word-break: break-all;">
-                                <a href="/attachment/{{$messageDetails[0]->attachment->id}}">
+                                <a href="/admin/attachment/{{$messageDetails[0]->attachment->id}}">
                                     {{$messageDetails[0]->attachment->attachment}}</a>
                             </td>
                         @endif
@@ -66,7 +67,7 @@
                         <td>{{$messageDetails[0]->created_at}}</td>
                         <th scope="row">Sender Email</th>
                         <td>
-                            <a href="/users/{{$messageDetails[0]->sender->id}}">
+                            <a href="/admin/users/{{$messageDetails[0]->sender->id}}">
                                 {{$messageDetails[0]->sender->email}}</a>
                         </td>
                         <th scope="row">Conversation Created Time</th>

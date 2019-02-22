@@ -65,7 +65,8 @@ class ConversationController extends Controller
             $conversation->custom_photo = $custom_photo;
         }
             $conversation->save();
-        return redirect()->route('conversation.list')->with('success', "Conversation was updated successfully");
+        return redirect()->back();
+//        return redirect()->route('conversation.list')->with('success', "Conversation was updated successfully");
     }
 
     public function delete($id)
@@ -87,6 +88,19 @@ class ConversationController extends Controller
         event(new UserNotification($id,$name,'left'));
 
         return redirect('home');
+    }
+
+    public function conversationDetails($id)
+    {
+        $check = Conversation::find($id);
+        if($check){
+            $conversationDetails = Conversation::where('id',$id)
+                ->with('users','message','attachment','message.sender')
+                ->get();
+            return view('ConversationView', compact('conversationDetails'));
+        }else{
+            return back();
+        }
     }
 
     public function messageSingleUser($guestId)

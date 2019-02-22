@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 <style>
     #img{
         width:200px;
@@ -10,9 +10,9 @@
    td a{
         color: black;
         text-decoration: none;
-    }:hover{font-family:"Arial"}
+    }:hover{color:blue}
 </style>
-@section('content')
+@section('content-attachment-details')
     {{!$mime = $attachmentDetails[0]->attachment}}
     @if(strpos($mime, '.jpg')|| strpos($mime, '.jpeg') ||strpos($mime, '.png') ||strpos($mime, '.gif'))
     <div class="container-fluid">
@@ -29,7 +29,7 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th colspan="8">Details</th>
+                        <th colspan="8">Attachment Details</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,17 +56,17 @@
                                 {{$attachmentDetails[0]->attachment}}</a></td>
                         <th scope="row">Message</th>
                         <td>
-                            <a href="/messages/{{$attachmentDetails[0]->message->id}}">
+                            <a href="/admin/messages/{{$attachmentDetails[0]->message->id}}">
                             {{$attachmentDetails[0]->message->message}}</a>
                         </td>
                         <th scope="row">Conversation Name</th>
                         <td>
-                            <a href="/home/conversation/{{$attachmentDetails[0]->conversation->id}}/edit">
+                            <a href="/admin/conversations/{{$attachmentDetails[0]->conversation->id}}">
                                 {{$attachmentDetails[0]->conversation->custom_name}}</a>
                         </td>
                         <th scope="row">Sender Name</th>
                         <td>
-                            <a href="/users/{{$attachmentDetails[0]->message->sender->id}}">
+                            <a href="/admin/users/{{$attachmentDetails[0]->message->sender->id}}">
                                 {{$attachmentDetails[0]->message->sender->fullName}}</a>
                         </td>
                     </tr>
@@ -79,7 +79,7 @@
                         <td>{{$attachmentDetails[0]->conversation->type}}</td>
                         <th scope="row">Sender Email</th>
                         <td>
-                            <a href="/users/{{$attachmentDetails[0]->message->sender->id}}">
+                            <a href="/admin/users/{{$attachmentDetails[0]->message->sender->id}}">
                                 {{$attachmentDetails[0]->message->sender->email}}</a>
                         </td>
                     </tr>

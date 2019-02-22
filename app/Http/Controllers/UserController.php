@@ -87,4 +87,16 @@ class UserController extends Controller
 
     }
 
+    public function userDetails($id)
+    {
+        $check = User::find($id);
+        if($check){
+            $userDetails = User::where('id',$id)
+                ->with('photos','conversations','messages')
+                ->get();
+            return view('UserView', compact('userDetails'));
+        }else{
+            return back();
+        }
+    }
 }

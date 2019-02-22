@@ -77,6 +77,6 @@ class MessageController extends Controller
     {
         $message = Message::find($messageId)
             ->delete();
-        return redirect("messages");
+        return redirect("admin/messages");
     }
 }

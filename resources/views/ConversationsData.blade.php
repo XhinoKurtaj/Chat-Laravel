@@ -1,9 +1,14 @@
-@extends('layouts.master')
-
-@section('content')
+@extends('adminlte::page')
+@section('content-conversation')
+    <style>
+        a {
+            color:black;
+            font-size: 17px;
+        }
+    </style>
     <a href="{{route('admin')}}" class="btn btn-outline-secondary " id="back-btn"><i class="fas fa-arrow-circle-left"></i> Back</a><hr>
 
-    <table class="table table-bordered" id="conversations-table">
+    <table class="table table-bordered" style="background: white" id="conversations-table">
         <thead>
         <tr>
             <th>Conversation Name</th>
@@ -22,7 +27,7 @@
                         { data: 'name', name: 'custom_name', render: function(data){
                                var id = data.substr(0, data.indexOf('/'));
                                var name = data.substr(data.indexOf('/')+1,data.length-1);
-                                return '<a href="/home/conversation/'+id+'/edit">'+name+'</a>';
+                                return '<a href="/admin/conversations/'+id+'">'+name+'</a>';
                             }
                         },
                     ]
@@ -30,3 +35,4 @@
             });
     </script>
 @endpush
+

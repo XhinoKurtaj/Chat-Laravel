@@ -29,6 +29,11 @@ class SearchController extends Controller
         return view('data');
     }
 
+    public function userData()
+    {
+        return view('UsersData');
+    }
+
     public function conversationData()
     {
         return view('ConversationsData');

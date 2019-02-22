@@ -1,9 +1,14 @@
-@extends('layouts.master')
+@extends('adminlte::page')
+@section('content-users')
+    <style>
+        a {
+            color:black;
+            font-size: 17px;
+        }
+    </style>
+    <a href="{{ route("admin")}}" class="btn btn-outline-secondary " id="back-btn"><i class="fas fa-arrow-circle-left"></i> Back</a><hr>
 
-@section('content')
-    <a href="{{ route("conversation.list")}}" class="btn btn-outline-secondary " id="back-btn"><i class="fas fa-arrow-circle-left"></i> Back</a><hr>
-
-    <table class="table table-bordered" id="users-table">
+    <table class="table table-bordered" style="background: white" id="users-table">
         <thead>
         <tr>
             <th>Name</th>

@@ -115,75 +115,80 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text' => 'Dashboard',
+            'url'  => 'admin',
+            'icon' => 'dashboard',
+        ],
+        [
             'text' => 'Users',
-            'url'  => '/users',
+            'url'  => 'admin/users',
             'icon' => 'users',
         ],
         [
             'text' => 'Conversations',
-            'url'  => '/conversations',
+            'url'  => 'admin/conversations',
             'icon' => 'List',
         ],
         [
             'text' => 'Photos',
-            'url'  => '/photos',
+            'url'  => 'admin/photos',
             'icon' => 'Photo',
         ],
         [
             'text' => 'Messages',
-            'url'  => '/messages',
+            'url'  => 'admin/messages',
             'icon' => 'Envelope',
         ],
         [
             'text' => 'Attachments',
-            'url'  => '/attachments',
+            'url'  => 'admin/attachments',
             'icon' => 'Paperclip',
         ],
 
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Profile',
-            'url'  => '/profile',
-            'icon' => 'user',
-        ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
-        ],
+//        'ACCOUNT SETTINGS',
+//        [
+//            'text' => 'Profile',
+//            'url'  => '/profile',
+//            'icon' => 'user',
+//        ],
+//        [
+//            'text'    => 'Multilevel',
+//            'icon'    => 'share',
+//            'submenu' => [
+//                [
+//                    'text' => 'Level One',
+//                    'url'  => '#',
+//                ],
+//                [
+//                    'text'    => 'Level One',
+//                    'url'     => '#',
+//                    'submenu' => [
+//                        [
+//                            'text' => 'Level Two',
+//                            'url'  => '#',
+//                        ],
+//                        [
+//                            'text'    => 'Level Two',
+//                            'url'     => '#',
+//                            'submenu' => [
+//                                [
+//                                    'text' => 'Level Three',
+//                                    'url'  => '#',
+//                                ],
+//                                [
+//                                    'text' => 'Level Three',
+//                                    'url'  => '#',
+//                                ],
+//                            ],
+//                        ],
+//                    ],
+//                ],
+//                [
+//                    'text' => 'Level One',
+//                    'url'  => '#',
+//                ],
+//            ],
+//        ],
         'LABELS',
         [
             'text'       => 'Important',
