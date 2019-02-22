@@ -6,13 +6,20 @@
             color:black;
             font-size: 17px;
         }
+       td.sorting_1{
+            border: 1px solid black;
+        }
+        td, th, table{
+            border: 1px solid #5b3636;
+        }
     </style>
-    <a href="{{route('admin')}}" class="btn btn-outline-secondary " id="back-btn"><i class="fas fa-arrow-circle-left"></i> Back</a><hr>
-
-    <table class="table table-bordered"  style="background: white" id="photos-table">
+    <h2>Search Photo</h2><hr>
+    <table class="table table-striped "  style="background: ghostwhite" id="photos-table">
         <thead>
         <tr>
             <th>Photo Name</th>
+            <th>Photo Preview</th>
+
         </tr>
         </thead>
     </table>
@@ -31,8 +38,15 @@
                             return '<a href="photos/'+id+'">'+name+'</a>';
                         }
                     },
+                    { data: 'photo', name: 'photo', render: function(data){
+                            var id = data.substr(0, data.indexOf('/'));
+                            var name = data.substr(data.indexOf('/')+1,data.length-1);
+                            return '<img src="/storage/'+name+'" style="height: 100px; width: 100px;">';
+                        }
+                    }
                 ]
             });
         });
+
     </script>
 @endpush
