@@ -1,83 +1,105 @@
 @extends('adminlte::page')
 <head>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <style>
-    .size{
+    .size {
         font-size: 17px;
         font-family: "Times New Roman", Times, serif;
         color: black;
     }
-    .card-title{
+
+    .card-title {
         text-align: center;
         font-size: 60px;
     }
-    .card-name{
+
+    .card-name {
         text-align: center;
-        color:whitesmoke;
+        color: whitesmoke;
         font-family: "Times New Roman", Times, serif;
     }
-    /*.name:hover{*/
-        /*font-family: "Arial"*/
-    /*}*/
+
+    .wrapp-icon{
+        padding-top:20px;
+    }
 </style>
 @section('title', 'Admin Panel')
 
 @section('content_header')
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <div class="card text-white bg-primary mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h1 class="card-title"><i class="fas fa-users"></i></h1>
-                        {{--<a href="/users"></a>--}}
-                            <h3 class="card-name name">Users</h3>
-                        <h3 class="card-name">{{count($userList)}}</h3>
-                    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-xs-6">
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>{{count($userList)}}</h3>
+                    <p>Users</p>
                 </div>
+                <div class="icon">
+                    <i class="fas fa-users wrapp-icon"></i>
+                </div>
+                <a href="/admin/users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <div class="col-4">
-                <div class="card text-white bg-secondary mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h1 class="card-title"><i class="fas fa-list-ul"></i></i></h1>
-                        {{--<a href="/conversations"></a>--}}
-                            <h3 class="card-name name">Conversations</h3>
-                        <h3 class="card-name">{{count($conversationList)}}</h3>
-                    </div>
+        </div>
+        <div class="col-lg-4 col-xs-6">
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>{{count($conversationList)}}</h3>
+
+                    <p>Conversations</p>
                 </div>
+                <div class="icon">
+                    <i class="fas fa-list-ul wrapp-icon"></i>
+                </div>
+                <a href="/admin/conversations" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <div class="col-4">
-                <div class="card text-white bg-success mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h1 class="card-title"><i class="fas fa-image"></i></h1>
-                        {{--<a href="#"></a>--}}
-                            <h3 class="card-name name">Photos</h3>
-                        <h3 class="card-name name">{{count($photoList)}}</h3>
-                    </div>
+        </div>
+
+        <div class="col-lg-4 col-xs-6">
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>{{count($photoList)}}</h3>
+
+                    <p>Photos</p>
                 </div>
+                <div class="icon">
+                    <i class="fas fa-image wrapp-icon"></i>
+                </div>
+                <a href="/admin/photos" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <div class="col-4">
-                <div class="card text-white bg-info mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h1 class="card-title"><i class="fas fa-envelope"></i></h1>
-                        {{--<a href="#"></a>--}}
-                        <h3 class="card-name name">Messages</h3>
-                        <h3 class="card-name name">{{count($messageList)}}</h3>
-                    </div>
+        </div>
+
+        <div class="col-lg-4 col-xs-6">
+            <div class="small-box bg-light-blue">
+                <div class="inner">
+                    <h3>{{count($messageList)}}</h3>
+
+                    <p>Messages</p>
                 </div>
+                <div class="icon">
+                    <i class="fas fa-envelope wrapp-icon"></i>
+                </div>
+                <a href="/admin/messages" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <div class="col-4">
-                <div class="card  text-white bg-danger mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h1 class="card-title"><i class="fas fa-paperclip"></i></h1>
-                        {{--<a href="#"></a>--}}
-                            <h3 class="card-name name">Attachments</h3>
-                        <h3 class="card-name">{{count($attachmentList)}}</h3>
-                    </div>
+        </div>
+
+        <div class="col-lg-4 col-xs-6">
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>{{count($attachmentList)}}</h3>
+
+                    <p>Attachments</p>
                 </div>
+                <div class="icon">
+                    <i class="fas fa-paperclip wrapp-icon"></i>
+                </div>
+                <a href="/admin/attachments" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>
+</div>
 @stop
 

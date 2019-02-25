@@ -27,11 +27,12 @@
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/AdminLTE.min.css') }}">
     <!-- Bootstrap CSS -->
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
 
-    @if(config('adminlte.plugins.datatables'))
+    {{--@if(config('adminlte.plugins.datatables'))--}}
         <!-- DataTables with bootstrap 3 style -->
-        <link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css">
-    @endif
+        {{--<link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css">--}}
+    {{--@endif--}}
 
     @yield('adminlte_css')
 
@@ -64,7 +65,9 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- DataTables -->
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+{{--<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>--}}
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+
 
 <!-- Bootstrap JavaScript -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>

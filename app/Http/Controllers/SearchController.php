@@ -20,7 +20,7 @@ class SearchController extends Controller
 
     public function index()
     {
-        $users = User::select([DB::raw("CONCAT(id,'/',first_name,' ',last_name) AS name"),'email',]);
+        $users = User::select([DB::raw("CONCAT(id,'/',first_name,' ',last_name) AS name"),'email','photo']);
         return Datatables::of($users)->make();
     }
     
@@ -41,7 +41,7 @@ class SearchController extends Controller
 
     public function indexConversationData()
     {
-        $conversation = Conversation::select([DB::raw("CONCAT(id,'/',custom_name) AS name")]);
+        $conversation = Conversation::select([DB::raw("CONCAT(id,'/',custom_name) AS name"),'custom_photo']);
         return Datatables::of($conversation)->make();
     }
 
@@ -63,8 +63,16 @@ class SearchController extends Controller
 
     public function indexMessageData()
     {
-        $message = Message::select([DB::raw("CONCAT(id,'/',message) AS message")]);
+        $message = Message::query()
+            ->select([
+                DB::raw("CONCAT(messages.id,'/',messages.message) AS message"),
+                DB::raw("CONCAT(users.first_name,' ',users.last_name) AS username"),
+                'messages.created_at as time',
+            ])
+            ->Join('users', 'messages.sender_id', '=', 'users.id');
+
         return Datatables::of($message)->make();
+
     }
 
     public function attachmentData()

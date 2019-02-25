@@ -144,51 +144,6 @@ return [
             'url'  => 'admin/attachments',
             'icon' => 'Paperclip',
         ],
-
-//        'ACCOUNT SETTINGS',
-//        [
-//            'text' => 'Profile',
-//            'url'  => '/profile',
-//            'icon' => 'user',
-//        ],
-//        [
-//            'text'    => 'Multilevel',
-//            'icon'    => 'share',
-//            'submenu' => [
-//                [
-//                    'text' => 'Level One',
-//                    'url'  => '#',
-//                ],
-//                [
-//                    'text'    => 'Level One',
-//                    'url'     => '#',
-//                    'submenu' => [
-//                        [
-//                            'text' => 'Level Two',
-//                            'url'  => '#',
-//                        ],
-//                        [
-//                            'text'    => 'Level Two',
-//                            'url'     => '#',
-//                            'submenu' => [
-//                                [
-//                                    'text' => 'Level Three',
-//                                    'url'  => '#',
-//                                ],
-//                                [
-//                                    'text' => 'Level Three',
-//                                    'url'  => '#',
-//                                ],
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//                [
-//                    'text' => 'Level One',
-//                    'url'  => '#',
-//                ],
-//            ],
-//        ],
         'LABELS',
         [
             'text'       => 'Important',

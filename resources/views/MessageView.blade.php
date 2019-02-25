@@ -6,7 +6,7 @@
     }:hover{color:blue}
 </style>
 @section('content-message-details')
-    <div class="container">
+    <div class="container" style="background: white">
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-bordered">

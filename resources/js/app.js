@@ -33,7 +33,7 @@ const app = new Vue({
     el: '#app'
 });
 
-const id=$("#convId").val();
+const id = $("#convId").val();
 const display = $("#message-display");
 const attachmentList = $("#attachment-list");
 const memeberDisplay = $("#showMemberList");
@@ -41,13 +41,13 @@ const displayAlerts = $("#alerts");
 
 var counter = 1;
 
-$('#form').on('submit',function(event){
+$('#form').on('submit', function (event) {
     event.preventDefault();
     var formData = new FormData($(this)[0]);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method: 'post',
-        url: id+'/send',
+        url: id + '/send',
         dataType: 'json',
         processData: false,
         contentType: false,
@@ -56,87 +56,88 @@ $('#form').on('submit',function(event){
     $("#form")[0].reset();
 });
 
-$("#add-member").click(function(){
+$("#add-member").click(function () {
     const member = $("#search-text").val();
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method: 'get',
-        url: id+'/add',
+        url: id + '/add',
         data: {member: member},
         dataType: "json",
-        success: function(response){
+        success: function (response) {
             var alert = "<div class='alert alert-light' role='alert' tabindex='0'>" +
-                "<p class='alert-heading '>"+response+ "</p></div><br>";
+                "<p class='alert-heading '>" + response + "</p></div><br>";
             displayAlerts.html(alert);
             $("#search-text").val('');
-            setTimeout(function(){
+            setTimeout(function () {
                 displayAlerts.html(' ');
             }, 3000);
         }
     });
 });
 
-$(window).on('load', function() {
+$(window).on('load', function () {
     getMessages();
     getMembers();
     getAttachment();
 });
 
-window.Echo.private('conversation.'+id)
+window.Echo.private('conversation.' + id)
     .listen('MessageSent', event => {
-        if(event.sent === 1){
+        if (event.sent === 1) {
             getMessages();
             getAttachment();
         }
     }).listen('UserNotification', event => {
-        if(event.status === 'left'){
-            const statusLeft = "has left the conversation!!";
-            var body = memberNotification(event.fullName,statusLeft);
-            display.append(body);
-        }else{
-            const statusJoined = "has joined the conversation!!";
-            var body = memberNotification(event.fullName,statusJoined);
-            display.append(body);
-        }
-        getMembers();
-    });
+    if (event.status === 'left') {
+        const statusLeft = "has left the conversation!!";
+        var body = memberNotification(event.fullName, statusLeft);
+        display.append(body);
+    } else {
+        const statusJoined = "has joined the conversation!!";
+        var body = memberNotification(event.fullName, statusJoined);
+        display.append(body);
+    }
+    getMembers();
+});
 
 //Functions
-function getMessages(){
+function getMessages() {
     $('#textResponse').stop().animate({
         scrollTop: $('#textResponse').get(0).scrollHeight
     }, 2000);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: "GET",
-        url: id +'/read',
-        success:function(result){
+        url: id + '/read',
+        success: function (result) {
             buildUp(result);
         }
     });
 }
 
-function memberNotification(event,status)
-{
+function memberNotification(event, status) {
     var body = "<div class='alert alert-success' role='alert' tabindex='0'>" +
-        "<p class='alert-heading '>"+event +" "+ status + "</p></div><br>";
+        "<p class='alert-heading '>" + event + " " + status + "</p></div><br>";
     return body
 }
-function getMembers(){
+
+function getMembers() {
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: "GET",
-        url: id +'/members',
-        success:function(data){
+        url: id + '/members',
+        success: function (data) {
             var output = "";
-            for(var i in data){
-                output += "<tr class='table-active'><td ><strong>"+ counter++ +"</strong></td>"+
-                    "<td><a href='/users/"+data[i].id+"'>"+data[i].fullName +"</a></td></tr>";
+            for (var i in data) {
+                output += "<tr class='table-active'><td ><strong>" + counter++ + "</strong></td>" +
+                    "<td><a href='/users/" + data[i].id + "'>" + data[i].fullName + "</a></td></tr>";
             }
             memeberDisplay.html(output);
         }
     });
 }
+
 function getAttachment() {
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -145,7 +146,7 @@ function getAttachment() {
         success: function (result) {
             var output = "";
             for (var i in result) {
-                output += "<li><a href='"+id+"/download/"+result[i].id+"'>" +result[i].attachment + "</a></li><hr>";
+                output += "<li><a href='" + id + "/download/" + result[i].id + "'>" + result[i].attachment + "</a></li><hr>";
             }
             attachmentList.html(output);
         }
@@ -164,21 +165,20 @@ function getAttachment() {
 //     display.html(output);
 // }
 
-function buildUp(result){
+function buildUp(result) {
     var output = " ";
-    result.forEach(function(element) {
+    result.forEach(function (element) {
         console.log(element);
         // message id = element.id
-        var form =  build(element.id,element.created_at, element.sender.photo,element.sender.fullName,element.message,element.attachment,element.id);
+        var form = build(element.id, element.created_at, element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
         output += form;
     });
     display.html(output);
 }
 
-function build(messageId,created,photo,name,message,attachment = null,)
-{
+function build(messageId, created, photo, name, message, attachment = null,) {
     var userData = "<img src='/storage/" + photo + "' class='user-icon'> &nbsp" + name + "</p>";
-    var messageBody = "<p class='mb-0'>" + message ;
+    var messageBody = "<p class='mb-0'>" + message;
     if (attachment != null) {
         var download = "<hr><a href='" + id + "/download/" + attachment.id + "'>";
         var mimeType = attachment.attachment;
@@ -192,8 +192,8 @@ function build(messageId,created,photo,name,message,attachment = null,)
         attach = "";
     }
     var html = "<div class='alert alert-primary show-buttons message-position' role='alert' tabindex='0'>" +
-        "<p class='alert-heading '><span class='delete-message'><a href='"+id+"/messages/"+messageId+"'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> "+
-        "</a></span>" + userData + messageBody + download + attach + "</a><br><small>"+created+"</small></p></div><br>";
+        "<p class='alert-heading '><span class='delete-message'><a href='" + id + "/messages/" + messageId + "'class='btn btn-sm btn-outline-danger'><i class='far fa-trash-alt'></i> " +
+        "</a></span>" + userData + messageBody + download + attach + "</a><br><small>" + created + "</small></p></div><br>";
     return html;
 }
 
