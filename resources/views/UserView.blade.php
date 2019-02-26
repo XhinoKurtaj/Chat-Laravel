@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
 <style>
-    body{
-        background-color:lightgray;
+    body {
+        background-color: lightgray;
     }
 
-    #back-btn{
+    #back-btn {
         position: absolute;
         right: 15px;
     }
@@ -17,22 +17,26 @@
         -ms-overflow-style: -ms-autohiding-scrollbar;
     }
 
-    .image{
+    .image {
         height: 200px;
         width: 200px;
         padding: 5px;
     }
 
-    #conversation-list{
+    #conversation-list {
         overflow: auto;
         height: 370px;
         background: whitesmoke;
     }
-    #style-a{
-        color:black;
+
+    #style-a {
+        color: black;
         text-decoration: none;
     }
-    #style-a:hover{color:blue}
+
+    #style-a:hover {
+        color: blue
+    }
 </style>
 
 @section('content-users-details')
@@ -102,7 +106,6 @@
                            onclick="return confirm('Are you sure u want to delete this User?')"
                            class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Delete User</a>
                     </div>
-
                 </div>
             </div>
             <hr>
@@ -114,7 +117,8 @@
                             <div class="row">
                                 @foreach($userDetails[0]->photos as $photo)
                                     <div class="column">
-                                        <a href="/admin/photos/{{$photo->id}}"><img src='/storage/{{$photo->photo}}' class='image'></a>
+                                        <a href="/admin/photos/{{$photo->id}}"><img src='/storage/{{$photo->photo}}'
+                                                                                    class='image'></a>
                                     </div>
                                 @endforeach
                             </div>
@@ -124,12 +128,13 @@
                         <h5><i class="fas fa-comments"></i> User Conversations</h5>
                         <div id="conversation-list">
                             {{! $count = 1}}
-                        @foreach($userDetails[0]->conversations as $conversation)
+                            @foreach($userDetails[0]->conversations as $conversation)
                                 <div class="alert alert-primary" role="alert">
-                                    <h5>{{$count}}</h5> <a id="style-a" href="/admin/conversations/{{$conversation->id}}">{{$conversation->custom_name}}</a>
+                                    <h5>{{$count}}</h5> <a id="style-a"
+                                                           href="/admin/conversations/{{$conversation->id}}">{{$conversation->custom_name}}</a>
                                 </div>
-                            {{! $count++}}
-                        @endforeach
+                                {{! $count++}}
+                            @endforeach
                         </div>
                     </div>
                 </div>

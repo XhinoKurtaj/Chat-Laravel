@@ -22,7 +22,7 @@ class ConversationController extends Controller
         return View("home", compact('conversationList'));
     }
 
-    public function show()
+    public function show($id)
     {
         return view('conversation');
     }
@@ -36,11 +36,11 @@ class ConversationController extends Controller
         $conversationId = Conversation::insertGetId([
             'custom_name' => $request->get('custom_name'),
             'type' => Conversation::GROUP_TYPE,
-            ]);
+        ]);
         $user = User::find($userId);
         $user->conversations()->attach($conversationId);
 
-         return redirect('home');
+        return redirect('home');
     }
 
     public function conversationMembers($id)
@@ -50,21 +50,20 @@ class ConversationController extends Controller
         return response()->json($memberList);
     }
 
-    public function updateConversation(Request $request,$id)
+    public function updateConversation(Request $request, $id)
     {
         $this->validate($request, [
-            'custom_name'   => 'required|min:1|max:191'
+            'custom_name' => 'required|min:1|max:191'
         ]);
         $custom_name = $request->get('custom_name');
         $conversation = Conversation::findOrFail($id);
         $conversation->custom_name = $custom_name;
-        if($request->hasFile('custom_photo'))
-        {
+        if ($request->hasFile('custom_photo')) {
             $image = $request->file('custom_photo');
             $custom_photo = $image->store('images/conversation-images', ['disk' => 'public']);
             $conversation->custom_photo = $custom_photo;
         }
-            $conversation->save();
+        $conversation->save();
         return redirect()->back();
 //        return redirect()->route('conversation.list')->with('success', "Conversation was updated successfully");
     }
@@ -72,9 +71,9 @@ class ConversationController extends Controller
     public function delete($id)
     {
         $conversation = Conversation::find($id)->delete();
-        if(auth()->user()->type == "admin"){
+        if (auth()->user()->type == "admin") {
             return redirect()->route('conversation.table');
-        }else {
+        } else {
             return back()->with('success-delete', "Conversation was deleted successfully");
         }
     }
@@ -85,7 +84,7 @@ class ConversationController extends Controller
         $name = auth()->user()->fullName;
         $conversation = Conversation::findOrFail($id);
         $conversation->users()->detach($userId);
-        event(new UserNotification($id,$name,'left'));
+        event(new UserNotification($id, $name, 'left'));
 
         return redirect('home');
     }
@@ -93,12 +92,12 @@ class ConversationController extends Controller
     public function conversationDetails($id)
     {
         $check = Conversation::find($id);
-        if($check){
-            $conversationDetails = Conversation::where('id',$id)
-                ->with('users','message','attachment','message.sender')
+        if ($check) {
+            $conversationDetails = Conversation::where('id', $id)
+                ->with('users', 'message', 'attachment', 'message.sender')
                 ->get();
             return view('ConversationView', compact('conversationDetails'));
-        }else{
+        } else {
             return back();
         }
     }
@@ -113,18 +112,17 @@ class ConversationController extends Controller
             ->orWhere('custom_name', $fullNameGuest . ' ' . $authUserName)
             ->get();
         $conversation = $conversationObj->toArray();
-        if($conversation != null && $conversation[0]['type'] == 'default')
-        {
-            return redirect('/home/conversation/'.$conversation[0]['id']);
-        }else{
+        if ($conversation != null && $conversation[0]['type'] == 'default') {
+            return redirect('/home/conversation/' . $conversation[0]['id']);
+        } else {
             $conversationId = Conversation::insertGetId([
-                'custom_name' => $authUserName.' '.$fullNameGuest,
+                'custom_name' => $authUserName . ' ' . $fullNameGuest,
                 'type' => Conversation::DEFAULT_TYPE,
             ]);
             $authUser->conversations()->attach($conversationId);
             $userGuest->conversations()->attach($conversationId);
 
-            return redirect('/home/conversation/'.$conversationId);
+            return redirect('/home/conversation/' . $conversationId);
         }
     }
 }

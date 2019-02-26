@@ -114,7 +114,6 @@
 
             <!-- Main content -->
             <section class="content">
-
                 @yield('content-message')
                 @yield('content-message-details')
                 @yield('content-photo')
@@ -125,7 +124,6 @@
                 @yield('content-conversation-details')
                 @yield('content-users')
                 @yield('content-users-details')
-
             </section>
             <!-- /.content -->
             @if(config('adminlte.layout') == 'top-nav')
@@ -134,7 +132,6 @@
             @endif
         </div>
         <!-- /.content-wrapper -->
-
     </div>
     <!-- ./wrapper -->
 @stop

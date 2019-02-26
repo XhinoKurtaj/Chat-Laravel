@@ -47,11 +47,13 @@ class User extends Authenticatable
     const ADMIN_TYPE = 'admin';
     const DEFAULT_TYPE = 'default';
 
-    public function isAdmin()    {
+    public function isAdmin()
+    {
         return $this->type === self::ADMIN_TYPE;
     }
 
-    public function getFullNameAttribute(){
+    public function getFullNameAttribute()
+    {
         return $this->first_name . ' ' . $this->last_name;
     }
 
@@ -67,7 +69,7 @@ class User extends Authenticatable
 
     public function messages()
     {
-        return $this->hasMany(Message::class,'sender_id');
+        return $this->hasMany(Message::class, 'sender_id');
     }
 
     public function comments()

@@ -127,35 +127,22 @@ return [
         [
             'text' => 'Conversations',
             'url'  => 'admin/conversations',
-            'icon' => 'List',
+            'icon' => 'list',
         ],
         [
             'text' => 'Photos',
             'url'  => 'admin/photos',
-            'icon' => 'Photo',
+            'icon' => 'photo',
         ],
         [
             'text' => 'Messages',
             'url'  => 'admin/messages',
-            'icon' => 'Envelope',
+            'icon' => 'envelope',
         ],
         [
             'text' => 'Attachments',
             'url'  => 'admin/attachments',
-            'icon' => 'Paperclip',
-        ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
+            'icon' => 'paperclip',
         ],
     ],
 

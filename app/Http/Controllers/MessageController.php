@@ -20,8 +20,8 @@ class MessageController extends Controller
 
     public function read($id)
     {
-        $messageList = Message::where('conversation_id',$id)
-            ->with('sender','attachment', 'sender.photos')
+        $messageList = Message::where('conversation_id', $id)
+            ->with('sender', 'attachment', 'sender.photos')
             ->orderBy('id', 'asc')
             ->get();
         return response()->json($messageList);
@@ -30,7 +30,7 @@ class MessageController extends Controller
     public function store(Request $request, $id)
     {
         $this->validate($request, [
-           'message'   => 'required|min:1|max:255'
+            'message' => 'required|min:1|max:255'
         ]);
         $conversation = Conversation::findOrFail($id);
         $user = auth()->user();
@@ -39,12 +39,11 @@ class MessageController extends Controller
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
         ]);
-        if($request->hasFile('attachment'))
-        {
+        if ($request->hasFile('attachment')) {
             $attachment = new AttachmentController();
-            $attachment->store($conversation->id,$message->id,$request);
+            $attachment->store($conversation->id, $message->id, $request);
         }
-        event(new MessageSent(1,$id));
+        event(new MessageSent(1, $id));
     }
 
     public function show($id)
@@ -52,10 +51,10 @@ class MessageController extends Controller
         return view('chatBoard');
     }
 
-    public function delete($conversationId,$messageId)
+    public function delete($conversationId, $messageId)
     {
         $message = Message::find($messageId)
-                   ->delete();
+            ->delete();
         return redirect()->back();
     }
 
@@ -63,12 +62,12 @@ class MessageController extends Controller
     public function messageDetails($id)
     {
         $check = Message::find($id);
-        if($check){
-            $messageDetails = Message::where('id',$id)
-                ->with('sender','conversation','attachment')
+        if ($check) {
+            $messageDetails = Message::where('id', $id)
+                ->with('sender', 'conversation', 'attachment')
                 ->get();
             return view('MessageView', compact('messageDetails'));
-        }else{
+        } else {
             return back();
         }
     }

@@ -21,7 +21,7 @@ class PhotoController extends Controller
     public function index()
     {
         $userId = auth()->user()->id;
-        $photoList = Photo::where('user_id',$userId)->get();
+        $photoList = Photo::where('user_id', $userId)->get();
         return view('photos.photos', compact('photoList'));
     }
 
@@ -29,12 +29,12 @@ class PhotoController extends Controller
     {
         $user = auth()->user();
         $request->validate([
-            'photo'=>'required|mimes:jpeg,jpg,png ',
+            'photo' => 'required|mimes:jpeg,jpg,png ',
         ]);
         $image = $request->file('photo');
         $photo = Photo::create([
-        'photo' =>  $image->store('images',['disk' => 'public']),
-        'user_id' => $user->id,
+            'photo' => $image->store('images', ['disk' => 'public']),
+            'user_id' => $user->id,
         ]);
 
         return back()->with('success', "Photo created successfully");
@@ -55,7 +55,7 @@ class PhotoController extends Controller
     public function delete($id)
     {
         $photo = Photo::find($id)->delete();
-        if(auth()->user()->type == "admin")
+        if (auth()->user()->type == "admin")
             return redirect()->route('photos.table');
         else
             return back();
@@ -64,12 +64,12 @@ class PhotoController extends Controller
     public function photoDetails($id)
     {
         $check = Photo::find($id);
-        if($check){
-            $photoDetails = Photo::where('id',$id)
+        if ($check) {
+            $photoDetails = Photo::where('id', $id)
                 ->with('user')
                 ->get();
             return view('PhotoView', compact('photoDetails'));
-        }else{
+        } else {
             return back();
         }
     }

@@ -38,7 +38,6 @@ const display = $("#message-display");
 const attachmentList = $("#attachment-list");
 const memeberDisplay = $("#showMemberList");
 const displayAlerts = $("#alerts");
-
 var counter = 1;
 
 $('#form').on('submit', function (event) {
@@ -48,12 +47,17 @@ $('#form').on('submit', function (event) {
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method: 'post',
         url: id + '/send',
-        dataType: 'json',
         processData: false,
         contentType: false,
         data: formData,
-    });
-    $("#form")[0].reset();
+        success: function(data){
+            $("#form")[0].reset();
+        },
+        error: function(err){
+            window.location.replace("https://laravel-chat.test/home");
+            alert("Something went wrong!!")
+        }
+    })
 });
 
 $("#add-member").click(function () {
@@ -168,7 +172,6 @@ function getAttachment() {
 function buildUp(result) {
     var output = " ";
     result.forEach(function (element) {
-        console.log(element);
         // message id = element.id
         var form = build(element.id, element.created_at, element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
         output += form;

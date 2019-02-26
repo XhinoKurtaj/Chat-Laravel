@@ -34,7 +34,7 @@
             </div>
         </div>
         <br><hr>
-        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-circle-left"></i> Back</a>
+        <a href="{{ route("conversation.list") }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-circle-left"></i> Back</a>
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -56,5 +56,4 @@
             </div>
         </div>
     </div>
-
 @endsection

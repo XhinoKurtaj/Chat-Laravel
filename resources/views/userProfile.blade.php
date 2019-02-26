@@ -52,68 +52,6 @@
                             </div>
                         </div>
                         <hr>
-                        @if(auth()->user()->type == "admin")
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-1">
-                                    <a href="/profile/{{$user[0]->id}}/delete" onclick="return confirm('Are you sure u want to delete this User?')" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i> Delete User</a>
-                                </div>
-                                <div class="col-8">
-                                    <h5>Photos <i class="fas fa-image"></i></h5>
-                                    <div class="table-wrapper-scroll-y">
-                                        <div class="row" >
-                                            <div class="column">
-                                            @foreach($user[0]->photos as $photo)
-                                                    <a href="/photos/{{$photo->id}}"><img src="/storage/{{$photo->photo}}" class='img-thumbnail'></a>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-
-                                    <form method="POST" action="{{ route('user.update') }}">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <label for="First Name" class="col-md-4 col-form-label text-md-right">{{ __('First_name') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input id="First Name" type="text" class="form-control{{ $errors->has('First_name') ? ' is-invalid' : '' }}" name="first_name" placeholder="{{$user[0]->first_name}}" value="{{$user[0]->first_name}}" autofocus>
-
-                                                @if ($errors->has('First_name'))
-                                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('First_name') }}</strong>
-                                        </span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="Last Name" class="col-md-4 col-form-label text-md-right">{{ __('Last_name') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input id="Last Name" type="text" class="form-control{{ $errors->has('Last_name') ? ' is-invalid' : '' }}" name="last_name" placeholder="{{$user[0]->last_name}}" value="{{$user[0]->last_name}}" autofocus>
-
-                                                @if ($errors->has('Last_name'))
-                                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('Last_name') }}</strong>
-                                        </span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <input type="hidden" value="{{$user[0]->id}}" name="user_id">
-                                        <div class="form-group row mb-0">
-                                            <div class="col-md-6 offset-md-4">
-                                                <button type="submit" class="btn btn-primary"><i class="fas fa-user-edit"></i>
-                                                    {{ __('Update') }}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                            @endif
                     </div>
                 </div>
             </div>

@@ -44,31 +44,33 @@
 @stop
 @push('scripts')
     <script>
-        $(function() {
+        $(function () {
             $('#users-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('data') !!}',
                 columns: [
-                    {data: 'photo', name: 'photo', render: function (data) {
+                    {
+                        data: 'photo', name: 'photo', render: function (data) {
                             if (data != null) {
-                                return '<img src="/storage/'+data+'" style="height: 50px; width: 50px;">';
+                                return '<img src="/storage/' + data + '" style="height: 50px; width: 50px;">';
 
-                            }else{
+                            } else {
                                 return '<img src="/storage/images/avatar.png" style="height: 50px; width: 50px;">';
                             }
                         }
                     },
-                    { data: 'name', name: 'name', searchable:false, render: function ( data ) {
-                        var id = data.substr(0, data.indexOf('/'));
-                        var name = data.substr(data.indexOf('/')+1,data.length-1);
-                        return '<a href="users/'+id+'">'+name+'</a>';
-                        }},
-                    { data: 'email', name: 'email' },
+                    {
+                        data: 'name', name: 'name', searchable: false, render: function (data) {
+                            var id = data.substr(0, data.indexOf('/'));
+                            var name = data.substr(data.indexOf('/') + 1, data.length - 1);
+                            return '<a href="users/' + id + '">' + name + '</a>';
+                        }
+                    },
+                    {data: 'email', name: 'email'},
 
                 ]
             });
         });
     </script>
-
 @endpush

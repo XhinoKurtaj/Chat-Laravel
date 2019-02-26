@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Message;
 class CommentController extends Controller
 {
-    public function store($id,Request $request,$commentableId)
+    public function store($id, Request $request, $commentableId)
     {
         $authorId = auth()->user()->id;
         $message = Message::find($commentableId);
@@ -17,11 +17,11 @@ class CommentController extends Controller
         ]);
     }
 
-    public function messageComments($conversationID,$messageId)
+    public function messageComments($conversationID, $messageId)
     {
-        $commentList = Comment::where('commentable_id',$messageId)
-                        ->with('user')
-                        ->get();
+        $commentList = Comment::where('commentable_id', $messageId)
+            ->with('user')
+            ->get();
         return response()->json($commentList);
     }
 }

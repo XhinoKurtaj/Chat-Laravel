@@ -4,13 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @method static create(array $array)
- */
 class Message extends Model
 {
     protected $fillable = [
-        'message','attachment','conversation_id','sender_id'
+        'message', 'attachment', 'conversation_id', 'sender_id'
     ];
 
 
@@ -26,7 +23,7 @@ class Message extends Model
 
     public function attachment()
     {
-        return $this->hasOne(Attachment::class,'message_id');
+        return $this->hasOne(Attachment::class, 'message_id');
     }
 
     public function comments()

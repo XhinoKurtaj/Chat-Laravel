@@ -20,10 +20,10 @@ class SearchController extends Controller
 
     public function index()
     {
-        $users = User::select([DB::raw("CONCAT(id,'/',first_name,' ',last_name) AS name"),'email','photo']);
+        $users = User::select([DB::raw("CONCAT(id,'/',first_name,' ',last_name) AS name"), 'email', 'photo']);
         return Datatables::of($users)->make();
     }
-    
+
     public function create()
     {
         return view('data');
@@ -41,7 +41,7 @@ class SearchController extends Controller
 
     public function indexConversationData()
     {
-        $conversation = Conversation::select([DB::raw("CONCAT(id,'/',custom_name) AS name"),'custom_photo']);
+        $conversation = Conversation::select([DB::raw("CONCAT(id,'/',custom_name) AS name"), 'custom_photo']);
         return Datatables::of($conversation)->make();
     }
 
@@ -89,12 +89,11 @@ class SearchController extends Controller
     public function inviteUser(Request $request, $id)
     {
         $member = $request->get('member');
-        if($member != null)
-        {
-            $search = DB::table('users')->where('email',$member)->pluck('id');
-            if(empty($search[0])){
+        if ($member != null) {
+            $search = DB::table('users')->where('email', $member)->pluck('id');
+            if (empty($search[0])) {
                 return response()->json("we couldn't find $member");
-            }else {
+            } else {
                 $user = User::find($search[0]);
                 $exist = $user->conversations()->where('id', $id)->exists();
                 if ($exist) {

@@ -9,8 +9,9 @@ class Attachment extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'attachment','conversation_id','message_id'
+        'attachment', 'conversation_id', 'message_id'
     ];
+
     public function conversation()
     {
         return $this->belongsTo(Conversation::class);

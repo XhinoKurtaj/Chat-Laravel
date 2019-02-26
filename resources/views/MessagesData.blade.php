@@ -44,20 +44,22 @@
 @stop
 @push('scripts')
     <script>
-        $(function() {
+        $(function () {
             $('#messages-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('messages.data') !!}',
                 columns: [
-                    { data: 'message', name: 'messages.message', render: function(data){
-                        console.log(data);
+                    {
+                        data: 'message', name: 'messages.message', render: function (data) {
+                            console.log(data);
                             var id = data.substr(0, data.indexOf('/'));
-                            var name = data.substr(data.indexOf('/')+1,data.length-1);
-                            return '<a href="messages/'+id+'">'+name+'</a>';
-                        }},
-                    { data: 'username', name: 'username', searchable:false},
-                    { data: 'time', name: 'time'},
+                            var name = data.substr(data.indexOf('/') + 1, data.length - 1);
+                            return '<a href="messages/' + id + '">' + name + '</a>';
+                        }
+                    },
+                    {data: 'username', name: 'username', searchable: false},
+                    {data: 'time', name: 'time', searchable: false},
                 ]
             });
         });

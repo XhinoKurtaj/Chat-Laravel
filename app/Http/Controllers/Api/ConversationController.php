@@ -87,11 +87,11 @@ class ConversationController extends Controller
             ->orWhere('custom_name', $fullNameGuest . ' ' . $authUserName)
             ->get();
         $conversation = $conversationObj->toArray();
-        if($conversation != null && $conversation[0]['type'] == 'default'){
+        if ($conversation != null && $conversation[0]['type'] == 'default') {
             return response()->json("Conversation already exist", 303);
-        }else{
+        } else {
             $conversationId = Conversation::insertGetId([
-                'custom_name' => $authUserName.' '.$fullNameGuest,
+                'custom_name' => $authUserName . ' ' . $fullNameGuest,
                 'type' => Conversation::DEFAULT_TYPE,
             ]);
             $authUser->conversations()->attach($conversationId);

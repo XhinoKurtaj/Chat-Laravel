@@ -1,7 +1,6 @@
 @extends('adminlte::page')
 @section('content-conversation')
     <link href="/css/datatable-style.css" rel="stylesheet">
-
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Conversation Data Table</h3>
@@ -41,30 +40,32 @@
 @stop
 @push('scripts')
     <script>
-            $(function() {
-                $('#conversations-table').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    ajax: '{!! route('conversation.data') !!}',
-                    columns: [
-                        { data: 'name', name: 'custom_name', render: function(data){
+        $(function () {
+            $('#conversations-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('conversation.data') !!}',
+                columns: [
+                    {
+                        data: 'name', name: 'custom_name', render: function (data) {
 
-                               var id = data.substr(0, data.indexOf('/'));
-                               var name = data.substr(data.indexOf('/')+1,data.length-1);
-                                return '<a href="/admin/conversations/'+id+'">'+name+'</a>';
+                            var id = data.substr(0, data.indexOf('/'));
+                            var name = data.substr(data.indexOf('/') + 1, data.length - 1);
+                            return '<a href="/admin/conversations/' + id + '">' + name + '</a>';
+                        }
+                    },
+                    {
+                        data: 'custom_photo', name: 'custom_photo', render: function (data) {
+                            if (data != null) {
+                                return '<img src="/storage/' + data + '" style="height: 50px; width: 50px;">';
+                            } else {
+                                return ' ';
                             }
-                        },
-                        { data: 'custom_photo', name: 'custom_photo', render: function(data){
-                                if(data != null){
-                                    return '<img src="/storage/'+data+'" style="height: 50px; width: 50px;">';
-                                }else{
-                                    return ' ';
-                                }
-                            }
-                        },
-                    ]
-                });
+                        }
+                    },
+                ]
             });
+        });
     </script>
 @endpush
 

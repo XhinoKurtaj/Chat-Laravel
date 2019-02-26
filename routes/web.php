@@ -28,56 +28,56 @@ Route::get('profile/{id}/delete', 'UserController@delete')
     ->name('user.delete');
 
 
-Route::get('profile/photo','PhotoController@index')
-        ->name('photo.show');
-Route::get('profile/photo/create','PhotoController@show')
-        ->name('photo.create');
-Route::post('profile/photo','PhotoController@store')
-        ->name('photo.store');
-Route::get('profile/photo/{id}','PhotoController@delete')
-        ->name('photo.delete');
-Route::get('profile/photo/profile/{id}','PhotoController@setProfilePhoto')
-        ->name('profile.photo');
+Route::get('profile/photo', 'PhotoController@index')
+    ->name('photo.show');
+Route::get('profile/photo/create', 'PhotoController@show')
+    ->name('photo.create');
+Route::post('profile/photo', 'PhotoController@store')
+    ->name('photo.store');
+Route::get('profile/photo/{id}', 'PhotoController@delete')
+    ->name('photo.delete');
+Route::get('profile/photo/profile/{id}', 'PhotoController@setProfilePhoto')
+    ->name('profile.photo');
 
 
-Route::get('home','ConversationController@index')
-        ->name('conversation.list');
-Route::post('home','ConversationController@store')
-        ->name('conversation.store');
+Route::get('home', 'ConversationController@index')
+    ->name('conversation.list');
+Route::post('home', 'ConversationController@store')
+    ->name('conversation.store');
 
 Route::group(['middleware' => ['belongs_to']], function () {
 
-    Route::get('home/conversation/{id}/delete','ConversationController@delete')
+    Route::get('home/conversation/{id}/delete', 'ConversationController@delete')
         ->name('conversation.delete');
-    Route::get('/home/conversation/{id}/members','ConversationController@conversationMembers')
+    Route::get('/home/conversation/{id}/members', 'ConversationController@conversationMembers')
         ->name('conversation.members');
-    Route::get('home/conversation/{id}/edit','ConversationController@show')
+    Route::get('home/conversation/{id}/edit', 'ConversationController@show')
         ->name('show.conversation');
-    Route::post('/home/conversation/{id}/edit','ConversationController@updateConversation');
+    Route::post('/home/conversation/{id}/edit', 'ConversationController@updateConversation');
 
-    Route::get('home/conversation/{id}','MessageController@show')
+    Route::get('home/conversation/{id}', 'MessageController@show')
         ->name('message.show');
-    Route::get('/home/conversation/{id}/read','MessageController@read')
+    Route::get('/home/conversation/{id}/read', 'MessageController@read')
         ->name('message.read');
-    Route::post('home/conversation/{id}/send','MessageController@store')
+    Route::post('home/conversation/{id}/send', 'MessageController@store')
         ->name('message.store');
-    Route::get('home/conversation/{id}/messages/{messageId}','MessageController@delete')
+    Route::get('home/conversation/{id}/messages/{messageId}', 'MessageController@delete')
         ->name('message.delete');
 
-    Route::get('/home/conversation/{id}/attachment','AttachmentController@index')
+    Route::get('/home/conversation/{id}/attachment', 'AttachmentController@index')
         ->name('att.read');
-    Route::get('/home/conversation/{id}/download/{attachment_id}','AttachmentController@download')
+    Route::get('/home/conversation/{id}/download/{attachment_id}', 'AttachmentController@download')
         ->name('att.download');
 
-    Route::get('/home/conversation/{id}/leave','ConversationController@leaveConversation')
+    Route::get('/home/conversation/{id}/leave', 'ConversationController@leaveConversation')
         ->name('leave.conversation');
 
-    Route::get('/home/conversation/{id}/add','SearchController@inviteUser')
+    Route::get('/home/conversation/{id}/add', 'SearchController@inviteUser')
         ->name('add.members');
 
-    Route::get('/home/conversation/{id}/comment/{messageId}','CommentController@messageComments')
+    Route::get('/home/conversation/{id}/comment/{messageId}', 'CommentController@messageComments')
         ->name('commentMessage.get');
-    Route::post('/home/conversation/{id}/comment/{messageId}','CommentController@store')
+    Route::post('/home/conversation/{id}/comment/{messageId}', 'CommentController@store')
         ->name('commentMessage.store');
 });
 
@@ -98,23 +98,21 @@ Route::get('users', 'SearchController@create')
     ->name('data.table');
 Route::get('users/data', 'SearchController@index')
     ->name('data');
-Route::get('/users/{id}','UserController@show')
+Route::get('/users/{id}', 'UserController@show')
     ->name('search.user');
-
-
 
 
 Route::group(['middleware' => ['is_admin']], function () {
     Route::get('admin/users', 'SearchController@userData')
         ->name('users.table');
-    Route::get('admin/users/{id}','UserController@userDetails')
+    Route::get('admin/users/{id}', 'UserController@userDetails')
         ->name('search.user');
 
     Route::get('admin/conversations', 'SearchController@conversationData')
         ->name('conversation.table');
     Route::get('admin/conversations/data', 'SearchController@indexConversationData')
         ->name('conversation.data');
-    Route::get('admin/conversations/{id}','ConversationController@conversationDetails');
+    Route::get('admin/conversations/{id}', 'ConversationController@conversationDetails');
 
     Route::get('admin/photos', 'SearchController@photoData')
         ->name('photos.table');

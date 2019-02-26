@@ -61636,12 +61636,17 @@ $('#form').on('submit', function (event) {
     },
     method: 'post',
     url: id + '/send',
-    dataType: 'json',
     processData: false,
     contentType: false,
-    data: formData
+    data: formData,
+    success: function success(data) {
+      $("#form")[0].reset();
+    },
+    error: function error(err) {
+      window.location.replace("https://laravel-chat.test/home");
+      alert("Something went wrong!!");
+    }
   });
-  $("#form")[0].reset();
 });
 $("#add-member").click(function () {
   var member = $("#search-text").val();
@@ -61762,8 +61767,7 @@ function getAttachment() {
 function buildUp(result) {
   var output = " ";
   result.forEach(function (element) {
-    console.log(element); // message id = element.id
-
+    // message id = element.id
     var form = build(element.id, element.created_at, element.sender.photo, element.sender.fullName, element.message, element.attachment, element.id);
     output += form;
   });

@@ -11,21 +11,21 @@ class AttachmentController extends Controller
 {
     public function index($id)
     {
-        $attachments = Attachment::where('conversation_id',$id)
+        $attachments = Attachment::where('conversation_id', $id)
             ->orderBy('id', 'desc')
             ->get();
         return response()->json($attachments);
     }
 
-    public function download($id,$attachmentId)
+    public function download($id, $attachmentId)
     {
         $attachment = Attachment::findOrFail($attachmentId);
         $name = $attachment->attachment;
-        $attach = str_replace("attachments/","",$name);
+        $attach = str_replace("attachments/", "", $name);
         return response()->download(public_path("/storage/attachments/$attach"));
     }
 
-    public function store($conversationId,$messageId,$request)
+    public function store($conversationId, $messageId, $request)
     {
         $attach = $request->file('attachment');
         $attachment = Attachment::create([
@@ -38,12 +38,12 @@ class AttachmentController extends Controller
     public function attachmentDetails($id)
     {
         $check = Attachment::find($id);
-        if($check){
-            $attachmentDetails = Attachment::where('id',$id)
-                ->with('conversation','message','message.sender')
+        if ($check) {
+            $attachmentDetails = Attachment::where('id', $id)
+                ->with('conversation', 'message', 'message.sender')
                 ->get();
             return view('AttachmentView', compact('attachmentDetails'));
-        }else{
+        } else {
             return back();
         }
     }

@@ -31,7 +31,7 @@ class UserController extends Controller
         {
             if(auth()->user()->type == "admin")
             {
-                return redirect('users');
+                return redirect('admin/users');
             }else{
                 return redirect()->route('login');
             }
