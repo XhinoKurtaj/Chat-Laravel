@@ -120,7 +120,7 @@ Route::group(['middleware' => ['is_admin']], function () {
         ->name('photos.data');
     Route::get('admin/photos/{id}', 'PhotoController@photoDetails')
         ->name('show.photo');
-    Route::get('admin/photos/{id}/delete', 'PhotoController@delete')
+    Route::get('admin/photos/{id}/delete', 'PhotoController@deleteFromAdmin')
         ->name('delete.photo');
 
     Route::get('admin/messages', 'SearchController@messageData')
@@ -140,7 +140,6 @@ Route::group(['middleware' => ['is_admin']], function () {
         ->name('show.attachment');
 
 });
-
 
 Route::get('/users/add/{id}','ConversationController@messageSingleUser');
 
