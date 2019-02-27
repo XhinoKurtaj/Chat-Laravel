@@ -30,12 +30,12 @@ class MessageController extends Controller
     public function store(Request $request, $id)
     {
         $this->validate($request, [
-            'message' => 'required|min:1|max:255'
+            'message' => 'required|string|min:1|max:255'
         ]);
         $conversation = Conversation::findOrFail($id);
         $user = auth()->user();
         $message = Message::create([
-            'message' => $request->get('message'),
+            'message' => strip_tags($request->get('message')),
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
         ]);
@@ -57,7 +57,6 @@ class MessageController extends Controller
             ->delete();
         return redirect()->back();
     }
-
 
     public function messageDetails($id)
     {

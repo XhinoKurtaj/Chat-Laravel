@@ -141,7 +141,7 @@ Route::group(['middleware' => ['is_admin']], function () {
 
 });
 
-Route::get('/users/add/{id}','ConversationController@messageSingleUser');
+Route::get('/users/add/{id}', 'ConversationController@messageSingleUser');
 
 
 

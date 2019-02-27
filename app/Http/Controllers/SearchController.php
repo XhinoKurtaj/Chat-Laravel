@@ -88,7 +88,7 @@ class SearchController extends Controller
 
     public function inviteUser(Request $request, $id)
     {
-        $member = $request->get('member');
+        $member = strip_tags($request->get('member'));
         if ($member != null) {
             $search = DB::table('users')->where('email', $member)->pluck('id');
             if (empty($search[0])) {
